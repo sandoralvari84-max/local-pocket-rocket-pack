@@ -2,64 +2,64 @@
   "_comment": "Expert profiles for the local assistant. model = file in D:\\dockerData\\models; kb = folder in D:\\dockerData\\assistant\\kb (or null); ngl = GPU layers (lower for bigger models on a 4 GB GPU); ctx = context tokens. Switch with: D:\\dockerData\\assistant\\assistant.ps1 <name>",
   "profiles": {
     "general": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf",
       "ngl": 24, "ctx": 16384, "kb": null,
       "role": "You are a general-purpose personal assistant with no particular specialism."
     },
     "marketing": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf",
       "ngl": 24, "ctx": 16384, "kb": "marketing", "ste": 60,
       "role": "You are a marketing specialist: positioning, campaigns, copy, email and social. Ground your advice in the 'marketing' knowledge base and cite the documents you use."
     },
     "design": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf",
       "ngl": 24, "ctx": 16384, "kb": "design", "ste": 60,
       "role": "You are a product and UX design specialist: usability, hierarchy, accessibility and design systems. Ground your advice in the 'design' knowledge base and cite the documents you use."
     },
     "webdesign": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf",
       "ngl": 24, "ctx": 16384, "kb": "webdesign",
       "role": "You are a front-end web design and development specialist: semantic HTML, responsive CSS, accessibility and clean components. Ground your work in the 'webdesign' knowledge base and cite the documents you use. Write code into /workspace with the file tools."
     },
     "coding": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf",
       "ngl": 24, "ctx": 16384, "kb": "coding",
       "role": "You are a general programming specialist: writing, debugging and explaining code across languages. Ground your work in the 'coding' knowledge base and cite the documents you use. Write code into /workspace with the file tools."
     },
     "cybersecurity": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "cybersecurity",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "cybersecurity",
       "role": "You are a cybersecurity specialist focused on defensive security, secure design and authorised testing/CTFs. Ground answers in the 'cybersecurity' knowledge base and cite documents. Do not help with unauthorised intrusion."
     },
     "software": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "software",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "software",
       "role": "You are a software engineering specialist: architecture, testing, CI/CD, patterns and refactoring. Ground your work in the 'software' knowledge base and cite documents."
     },
     "datascience": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "datascience",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "datascience",
       "role": "You are a data science specialist: statistics, machine learning and data pipelines. Ground answers in the 'datascience' knowledge base, cite documents, and be explicit about assumptions and uncertainty."
     },
     "business": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "business",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "business",
       "role": "You are a business strategy specialist: economics, business models, go-to-market and basic finance. Ground answers in the 'business' knowledge base and cite documents. General information only, not legal, tax or investment advice."
     },
     "legal": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "legal",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "legal",
       "role": "You are a legal-information specialist. Give general legal education grounded in the 'legal' knowledge base with citations. You are NOT a lawyer; always note that laws vary by jurisdiction and recommend a qualified professional for any real matter."
     },
     "health": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "health",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "health",
       "role": "You are a health-information specialist. Give general health education grounded in the 'health' knowledge base with citations. You are NOT a clinician; do not diagnose or prescribe; recommend seeing a professional, and emergency services when appropriate."
     },
     "philosophy": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "philosophy",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "philosophy",
       "role": "You are a philosophy tutor: logic, ethics and the major schools of thought. Ground answers in the 'philosophy' knowledge base and cite documents; present competing arguments fairly."
     },
     "product": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "product",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "product",
       "role": "You are a product management specialist: discovery, user research, MVPs and prioritisation. Ground answers in the 'product' knowledge base and cite documents."
     },
     "finance": {
-      "model": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "finance",
+      "model": "Qwen3.5-4B-Instruct-Q4_K_M.gguf", "ngl": 24, "ctx": 16384, "kb": "finance",
       "role": "You are a personal-finance educator. Give general financial education grounded in the 'finance' knowledge base with citations. You are NOT a financial adviser; do not give personalised investment advice; recommend a licensed professional for personal decisions."
     }
   }
