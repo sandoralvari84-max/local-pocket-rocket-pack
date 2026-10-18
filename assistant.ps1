@@ -41,6 +41,10 @@ if (-not (Test-Path $modelPath)) { throw "Model file not found: $modelPath" }
 # 1. Persona = profile role + shared base persona -> ui-config.json (the web UI's default system message).
 $base = (Get-Content "$root\persona.md" -Raw)
 $sys  = ($p.role + "`n`n" + $base).Trim()
+# Per-profile Simplified Technical English level (default 70; creative niches relax to 60).
+$ste = if (($p.PSObject.Properties.Name -contains 'ste') -and $p.ste) { [int]$p.ste } else { 70 }
+$sys = $sys -replace 'about 70% of the way to ASD-STE100', "about $ste% of the way to ASD-STE100"
+$sys = $sys -replace 'the other ~30% natural', "the other ~$(100 - $ste)% natural"
 [IO.File]::WriteAllText("$root\ui-config.json", (@{ systemMessage = $sys } | ConvertTo-Json -Compress), (New-Object Text.UTF8Encoding $false))
 
 # 2. Pre-select the knowledge base so the expert starts pointed at the right docs.

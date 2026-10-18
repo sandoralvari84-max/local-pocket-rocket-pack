@@ -1,0 +1,327 @@
+{
+  "greedy_t0.0": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 45,
+      "filler": 0,
+      "answer": "Based on the reference material, the three Core Web Vitals and their target values are:\n\n*   **LCP (Largest Contentful Paint):** Aim for under **2.5 s**.\n*   **CLS (Cumulative Layout Shift):** Aim for under **0.1**.\n*   **INP (Interaction to Next Paint):** Aim for under **200 ms**."
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 12,
+      "filler": 0,
+      "answer": "The minimum WCAG 2.1 AA colour-contrast ratio for normal-size text is **4.5:1**."
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "missing": [],
+      "tok_s": 9.1,
+      "finish": "stop",
+      "words": 59,
+      "filler": 0,
+      "answer": "Based on the provided reference material, **STP** stands for **Segmentation, Targeting, and Positioning**.\n\nAccording to *marketing-foundations.md*, the steps are defined as follows:\n\n*   **Segmentation**: Dividing the market by needs, behaviour, demographics, firmographics, or geography.\n*   **Targeting**: Choosing the specific segments you can serve best and profitably.\n*   **Positioning**: Owning a clear, distinct place in the target's mind versus alternatives."
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.75,
+      "hit": [
+        "o(1)",
+        "o(log n)",
+        "o(n)"
+      ],
+      "missing": [
+        "o(n^2)"
+      ],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 98,
+      "filler": 0,
+      "answer": "Ordered from slowest-growing to fastest-growing:\n\n1.  **O(1)** (Constant time)\n2.  **O(log n)** (Logarithmic time)\n3.  **O(n)** (Linear time)\n4.  **O(n²)** (Quadratic time)\n\n**Explanation:**\nBased on the complexity rules provided in *coding-foundations.md*, Big-O describes how cost grows with input size. The hierarchy is explicitly stated as: **O(1) < O(log n) < O(n) < O(n²)**.\n\n*   **O(1)** performs a fixed number of operations regardless of input size.\n*   **O(log n)** grows very slowly (e.g., binary search).\n*   **O(n)** grows proportionally to the input size.\n*   **O(n²)** grows quadratically, meaning the cost increases much faster than linear growth (e.g., nested loops)."
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 62,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the difference between bagging and boosting is defined by their primary goals and mechanisms:\n\n*   **Bagging (Bootstrap Aggregating):**\n    *   **Goal:** Reduces **variance**.\n    *   **Method:** Uses **random forests** (an ensemble technique).\n*   **Boosting:**\n    *   **Goal:** Reduces **bias**.\n    *   **Method:** Uses **gradient boosting**.\n\nBoth techniques are forms of ensembles used to improve model performance by combining multiple models."
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 0.67,
+      "hit": [
+        "access control",
+        "injection"
+      ],
+      "missing": [
+        "misconfig"
+      ],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 79,
+      "filler": 0,
+      "answer": "Based on the provided reference material, here are three risks from the OWASP Top 10 and a corresponding defence for each:\n\n1.  **Risk:** Injection (including SQL and XSS)\n    *   **Defence:** Parameterise queries/commands and output-encode per context.\n2.  **Risk:** Broken access control\n    *   **Defence:** Authorise every object access server-side to prevent IDOR.\n3.  **Risk:** Insecure design\n    *   **Defence:** Apply secure design principles such as Zero Trust (verify every request) and Least Privilege (give each user/process only the access it needs)."
+    }
+  ],
+  "greedy_t0.0_summary": {
+    "avg_coverage_pct": 90,
+    "avg_words": 59,
+    "filler_total": 0,
+    "avg_tok_s": 9.0
+  },
+  "low_t0.2": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 40,
+      "filler": 0,
+      "answer": "The three Core Web Vitals and their target values are:\n\n1.  **LCP (Largest Contentful Paint):** Aim for under **2.5 s**.\n2.  **CLS (Cumulative Layout Shift):** Aim for under **0.1**.\n3.  **INP (Interaction to Next Paint):** Aim for under **200 ms**."
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 12,
+      "filler": 0,
+      "answer": "The minimum WCAG 2.1 AA colour-contrast ratio for normal-size text is **4.5:1**."
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 57,
+      "filler": 0,
+      "answer": "Based on the reference material, **STP** stands for **Segmentation, Targeting, and Positioning**.\n\nAccording to *marketing-foundations.md*, the steps are defined as follows:\n\n*   **Segmentation**: Dividing the market by needs, behaviour, demographics, firmographics, or geography.\n*   **Targeting**: Choosing the segments you can serve best and profitably.\n*   **Positioning**: Owning a clear, distinct place in the target's mind versus alternatives."
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.75,
+      "hit": [
+        "o(1)",
+        "o(log n)",
+        "o(n)"
+      ],
+      "missing": [
+        "o(n^2)"
+      ],
+      "tok_s": 8.4,
+      "finish": "stop",
+      "words": 86,
+      "filler": 0,
+      "answer": "Order from slowest-growing to fastest-growing:\n\n1.  **O(1)**\n2.  **O(log n)**\n3.  **O(n)**\n4.  **O(n²)**\n\n**Explanation:**\nBased on the complexity rules provided in *coding-foundations.md*:\n*   **O(1)** represents constant time, which does not grow as input size increases.\n*   **O(log n)** grows logarithmically, slower than linear growth.\n*   **O(n)** represents linear growth, where cost increases directly with input size.\n*   **O(n²)** represents quadratic growth, where cost increases with the square of the input size.\n\nThe hierarchy is explicitly stated as: **O(1) < O(log n) < O(n) < O(n²)**."
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 49,
+      "filler": 0,
+      "answer": "Based on the reference material provided:\n\n*   **Bagging (Bootstrap Aggregating):** Used in ensembles like Random Forests. It **reduces variance** and helps prevent overfitting.\n*   **Boosting:** Used in Gradient Boosting. It **reduces bias**.\n\nThe material notes that bagging (e.g., Random Forests) reduces variance, while boosting (e.g., Gradient Boosting) reduces bias."
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 0.67,
+      "hit": [
+        "access control",
+        "injection"
+      ],
+      "missing": [
+        "misconfig"
+      ],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 99,
+      "filler": 0,
+      "answer": "Based on the reference material provided, here are three risks from the OWASP Top 10 and a corresponding defence for each:\n\n1.  **Risk:** Injection (specifically SQL injection)\n    *   **Defence:** Parameterise queries.\n2.  **Risk:** Broken access control\n    *   **Defence:** Prevent IDOR by authorising every object access server-side.\n3.  **Risk:** Insecure design\n    *   **Defence:** Apply the principle of least privilege (give each user/process only the access it needs).\n\n*Note: The reference material also lists Cross-Site Scripting (XSS) and Server-Side Request Forgery (SSRF) as specific injection-related risks, along with defences such as output-encoding per context for XSS and allowlisting egress for SSRF.*"
+    }
+  ],
+  "low_t0.2_summary": {
+    "avg_coverage_pct": 90,
+    "avg_words": 57,
+    "filler_total": 0,
+    "avg_tok_s": 8.7
+  },
+  "default_t0.7": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 48,
+      "filler": 0,
+      "answer": "The three Core Web Vitals and their target values are:\n\n1.  **LCP (Largest Contentful Paint):** Main content visible.\n    *   **Target:** Under **2.5 s**.\n2.  **CLS (Cumulative Layout Shift):** Visual stability.\n    *   **Target:** Under **0.1**.\n3.  **INP (Interaction to Next Paint):** Responsiveness to input.\n    *   **Target:** Under **200 ms**."
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 49,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the minimum WCAG 2.1 AA colour-contrast ratio for normal text is **4.5:1**.\n\nThis is found in the **web-fundamentals.md** section under \"Accessibility (a11y) basics — WCAG 2.1 AA\":\n> \"Colour contrast: at least **4.5:1** for normal text, 3:1 for large text and UI components.\""
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 55,
+      "filler": 0,
+      "answer": "Based on the reference material, **STP** stands for **Segmentation, Targeting, and Positioning**.\n\nThe steps are defined as follows:\n\n*   **Segmentation:** Divide the market by needs, behaviour, demographics, firmographics, or geography.\n*   **Targeting:** Choose the specific segments you can serve best and profitably.\n*   **Positioning:** Own a clear, distinct place in the target's mind versus alternatives."
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "o(1)",
+        "o(log n)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 105,
+      "filler": 0,
+      "answer": "Based on the Complexity & performance section in *coding-foundations.md*, the order from slowest-growing to fastest-growing is:\n\n1.  **O(1)** (Constant)\n2.  **O(log n)** (Logarithmic)\n3.  **O(n)** (Linear)\n4.  **O(n^2)** (Quadratic)\n\n**Explanation:**\nAs stated in the reference material, Big-O describes how cost grows with input size. The explicit ordering provided is:\n`O(1) < O(log n) < O(n) < O(n^2)`.\n*   **O(1)** represents a fixed number of operations regardless of input size.\n*   **O(log n)** grows very slowly, typically associated with binary search operations.\n*   **O(n)** grows linearly, processing each item once.\n*   **O(n^2)** grows quadratically, typically resulting from nested loops, making it significantly slower for large inputs."
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 8.6,
+      "finish": "stop",
+      "words": 40,
+      "filler": 0,
+      "answer": "Based on the reference material provided:\n\n*   **Bagging (e.g., Random Forests):** Reduces **variance**.\n*   **Boosting (e.g., Gradient Boosting):** Reduces **bias**.\n\nThese concepts are discussed in the context of ensemble methods used to improve model performance by managing the bias–variance trade-off."
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "access control",
+        "injection",
+        "misconfig"
+      ],
+      "missing": [],
+      "tok_s": 8.5,
+      "finish": "stop",
+      "words": 93,
+      "filler": 0,
+      "answer": "Based on the **OWASP Top 10** listed in the reference material, here are three risks and their corresponding defences:\n\n1.  **Risk:** Injection (includes SQL and XSS)\n    *   **Defence:** Parameterise queries and commands; output-encode per context.\n\n2.  **Risk:** Broken access control\n    *   **Defence:** Authorise every object access server-side (prevent IDOR).\n\n3.  **Risk:** Insecure design\n    *   **Defence:** Apply secure-design principles (e.g., Zero Trust, Least Privilege, Defence in depth).\n\n*(Note: The material also lists **Security misconfiguration**, **Vulnerable/outdated components**, **Identification & authentication failures**, **Software & data integrity failures**, and **Server-side request forgery (SSRF)** as Top 10 risks.)*"
+    }
+  ],
+  "default_t0.7_summary": {
+    "avg_coverage_pct": 100,
+    "avg_words": 65,
+    "filler_total": 0,
+    "avg_tok_s": 8.8
+  }
+}

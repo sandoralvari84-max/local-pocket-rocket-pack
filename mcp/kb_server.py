@@ -95,6 +95,30 @@ def words(s):
     return re.findall(r"[\w']{2,}", s.lower())
 
 
+def chunks_of(text, rel):
+    """Split a markdown doc into (heading-path, chunk-text) sections so retrieval returns the relevant part,
+    not the whole file. Keeps small-context models focused. Splits on ## / ### headings; the doc title (#) is
+    carried into each chunk's heading path for context."""
+    lines = text.splitlines()
+    title = next((ln.lstrip("# ").strip() for ln in lines if ln.startswith("# ")), rel)
+    out, heading, buf = [], None, []
+
+    def flush():
+        body = "\n".join(buf).strip()
+        if body:
+            out.append((f"{title} › {heading}" if heading else title, body))
+
+    for ln in lines:
+        m = re.match(r"^(#{2,6})\s+(.*)", ln)
+        if m:
+            flush()
+            heading, buf = m.group(2).strip(), []
+        else:
+            buf.append(ln)
+    flush()
+    return out or [(title, text.strip())]
+
+
 def call_tool(name, args):
     if name == "list":
         active = get_active()
@@ -121,7 +145,8 @@ def call_tool(name, args):
         terms = set(words(str(args.get("query", ""))))
         if not terms:
             return "Empty query.", True
-        limit = max(1, min(int(args.get("max_results") or 6), 15))
+        limit = max(1, min(int(args.get("max_results") or 5), 15))
+        max_chars = max(200, min(int(args.get("max_chars") or 700), 2000))
         scored = []
         for path in docs_in(base_dir):
             try:
@@ -131,22 +156,24 @@ def call_tool(name, args):
                     text = f.read()
             except OSError:
                 continue
-            toks = words(text)
-            tf = {t: 0 for t in terms}
-            for w in toks:
-                if w in tf:
-                    tf[w] += 1
             rel = os.path.relpath(path, base_dir).replace("\\", "/")
-            name_hits = len(terms & set(words(rel)))
-            score = sum(1 for v in tf.values() if v) * 10 + sum(tf.values()) + name_hits * 25
-            if score:
-                pos = next((text.lower().find(t) for t in terms if text.lower().find(t) >= 0), 0)
-                snippet = re.sub(r"\s+", " ", text[max(0, pos - 80):pos + 200]).strip()
-                scored.append((score, rel, snippet))
+            for heading, body in chunks_of(text, rel):
+                tf = {t: 0 for t in terms}
+                for w in words(heading + " " + body):
+                    if w in tf:
+                        tf[w] += 1
+                matched = sum(1 for v in tf.values() if v)
+                if not matched:
+                    continue
+                # reward matching many distinct terms, then frequency, then term hits in the heading
+                score = matched * 10 + sum(tf.values()) + len(terms & set(words(heading))) * 15
+                snippet = body if len(body) <= max_chars else body[:max_chars].rsplit(" ", 1)[0] + " …"
+                scored.append((score, rel, heading, snippet))
         if not scored:
-            return "No matching documents in this knowledge base.", False
-        scored.sort(reverse=True)
-        return "\n\n".join(f"{rel}\n  {snip}" for _, rel, snip in scored[:limit]), False
+            return "No matching sections in this knowledge base.", False
+        scored.sort(key=lambda x: x[0], reverse=True)
+        blocks = [f"[{rel}] {heading}\n{snippet}" for _, rel, heading, snippet in scored[:limit]]
+        return "\n\n---\n\n".join(blocks), False
 
     if name == "read":
         base_dir = resolve_base(args.get("kb") or get_active())

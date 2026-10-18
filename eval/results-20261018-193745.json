@@ -1,0 +1,264 @@
+{
+  "greedy_t0.0": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "tok_s": 9.1,
+      "answer": ""
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "answer": "The minimum WCAG 2.1 AA colour-contrast ratio for normal-size text is **4.5:1**."
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "tok_s": 9.0,
+      "answer": ""
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "o(1)",
+        "o(log n)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "tok_s": 8.7,
+      "answer": ""
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "tok_s": 7.6,
+      "answer": ""
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "access control",
+        "injection",
+        "misconfig"
+      ],
+      "tok_s": 7.5,
+      "answer": ""
+    }
+  ],
+  "greedy_t0.0_summary": {
+    "avg_coverage_pct": 17,
+    "avg_tok_s": 8.5
+  },
+  "low_t0.2": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "answer": "Based on the provided reference material, the three Core Web Vitals and their target values are:\n\n1.  **LCP (Largest Contentful Paint):** Aim under 2.5 s.\n2.  **CLS (Cumulative Layout Shift):** Aim under 0.1.\n3.  **INP (Interaction to Next Paint):** Aim under 200 ms."
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "4.5"
+      ],
+      "tok_s": 8.6,
+      "answer": ""
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "tok_s": 8.8,
+      "answer": ""
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "o(1)",
+        "o(log n)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "tok_s": 8.8,
+      "answer": ""
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "tok_s": 8.9,
+      "answer": ""
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "access control",
+        "injection",
+        "misconfig"
+      ],
+      "tok_s": 8.9,
+      "answer": ""
+    }
+  ],
+  "low_t0.2_summary": {
+    "avg_coverage_pct": 17,
+    "avg_tok_s": 8.8
+  },
+  "default_t0.7": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 0.83,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp"
+      ],
+      "missing": [
+        "200"
+      ],
+      "tok_s": 8.6,
+      "answer": "Based on the reference material, the three Core Web Vitals and their target values are:\n\n*   **LCP (Largest Contentful Paint):** Aim under 2.5 s.\n*   **CLS (Cumulative Layout Shift):** Aim under 0.1.\n*   **INP (Interaction to Next Paint):** Aim under 2"
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "4.5"
+      ],
+      "tok_s": 8.0,
+      "answer": ""
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "tok_s": 8.7,
+      "answer": ""
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "o(1)",
+        "o(log n)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "tok_s": 8.6,
+      "answer": ""
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 9.1,
+      "answer": "Based on the provided material, the difference is:\n\n*   **Bagging** (e.g., random forests) is used to reduce **variance**.\n*   **Boosting** (e.g., gradient boosting) is used to reduce **bias**.\n\nFurther details are available in the *Ensembles* section of `advanced.md`."
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "access control",
+        "injection",
+        "misconfig"
+      ],
+      "tok_s": 9.0,
+      "answer": ""
+    }
+  ],
+  "default_t0.7_summary": {
+    "avg_coverage_pct": 31,
+    "avg_tok_s": 8.7
+  }
+}
