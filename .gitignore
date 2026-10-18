@@ -21,3 +21,7 @@ Thumbs.db
 *.swp
 
 # NOTE: eval/results-*.json are benchmark outputs and ARE committed on purpose (every number is saved).
+
+# Local strategy notes — never publish
+ROADMAP.local.md
+*.local.md
