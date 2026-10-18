@@ -1,41 +1,35 @@
 {
-  "description": "Domain-accuracy benchmark. Each item's answer is contained in that niche's KB docs, which the harness injects as context (open-book / RAG style). must_include = lowercased key points an accurate answer should contain (rough auto-score; a human/mentor also reviews).",
+  "description": "Domain-accuracy benchmark, 30 items across all 13 niches, mix of fact-recall and reasoning. Run in two modes: open-book (relevant KB docs injected) and closed-book (model's own knowledge, no KB). The open−closed gap is the kit's value. must_include = lowercased key points an accurate answer should contain (auto-score; also reviewed by hand).",
   "items": [
-    {
-      "id": "web-cwv",
-      "kb": "webdesign",
-      "question": "What are the three Core Web Vitals and their 'good' target values?",
-      "must_include": ["lcp", "2.5", "cls", "0.1", "inp", "200"]
-    },
-    {
-      "id": "web-contrast",
-      "kb": "webdesign",
-      "question": "What is the minimum WCAG 2.1 AA colour-contrast ratio for normal-size text?",
-      "must_include": ["4.5"]
-    },
-    {
-      "id": "mkt-stp",
-      "kb": "marketing",
-      "question": "What does STP stand for in marketing strategy, and what is each step?",
-      "must_include": ["segment", "target", "position"]
-    },
-    {
-      "id": "code-bigo",
-      "kb": "coding",
-      "question": "Order these by growth rate from slowest-growing to fastest-growing: O(n^2), O(log n), O(n), O(1). Explain briefly.",
-      "must_include": ["o(1)", "o(log n)", "o(n)", "o(n^2)"]
-    },
-    {
-      "id": "ds-bag-boost",
-      "kb": "datascience",
-      "question": "What is the difference between bagging and boosting in machine learning?",
-      "must_include": ["bagging", "boosting", "variance", "bias"]
-    },
-    {
-      "id": "sec-owasp",
-      "kb": "cybersecurity",
-      "question": "Name three risks from the OWASP Top 10 and one defence for each.",
-      "must_include": ["access control", "injection", "misconfig"]
-    }
+    {"id": "web-cwv", "kb": "webdesign", "question": "Name the three Core Web Vitals and their good target values.", "must_include": ["lcp", "2.5", "cls", "0.1", "inp", "200"]},
+    {"id": "web-contrast", "kb": "webdesign", "question": "What is the minimum WCAG 2.1 AA contrast ratio for normal-size text?", "must_include": ["4.5"]},
+    {"id": "web-elements", "kb": "webdesign", "question": "Which HTML element should you use for an action, and which for navigation?", "must_include": ["button", "link"]},
+    {"id": "ux-heuristics", "kb": "design", "question": "Who defined the 10 usability heuristics, and name two of them.", "must_include": ["nielsen", "visibility", "consistency"]},
+    {"id": "ux-hicks", "kb": "design", "question": "What does Hick's Law state?", "must_include": ["choice", "time"]},
+    {"id": "ux-touch", "kb": "design", "question": "What is the WCAG AAA minimum touch target size in CSS pixels?", "must_include": ["44"]},
+    {"id": "mkt-stp", "kb": "marketing", "question": "What does STP stand for in marketing strategy?", "must_include": ["segment", "target", "position"]},
+    {"id": "mkt-funnel", "kb": "marketing", "question": "Name the stages of the marketing funnel.", "must_include": ["awareness", "consideration", "conversion", "retention"]},
+    {"id": "mkt-ltvcac", "kb": "marketing", "question": "What LTV-to-CAC ratio is generally considered healthy?", "must_include": ["3"]},
+    {"id": "code-bigo", "kb": "coding", "question": "Order from slowest-growing to fastest-growing: O(n^2), O(log n), O(n), O(1).", "must_include": ["o(1)", "o(log n)", "o(n)", "o(n^2)"]},
+    {"id": "code-dup", "kb": "coding", "question": "What data structure best detects duplicates in a large list, and what is its time complexity?", "must_include": ["set", "o(n)"]},
+    {"id": "code-race", "kb": "coding", "question": "Two threads corrupt a shared counter. What is this called and how do you fix it?", "must_include": ["race", "atomic", "mutex"]},
+    {"id": "ds-bagboost", "kb": "datascience", "question": "What is the difference between bagging and boosting?", "must_include": ["bagging", "boosting", "variance", "bias"]},
+    {"id": "ds-overfit", "kb": "datascience", "question": "A model scores well on training but poorly on new data. Name the problem and one fix.", "must_include": ["overfit", "regular"]},
+    {"id": "ds-imbalance", "kb": "datascience", "question": "Why can 98% accuracy be misleading for fraud detection?", "must_include": ["imbalanc", "recall"]},
+    {"id": "sec-idor", "kb": "cybersecurity", "question": "A user can change an order ID in the URL to see others' orders. What is this and the fix?", "must_include": ["access control", "server"]},
+    {"id": "sec-pw", "kb": "cybersecurity", "question": "How should passwords be stored?", "must_include": ["salt", "argon", "bcrypt"]},
+    {"id": "sec-cia", "kb": "cybersecurity", "question": "What does the CIA triad stand for in security?", "must_include": ["confidentiality", "integrity", "availability"]},
+    {"id": "sw-ci", "kb": "software", "question": "What is continuous integration?", "must_include": ["merge", "test"]},
+    {"id": "sw-dora", "kb": "software", "question": "Name two of the four DORA metrics.", "must_include": ["deployment", "lead time", "failure"]},
+    {"id": "sw-solid", "kb": "software", "question": "What does the 'S' in SOLID stand for?", "must_include": ["single responsib"]},
+    {"id": "prod-pmf", "kb": "product", "question": "What is the clearest signal of product-market fit?", "must_include": ["retention"]},
+    {"id": "prod-rice", "kb": "product", "question": "What does the RICE prioritisation framework stand for?", "must_include": ["reach", "impact", "confidence", "effort"]},
+    {"id": "biz-npv", "kb": "business", "question": "What is the decision rule when using Net Present Value?", "must_include": ["npv", "0"]},
+    {"id": "biz-porter", "kb": "business", "question": "Who created the Five Forces framework?", "must_include": ["porter"]},
+    {"id": "legal-ip", "kb": "legal", "question": "By default, who owns the copyright in work made by a freelancer?", "must_include": ["creator", "assign"]},
+    {"id": "legal-gdpr", "kb": "legal", "question": "Name two data-subject rights under GDPR.", "must_include": ["access", "eras"]},
+    {"id": "health-ppv", "kb": "health", "question": "A 99%-accurate test for a rare disease returns positive. Are you probably sick? Explain.", "must_include": ["false positive", "prevalence"]},
+    {"id": "fin-debt", "kb": "finance", "question": "Pay off a 20% credit card or invest in the market? Why?", "must_include": ["debt", "guarantee"]},
+    {"id": "phil-trolley", "kb": "philosophy", "question": "For the trolley problem, name two ethical frameworks that analyse it differently.", "must_include": ["utilitarian", "deontolog"]}
   ]
 }

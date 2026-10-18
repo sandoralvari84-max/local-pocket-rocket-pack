@@ -10,7 +10,7 @@ able to re-run `eval/run_eval.py` and get comparable numbers.
 - Mode: open-book / RAG — the relevant niche KB docs are injected as context; we measure how accurately the model
   *uses* known-good knowledge (domain accuracy), plus generation speed.
 - Score: `coverage` = fraction of an item's `must_include` key points present in the answer (rough auto-score);
-  the mentor also reviews answers qualitatively. Each config uses a fixed `seed`.
+  answers are also reviewed by hand, not only auto-scored. Each run uses a fixed `seed`.
 - Record for every run: date, hardware, model + quant, GPU layers, context, sampling config, per-item coverage,
   average coverage, average tokens/sec, and the raw results filename.
 
@@ -53,3 +53,27 @@ Takeaways:
 - Scorer lesson: substring key-lists under-count correct answers (formatting, valid alternatives). Treat auto-coverage
   as a screen; confirm sub-100% items by hand. Next: expand the set with more and harder items, plus some closed-book
   items to separate "knowledge in weights" from "retrieval".
+
+### Run 003 — closed-book baseline vs open-book (the kit's value)
+- Date: 2026-10-18. Raw: `eval/results-20261018-205307.json`. 30 items across all 13 niches.
+- Model: Qwen3.5-4B Uncensored (Q4_K_M), 24 GPU layers, 16384 ctx, thinking off, temperature 0.2.
+- `open` = the relevant niche KB is injected as context (the kit in use); `closed` = no KB, the model answers
+  from its own weights (the baseline). The gap is what the kit adds.
+
+| Mode | Avg coverage |
+|---|---|
+| Open-book (the kit) | 98.3% |
+| Closed-book (baseline) | 85.8% |
+| **Kit gain (open − closed)** | **+12.5 points** |
+
+Zero filler in all 60 answers; ~9 tok/s. Where the kit matters most (closed-book the model could not recall from
+weights, open-book fixed to 100%): WCAG AAA touch-target size (0→100), the CIA triad enumeration (0→100), GDPR
+rights and default copyright ownership (50→100), usability-heuristic naming (67→100), funnel stages (50→100),
+Big-O ordering (75→100), Core Web Vitals (83→100). The model already knew most *general* concepts cold — that is
+why closed-book is a high 85.8% on this fairly standard set — so the kit's value concentrates on specific
+thresholds, enumerations, attributions and domain specifics, exactly the facts a small model misremembers.
+
+Caveats: one item (`web-elements`) scored lower open than closed — a scorer artifact ("anchor" vs the key "link"),
+not a regression; it shows per-item noise and why sub-100% items are hand-checked. Next: add harder/more obscure
+items where closed-book fails more, to widen and better characterise the gap (the current set is deliberately
+mainstream, which understates the kit on niche facts).

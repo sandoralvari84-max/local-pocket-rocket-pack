@@ -13,15 +13,20 @@ hand it the right notes and tools at answer time, plus a focused persona. Result
 from vetted material — and cites it — instead of guessing.
 
 ## Measured result (see [BENCHMARKS.md](BENCHMARKS.md))
-On Qwen 4B (Q4_K_M), 24 GPU layers on a GTX 1050 Ti (4 GB), open-book over the knowledge bases:
+30-item benchmark across all 13 niches, Qwen 4B (Q4_K_M) on a GTX 1050 Ti (4 GB), **open-book (with the kit's
+knowledge bases) vs closed-book (the same model, no KB)**:
 
-| Metric | Result |
+| | Grounded accuracy |
 |---|---|
-| Grounded domain accuracy | ~100% across sampling configs (verified by hand) |
-| Filler phrases | 0 in all answers |
-| Speed | ~9 tokens/sec |
+| Open-book (the kit) | **98.3%** |
+| Closed-book (baseline) | 85.8% |
+| **What the kit adds** | **+12.5 points** |
 
-Every run is logged, raw outputs kept, reproducible with `eval/run_eval.py`. Numbers, not vibes.
+Zero filler phrases in all answers, ~9 tokens/sec. The gain concentrates where a small model misremembers —
+specific thresholds, enumerations, attributions and domain specifics (e.g. WCAG touch-target size, the CIA triad,
+GDPR rights went from partial/zero closed-book to 100% with the KB). Every run is logged, raw outputs kept,
+reproducible with `eval/run_eval.py`. Numbers, not vibes — and sub-100% items are checked by hand (auto-scoring
+under-counts valid answers). This is a 30-item set; a larger, harder set is in progress.
 
 ## The 13 experts
 `webdesign` · `design` · `marketing` · `coding` · `cybersecurity` · `software` · `datascience` · `product` ·

@@ -1,8 +1,10 @@
-"""Domain-accuracy sampling sweep for the local assistant. Standard library only; run with python -I.
+"""Domain-accuracy benchmark for the local assistant. Standard library only; run with python -I.
 
-For each sampling config and each eval item: inject that niche's KB docs as context, ask the question,
-record the answer, a rough key-point coverage score, and generation speed. Writes a results JSON and
-prints a summary so we can compare configs. Usage:  python -I run_eval.py
+Runs every item in two modes:
+  open   = the relevant niche KB docs are injected as context (the kit in use)
+  closed = no KB; the model answers from its own weights (the baseline)
+The open-minus-closed gap is the kit's value. For each item it records a key-point coverage score, word count,
+filler count, and generation speed. Writes a results JSON and prints a summary. Usage: python -I run_eval.py
 """
 import json
 import os
@@ -13,20 +15,21 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 KB_ROOT = r"D:\dockerData\assistant\kb"
 ENDPOINT = "http://127.0.0.1:8082/v1/chat/completions"
 MODEL = "assistant"
+CONFIG = {"temperature": 0.2, "top_p": 0.9}  # low temp is the recommended default for grounded/factual work
 
-CONFIGS = {
-    "greedy_t0.0": {"temperature": 0.0},
-    "low_t0.2": {"temperature": 0.2, "top_p": 0.9},
-    "default_t0.7": {"temperature": 0.7, "top_p": 0.95},
-}
+SYSTEM_OPEN = ("You are a precise assistant. Answer the question using ONLY the reference material provided. "
+               "Be concise and factual. If the answer is not in the material, say so.")
+SYSTEM_CLOSED = ("You are a precise assistant. Answer the question from your own knowledge. "
+                 "Be concise and factual. If you are not sure, say you don't know.")
 
-SYSTEM = ("You are a precise assistant. Answer the question using ONLY the reference material provided. "
-          "Be concise and factual. If the answer is not in the material, say so.")
+FILLER = ["it's important to note", "in today's", "delve", "leverage", "seamless", "robust", "game-changing",
+          "navigate the landscape", "as an ai", "it's not just", "i'd be happy to", "great question",
+          "certainly", "dive into"]
 
-# Stock AI filler we want to see decrease (the anti-fluff goal, made measurable).
-FILLER = ["it's important to note", "in today's", "delve", "leverage", "seamless", "robust",
-          "game-changing", "navigate the landscape", "as an ai", "it's not just", "i'd be happy to",
-          "great question", "certainly", "dive into"]
+
+def normalise(s):
+    # fold unicode superscripts so e.g. O(n²) matches the key "o(n^2)"
+    return (s.replace("\u00b2", "^2").replace("\u00b3", "^3")).lower()
 
 
 def fluff(answer):
@@ -45,14 +48,10 @@ def kb_context(kb):
 
 
 def ask(question, context, params):
+    system = (SYSTEM_OPEN + "\n\nREFERENCE MATERIAL:\n" + context) if context is not None else SYSTEM_CLOSED
     payload = {
         "model": MODEL,
-        "messages": [
-            {"role": "system", "content": SYSTEM + "\n\nREFERENCE MATERIAL:\n" + context},
-            {"role": "user", "content": question},
-        ],
-        # Direct answers for a clean domain-accuracy measure: thinking off (facts are in-context, so no CoT needed),
-        # and a generous ceiling so the answer is never truncated.
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": question}],
         "chat_template_kwargs": {"enable_thinking": False},
         "max_tokens": 1024, "seed": 1, "stream": False,
     }
@@ -64,14 +63,13 @@ def ask(question, context, params):
         data = json.loads(r.read())
     wall = time.time() - t0
     choice = data["choices"][0]
-    msg = choice["message"]
-    text = msg.get("content") or msg.get("reasoning_content") or ""
+    text = choice["message"].get("content") or choice["message"].get("reasoning_content") or ""
     tps = (data.get("timings") or {}).get("predicted_per_second")
     return text, tps, wall, choice.get("finish_reason")
 
 
 def coverage(answer, keys):
-    low = answer.lower()
+    low = normalise(answer)
     hit = [k for k in keys if k in low]
     return len(hit) / len(keys), hit
 
@@ -80,35 +78,34 @@ def main():
     eval_set = json.load(open(os.path.join(HERE, "eval.json"), encoding="utf-8"))["items"]
     contexts = {it["kb"]: kb_context(it["kb"]) for it in eval_set}
     results = {}
-    print(f"Running {len(eval_set)} items x {len(CONFIGS)} configs = {len(eval_set)*len(CONFIGS)} generations\n")
-    for cname, params in CONFIGS.items():
-        results[cname] = []
-        covs, tpss, wordss, fillers = [], [], [], []
+    print(f"{len(eval_set)} items x 2 modes = {len(eval_set) * 2} generations\n")
+    for mode in ("open", "closed"):
+        results[mode] = []
+        covs, tpss = [], []
         for it in eval_set:
+            ctx = contexts[it["kb"]] if mode == "open" else None
             try:
-                text, tps, wall, finish = ask(it["question"], contexts[it["kb"]], params)
+                text, tps, wall, finish = ask(it["question"], ctx, CONFIG)
                 cov, hit = coverage(text, it["must_include"])
             except Exception as e:
-                text, tps, wall, finish, cov, hit = f"ERROR: {e}", None, None, "error", 0.0, []
+                text, tps, finish, cov, hit = f"ERROR: {e}", None, "error", 0.0, []
             nwords, nfiller = fluff(text)
             covs.append(cov)
-            wordss.append(nwords)
-            fillers.append(nfiller)
             if tps:
                 tpss.append(tps)
-            results[cname].append({"id": it["id"], "kb": it["kb"], "coverage": round(cov, 2),
-                                   "hit": hit, "missing": [k for k in it["must_include"] if k not in hit],
-                                   "tok_s": round(tps, 1) if tps else None, "finish": finish,
-                                   "words": nwords, "filler": nfiller, "answer": text})
-            flag = "" if text.strip() else "  <EMPTY>"
-            print(f"[{cname}] {it['id']:<14} coverage {cov*100:3.0f}%  {nwords:4d} words  {nfiller} filler  {round(tps,1) if tps else '?'} tok/s  finish={finish}{flag}")
-        avg_cov = sum(covs) / len(covs) * 100
-        avg_tps = sum(tpss) / len(tpss) if tpss else 0
-        avg_words = sum(wordss) / len(wordss)
-        tot_filler = sum(fillers)
-        print(f"  -> {cname}: avg coverage {avg_cov:.0f}%, avg {avg_words:.0f} words, {tot_filler} filler total, avg {avg_tps:.1f} tok/s\n")
-        results[cname + "_summary"] = {"avg_coverage_pct": round(avg_cov), "avg_words": round(avg_words),
-                                       "filler_total": tot_filler, "avg_tok_s": round(avg_tps, 1)}
+            results[mode].append({"id": it["id"], "kb": it["kb"], "coverage": round(cov, 2), "hit": hit,
+                                  "missing": [k for k in it["must_include"] if k not in hit],
+                                  "tok_s": round(tps, 1) if tps else None, "finish": finish,
+                                  "words": nwords, "filler": nfiller, "answer": text})
+            print(f"[{mode:6}] {it['id']:<14} {cov*100:3.0f}%  {nwords:4d}w  {round(tps,1) if tps else '?'} t/s")
+        avg = sum(covs) / len(covs) * 100
+        results[mode + "_summary"] = {"avg_coverage_pct": round(avg, 1),
+                                      "avg_tok_s": round(sum(tpss) / len(tpss), 1) if tpss else 0,
+                                      "total_filler": sum(r["filler"] for r in results[mode])}
+        print(f"  -> {mode}: avg coverage {avg:.1f}%\n")
+    gap = results["open_summary"]["avg_coverage_pct"] - results["closed_summary"]["avg_coverage_pct"]
+    results["kit_gain_points"] = round(gap, 1)
+    print(f"KIT GAIN (open - closed): {gap:+.1f} points")
     out = os.path.join(HERE, f"results-{time.strftime('%Y%m%d-%H%M%S')}.json")
     json.dump(results, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Saved:", out)

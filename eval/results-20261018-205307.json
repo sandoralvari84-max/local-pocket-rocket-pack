@@ -1,0 +1,948 @@
+{
+  "open": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp",
+        "200"
+      ],
+      "missing": [],
+      "tok_s": 9.8,
+      "finish": "stop",
+      "words": 37,
+      "filler": 0,
+      "answer": "The three Core Web Vitals and their target values are:\n\n1.  **LCP (Largest Contentful Paint)**: Aim under **2.5 s**.\n2.  **CLS (Cumulative Layout Shift)**: Aim under **0.1**.\n3.  **INP (Interaction to Next Paint)**: Aim under **200 ms**."
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 10.1,
+      "finish": "stop",
+      "words": 12,
+      "filler": 0,
+      "answer": "The minimum WCAG 2.1 AA contrast ratio for normal-size text is **4.5:1**."
+    },
+    {
+      "id": "web-elements",
+      "kb": "webdesign",
+      "coverage": 0.5,
+      "hit": [
+        "button"
+      ],
+      "missing": [
+        "link"
+      ],
+      "tok_s": 10.0,
+      "finish": "stop",
+      "words": 46,
+      "filler": 0,
+      "answer": "You should use the **`button`** element for actions and the **`a`** (anchor) element for navigation.\n\nAccording to the semantic HTML guidelines:\n*   **Actions:** Use `button` for actions.\n*   **Navigation:** Use `a` for navigation.\n*   **Avoid:** Never use a `div` with a click handler for either purpose."
+    },
+    {
+      "id": "ux-heuristics",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "nielsen",
+        "visibility",
+        "consistency"
+      ],
+      "missing": [],
+      "tok_s": 9.3,
+      "finish": "stop",
+      "words": 91,
+      "filler": 0,
+      "answer": "Based on the provided reference material:\n\n*   **Author:** The 10 usability heuristics were defined by **Nielsen** (specifically referenced as Nielsen's 10 usability heuristics in *ux-foundations.md*).\n*   **Two Examples:**\n    1.  **Visibility of system status** (always show what's happening).\n    2.  **Match between system and the real world** (use users' language and familiar concepts).\n\n*(Other examples from the text include: User control and freedom, Consistency and standards, Error prevention, Recognition rather than recall, Flexibility and efficiency of use, Aesthetic and minimalist design, Help users recognise, diagnose and recover from errors, and Help and documentation.)*"
+    },
+    {
+      "id": "ux-hicks",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "choice",
+        "time"
+      ],
+      "missing": [],
+      "tok_s": 8.6,
+      "finish": "stop",
+      "words": 28,
+      "filler": 0,
+      "answer": "Hick's Law states that as the number of choices increases, the time required to make a decision increases. To apply this principle, options should be reduced or grouped."
+    },
+    {
+      "id": "ux-touch",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "44"
+      ],
+      "missing": [],
+      "tok_s": 8.4,
+      "finish": "stop",
+      "words": 39,
+      "filler": 0,
+      "answer": "According to the provided reference material, the minimum touch target size for WCAG AAA is **44×44 CSS px**.\n\n*   **Source:** `ux-foundations.md` under \"Accessibility in design\".\n*   **Context:** The document specifies \"Touch targets at least 24×24 CSS px (AAA: 44×44)\"."
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "missing": [],
+      "tok_s": 8.1,
+      "finish": "stop",
+      "words": 51,
+      "filler": 0,
+      "answer": "Based on the reference material, **STP** stands for:\n\n*   **S**egmentation\n*   **T**argeting\n*   **P**ositioning\n\n**Definitions:**\n*   **Segmentation:** Dividing the market by needs, behaviour, demographics, firmographics, or geography.\n*   **Targeting:** Choosing the segments you can serve best and profitably.\n*   **Positioning:** Owning a clear, distinct place in the target's mind versus alternatives."
+    },
+    {
+      "id": "mkt-funnel",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "awareness",
+        "consideration",
+        "conversion",
+        "retention"
+      ],
+      "missing": [],
+      "tok_s": 8.2,
+      "finish": "stop",
+      "words": 31,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the stages of the marketing funnel are:\n\n1.  **Awareness**\n2.  **Consideration**\n3.  **Conversion**\n4.  **Retention**\n5.  **Advocacy**\n\n*(Source: `marketing-foundations.md` under \"The funnel / customer journey\")*"
+    },
+    {
+      "id": "mkt-ltvcac",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "3"
+      ],
+      "missing": [],
+      "tok_s": 8.1,
+      "finish": "stop",
+      "words": 47,
+      "filler": 0,
+      "answer": "Based on the reference material, a healthy LTV-to-CAC ratio is generally considered to be **well above 3:1**.\n\n*   **Source:** `marketing-foundations.md` under \"Metrics that matter\".\n*   **Context:** This ratio compares Lifetime Value (LTV) to Customer Acquisition Cost (CAC). The material explicitly states to \"aim LTV:CAC well above 3:1.\""
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "o(1)",
+        "o(log n)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "missing": [],
+      "tok_s": 8.3,
+      "finish": "stop",
+      "words": 53,
+      "filler": 0,
+      "answer": "Based on the **coding-foundations.md** reference material under the \"Complexity & performance\" section:\n\n1.  **O(n²)** (Slowest-growing)\n2.  **O(n)**\n3.  **O(log n)**\n4.  **O(1)** (Fastest-growing)\n\n*Note: While the material lists the order as `O(1) < O(log n) < O(n) < O(n²)`, the question asks for the order from **slowest** to **fastest**, which reverses this sequence.*"
+    },
+    {
+      "id": "code-dup",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "set",
+        "o(n)"
+      ],
+      "missing": [],
+      "tok_s": 8.6,
+      "finish": "stop",
+      "words": 133,
+      "filler": 0,
+      "answer": "The best data structure to detect duplicates in a large list is a **hash table** (or hash set).\n\n*   **Time Complexity:** Average **O(n)** for a single pass.\n*   **Space Complexity:** **O(n)** for storing the seen elements.\n\n**Reasoning:**\n1.  **Naïve approach:** Comparing every pair of elements results in **O(n²)** time complexity, which is too slow for large lists (e.g., 1,000,000 items).\n2.  **Hash table approach:** By inserting elements into a hash set, lookups and insertions occur in average **O(1)** time. Scanning the list once to check for existing elements yields a total time of **O(n)**.\n3.  **Alternative:** If memory is constrained, sorting the list takes **O(n log n)** time, followed by an **O(n)** scan to check adjacent elements. However, the hash set approach is generally preferred for speed unless memory is the primary constraint."
+    },
+    {
+      "id": "code-race",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "race",
+        "atomic",
+        "mutex"
+      ],
+      "missing": [],
+      "tok_s": 8.3,
+      "finish": "stop",
+      "words": 64,
+      "filler": 0,
+      "answer": "This is called a **race condition**.\n\n**Fix:**\n1.  **Use atomic operations:** Make the read-modify-write operation atomic (e.g., an atomic integer or fetch-and-add).\n2.  **Use mutual exclusion:** Guard the shared state with a **mutex** (lock) to ensure only one thread executes the critical section at a time.\n3.  **Avoid deadlock:** If using multiple locks, acquire them in a consistent global order to prevent circular wait."
+    },
+    {
+      "id": "ds-bagboost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 50,
+      "filler": 0,
+      "answer": "Based on the reference material, the difference is:\n\n*   **Bagging (Bootstrap Aggregating):**\n    *   **Goal:** Reduces **variance**.\n    *   **Mechanism:** Uses **random forests** (bagging) to reduce variance.\n    *   **Example:** Random forests.\n\n*   **Boosting:**\n    *   **Goal:** Reduces **bias**.\n    *   **Mechanism:** Uses **gradient boosting** to reduce bias.\n    *   **Example:** Gradient boosting (e.g., XGBoost, LightGBM)."
+    },
+    {
+      "id": "ds-overfit",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "overfit",
+        "regular"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 14,
+      "filler": 0,
+      "answer": "**Problem:** Overfitting (high variance).\n**Fix:** Apply regularisation (e.g., L1 or L2) or use cross-validation."
+    },
+    {
+      "id": "ds-imbalance",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "imbalanc",
+        "recall"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 74,
+      "filler": 0,
+      "answer": "98% accuracy is misleading for fraud detection because fraud is typically **imbalanced data** (rare events).\n\n*   **The Trap:** If fraud constitutes only 2% of transactions, a model that labels every transaction as \"legitimate\" achieves 98% accuracy while catching zero fraud.\n*   **The Solution:** Accuracy alone misleads on imbalanced data. Instead, evaluate using **precision, recall, F1, or PR-AUC**, and set the classification threshold based on the business cost of missing fraud versus generating false alarms."
+    },
+    {
+      "id": "sec-idor",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "access control",
+        "server"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 53,
+      "filler": 0,
+      "answer": "This is an **Insecure Direct Object Reference (IDOR)**, a form of broken access control.\n\n**The Fix:**\nEnforce **server-side authorization** for every object access. The application must verify that the logged-in user is permitted to view that specific order before returning data, rather than relying on the ID being hidden or difficult to guess."
+    },
+    {
+      "id": "sec-pw",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "salt",
+        "argon",
+        "bcrypt"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 43,
+      "filler": 0,
+      "answer": "Passwords should be stored using **slow, salted Key Derivation Functions (KDFs)**, specifically **argon2id**, **bcrypt**, or **scrypt**.\n\nKey requirements include:\n*   **Never** use plain text or fast hashes (like SHA-256).\n*   Use a **CSPRNG** for salt generation.\n*   Apply **MFA** to prevent brute-force attacks."
+    },
+    {
+      "id": "sec-cia",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "confidentiality",
+        "integrity",
+        "availability"
+      ],
+      "missing": [],
+      "tok_s": 8.5,
+      "finish": "stop",
+      "words": 25,
+      "filler": 0,
+      "answer": "The CIA triad stands for:\n1.  **Confidentiality**\n2.  **Integrity**\n3.  **Availability**\n\nThese are the core goals that security protects, as defined in the *security-basics.md* reference."
+    },
+    {
+      "id": "sw-ci",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "merge",
+        "test"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 67,
+      "filler": 0,
+      "answer": "Continuous Integration (CI) is a practice where developers frequently merge their code changes into a central repository, often referred to as \"main.\"\n\nKey characteristics include:\n*   **Frequency:** Merges happen often.\n*   **Automation:** Every merge triggers an automated build and tests.\n*   **Goal:** To keep the build \"green\" and provide fast feedback.\n*   **Outcome:** Ensures reproducible deploys, typically supporting Continuous Delivery or Deployment pipelines.\n\n*(Source: software-engineering.md › CI/CD)*"
+    },
+    {
+      "id": "sw-dora",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "deployment",
+        "lead time",
+        "failure"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 35,
+      "filler": 0,
+      "answer": "Based on the provided reference material, two of the four DORA metrics are:\n\n1.  **Deployment frequency**\n2.  **Lead time for changes**\n\n*(Other valid answers from the text include **Change failure rate** and **Time to restore**.)*"
+    },
+    {
+      "id": "sw-solid",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "single responsib"
+      ],
+      "missing": [],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 65,
+      "filler": 0,
+      "answer": "The 'S' in SOLID stands for **Single Responsibility Principle**.\n\nAccording to the reference material, SOLID is listed under the \"Principles\" section of *software-engineering.md* alongside DRY, KISS, YAGNI, separation of concerns, and high/low cohesion. While the document does not explicitly define the acronym, it is a standard software engineering principle where the Single Responsibility Principle states that a class should have only one reason to change."
+    },
+    {
+      "id": "prod-pmf",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "retention"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 95,
+      "filler": 0,
+      "answer": "The clearest signal of product-market fit is when the **retention curve flattens**, indicating a stable core of users who continue to use the product over time.\n\nThis is supported by the following evidence from the reference material:\n*   **Retention cohorts:** Unlike vanity metrics like signups or downloads, a stable retention curve shows that the product is solving a real need.\n*   **Sean Ellis test:** A ≥40% response rate of users stating they would be \"very disappointed\" without the product.\n*   **Contrast:** If signups grow but retention decays to zero, product-market fit has not been achieved."
+    },
+    {
+      "id": "prod-rice",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "reach",
+        "impact",
+        "confidence",
+        "effort"
+      ],
+      "missing": [],
+      "tok_s": 8.2,
+      "finish": "stop",
+      "words": 35,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the **RICE** framework stands for:\n\n*   **R**each\n*   **I**mpact\n*   **C**onfidence\n*   **E**ffort\n\nIt is used to score opportunities by multiplying Reach, Impact, and Confidence, then dividing by Effort."
+    },
+    {
+      "id": "biz-npv",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "npv",
+        "0"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 70,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the decision rule for Net Present Value (NPV) is:\n\n*   **Invest if NPV > 0.**\n*   **Do not invest if NPV < 0.**\n\nThis rule is applied at your specific cost of capital. Additionally, the investment should be chosen only if it beats the next best alternative use of the money (opportunity cost). Sunk costs (money already spent) should be ignored in this calculation."
+    },
+    {
+      "id": "biz-porter",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "porter"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 65,
+      "filler": 0,
+      "answer": "M. I. Porter created the Five Forces framework.\n\n**Reference:**\n*   **advanced.md**: Lists \"Porter, 'Competitive Strategy'\" as a source for the five forces.\n*   **business-fundamentals.md**: Lists \"Harvard Business Review\" as a source.\n*   **worked-examples.md**: Does not explicitly name the author but references the framework in the context of strategy.\n\nThe specific attribution to Michael Porter is found in the **advanced.md** reference to his book *Competitive Strategy*."
+    },
+    {
+      "id": "legal-ip",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "creator",
+        "assign"
+      ],
+      "missing": [],
+      "tok_s": 9.2,
+      "finish": "stop",
+      "words": 44,
+      "filler": 0,
+      "answer": "By default, the **freelancer** (the creator) owns the copyright.\n\nOwnership transfers to the client only through a **written assignment** or a qualifying \"work for hire\" arrangement, which varies by jurisdiction. Without such a clause, the client typically holds only an implied license, not ownership."
+    },
+    {
+      "id": "legal-gdpr",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "access",
+        "eras"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 35,
+      "filler": 0,
+      "answer": "Based on the provided reference material, two data-subject rights under GDPR are:\n1.  **Access**\n2.  **Erasure** (also referred to as the \"right to be forgotten\")\n\n*Source: legal-101.md, section \"Data protection: GDPR (EU/EEA) and CCPA/CPRA (California)\"*"
+    },
+    {
+      "id": "health-ppv",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "false positive",
+        "prevalence"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 188,
+      "filler": 0,
+      "answer": "Based on the provided reference material, **not necessarily**.\n\n**Explanation:**\nAccording to the principles of **epidemiology** found in *advanced.md*, a test's \"accuracy\" (often conflated with specificity) does not directly equal the probability of having the disease. The **positive predictive value** (the chance you are actually sick given a positive result) is heavily driven by the **base rate** (prevalence) of the condition.\n\n*   **Base Rates Matter:** For a **rare disease**, the prevalence is very low. Even with a highly specific test (e.g., 99%), the number of false positives can exceed the number of true positives.\n*   **The Math:** As illustrated in *worked-examples.md*, if a disease affects 0.1% of the population (1 in 1,000) and the test has 99% specificity:\n    *   In 1,000 people, there is roughly **1 true positive**.\n    *   There are roughly **10 false positives** (99% of 100 non-sick people).\n    *   Result: A positive test indicates a chance of disease of only about **9%** (1 true positive out of 11 total positives).\n\nTherefore, a single positive result on a rare-disease screen is more likely to be a **false positive** than a true positive. A confirmatory test is usually required."
+    },
+    {
+      "id": "fin-debt",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "debt",
+        "guarantee"
+      ],
+      "missing": [],
+      "tok_s": 8.4,
+      "finish": "stop",
+      "words": 133,
+      "filler": 0,
+      "answer": "Based on the reference material, paying off a 20% credit card debt is generally the priority over investing in the market.\n\n**Reasoning:**\n1.  **Guaranteed vs. Uncertain Return:** Paying off a 20% credit card debt provides a **guaranteed ~20% return** (the interest you stop paying). This return is risk-free and tax-free.\n2.  **Market Volatility:** Market returns are **uncertain** and historically average well below 20%. There is a significant risk of loss in the market, whereas the debt payoff is certain.\n3.  **Compounding:** High-interest debt compounds against you, while market returns compound for you. A guaranteed 20% return almost no investment reliably beats.\n\n**Conclusion:**\nUnless you have an emergency fund covering 3–6 months of essential expenses, clearing high-interest debt (like a 20% card) should be done first. This is general financial education, not personalized advice."
+    },
+    {
+      "id": "phil-trolley",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "utilitarian",
+        "deontolog"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 79,
+      "filler": 0,
+      "answer": "Two ethical frameworks that analyze the trolley problem differently are:\n\n1.  **Consequentialism (Utilitarianism):** This framework judges actions based on their outcomes. It typically favors pulling the lever because it results in fewer deaths (one) compared to not pulling it (five).\n2.  **Deontology:** This framework focuses on duties and rules rather than outcomes. It may argue that pulling the lever is wrong because it actively uses one person as a means to save others, regardless of the better overall outcome."
+    }
+  ],
+  "open_summary": {
+    "avg_coverage_pct": 98.3,
+    "avg_tok_s": 8.8,
+    "total_filler": 0
+  },
+  "closed": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "coverage": 0.83,
+      "hit": [
+        "lcp",
+        "2.5",
+        "cls",
+        "0.1",
+        "inp"
+      ],
+      "missing": [
+        "200"
+      ],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 35,
+      "filler": 0,
+      "answer": "The three Core Web Vitals are:\n\n1.  **Largest Contentful Paint (LCP)**\n    *   **Target:** ≤ 2.5 seconds\n2.  **First Input Delay (FID)**\n    *   **Target:** ≤ 100 milliseconds\n3.  **Cumulative Layout Shift (CLS)**\n    *   **Target:** ≤ 0.1"
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 7.8,
+      "finish": "stop",
+      "words": 26,
+      "filler": 0,
+      "answer": "The minimum contrast ratio for normal-size text (18pt/24px or larger) under WCAG 2.1 AA is **4.5:1**.\n\nFor large text (24pt/30px or larger), the requirement is **3:1**."
+    },
+    {
+      "id": "web-elements",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "button",
+        "link"
+      ],
+      "missing": [],
+      "tok_s": 8.2,
+      "finish": "stop",
+      "words": 53,
+      "filler": 0,
+      "answer": "*   **For an action:** Use the `<button>` element. It is designed to trigger events (like submitting a form or opening a modal) and is semantically appropriate for interactive controls.\n*   **For navigation:** Use the `<a>` (anchor) element. It is specifically designed to link to other resources or different parts of the same page."
+    },
+    {
+      "id": "ux-heuristics",
+      "kb": "design",
+      "coverage": 0.67,
+      "hit": [
+        "nielsen",
+        "visibility"
+      ],
+      "missing": [
+        "consistency"
+      ],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 27,
+      "filler": 0,
+      "answer": "The 10 usability heuristics were defined by **Jakob Nielsen**.\n\nTwo of the heuristics are:\n1.  **Visibility of system status**\n2.  **Match between system and the real world**"
+    },
+    {
+      "id": "ux-hicks",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "choice",
+        "time"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 141,
+      "filler": 0,
+      "answer": "**Fitts's Law** (often confused with Hick's Law) states that the time it takes to move to a target is a function of the distance to the target and the size of the target.\n\nHowever, if you specifically mean **Hick's Law** (also known as the Hick-Hyman Law), it states that the time required to make a decision increases logarithmically with the number of available choices.\n\nThe formula is often expressed as:\n$$T = k \\cdot \\log_2(N)$$\n\nWhere:\n*   **T** is the time to make a decision.\n*   **k** is a constant representing the time it takes to process a single option.\n*   **N** is the number of alternative choices.\n\nIn simpler terms: **The more options you present to a user, the longer it takes them to decide.** This principle is widely used in user interface (UI) design to optimize menus and buttons."
+    },
+    {
+      "id": "ux-touch",
+      "kb": "design",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "44"
+      ],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 3,
+      "filler": 0,
+      "answer": "48 CSS pixels."
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "segment",
+        "target",
+        "position"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 84,
+      "filler": 0,
+      "answer": "In the context of marketing strategy, **STP** stands for **Segmentation, Targeting, and Positioning**.\n\nIt is a three-step process used to identify and define a company's target market:\n1.  **Segmentation**: Dividing a broad consumer market into sub-groups of consumers (segments) based on shared characteristics (e.g., demographics, psychographics, behavior).\n2.  **Targeting**: Evaluating the attractiveness of each segment and selecting one or more segments to enter.\n3.  **Positioning**: Designing a company's offering and communication strategy to occupy a distinctive, valued place in the minds of target customers."
+    },
+    {
+      "id": "mkt-funnel",
+      "kb": "marketing",
+      "coverage": 0.5,
+      "hit": [
+        "awareness",
+        "retention"
+      ],
+      "missing": [
+        "consideration",
+        "conversion"
+      ],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 74,
+      "filler": 0,
+      "answer": "The traditional marketing funnel consists of four stages:\n\n1.  **Awareness**: Potential customers become aware of your brand or product.\n2.  **Interest**: Customers show interest in what you offer and begin researching it.\n3.  **Desire**: Customers develop a strong preference for your product over competitors.\n4.  **Action**: Customers make a purchase or take a desired step (e.g., signing up).\n\n*Note: Some modern frameworks include an additional \"Engagement\" or \"Retention\" stage to focus on post-purchase loyalty.*"
+    },
+    {
+      "id": "mkt-ltvcac",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "3"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 92,
+      "filler": 0,
+      "answer": "A generally healthy **LTV-to-CAC ratio** is considered to be **3:1**.\n\nThis means that for every $1 spent on acquiring a customer, the company expects to generate $3 in lifetime value over that customer's relationship with the business.\n\n*   **3:1**: Indicates a healthy, sustainable business model with adequate margin for growth and operations.\n*   **1:1**: Often seen as the break-even point; while possible for some businesses, it leaves no room for error or growth.\n*   **Below 1:1**: Generally indicates a struggling business where acquisition costs are too high relative to the revenue generated."
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "coverage": 0.75,
+      "hit": [
+        "o(1)",
+        "o(n)",
+        "o(n^2)"
+      ],
+      "missing": [
+        "o(log n)"
+      ],
+      "tok_s": 8.9,
+      "finish": "stop",
+      "words": 9,
+      "filler": 0,
+      "answer": "1. $O(n^2)$\n2. $O(n)$\n3. $O(\\log n)$\n4. $O(1)$"
+    },
+    {
+      "id": "code-dup",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "set",
+        "o(n)"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 65,
+      "filler": 0,
+      "answer": "A **hash set** (implemented via a hash table) is the most efficient data structure for detecting duplicates in a large list.\n\n*   **Time Complexity**: $O(n)$ on average, where $n$ is the number of elements.\n*   **Mechanism**: As you iterate through the list, you insert each element into the hash set. If an insertion fails (collision) or the element already exists, a duplicate is detected immediately."
+    },
+    {
+      "id": "code-race",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "race",
+        "atomic",
+        "mutex"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 27,
+      "filler": 0,
+      "answer": "This is called a **race condition**.\n\n**Fix:** Use **mutexes** (mutual exclusion locks) or **atomic operations** to ensure only one thread accesses the shared counter at a time."
+    },
+    {
+      "id": "ds-bagboost",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "bagging",
+        "boosting",
+        "variance",
+        "bias"
+      ],
+      "missing": [],
+      "tok_s": 8.5,
+      "finish": "stop",
+      "words": 111,
+      "filler": 0,
+      "answer": "The primary difference lies in how they combine individual models to improve performance:\n\n*   **Bagging (Bootstrap Aggregating)** trains models **independently and in parallel**. It reduces **variance** (overfitting) by averaging predictions from multiple models trained on different random subsets of the data. It does not significantly reduce bias.\n*   **Boosting** trains models **sequentially and in series**. Each new model focuses specifically on the errors made by the previous ones. It reduces **bias** (underfitting) by iteratively improving the model's accuracy.\n\nIn summary: Bagging builds a \"committee\" of diverse experts voting together to reduce noise, while Boosting builds a chain of experts where each corrects the mistakes of the last to reduce systematic error."
+    },
+    {
+      "id": "ds-overfit",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "overfit",
+        "regular"
+      ],
+      "missing": [],
+      "tok_s": 9.0,
+      "finish": "stop",
+      "words": 24,
+      "filler": 0,
+      "answer": "**Problem:** Overfitting (or high variance).\n\n**Fix:** Increase the regularization strength (e.g., add L2 penalty) or reduce the model's complexity (e.g., remove layers or neurons)."
+    },
+    {
+      "id": "ds-imbalance",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "imbalanc",
+        "recall"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 97,
+      "filler": 0,
+      "answer": "98% accuracy can be misleading in fraud detection primarily due to **class imbalance**.\n\nIn typical fraud datasets, legitimate transactions vastly outnumber fraudulent ones (e.g., 999 good transactions for every 1 bad one). A model that predicts \"no fraud\" for every transaction would achieve 99% accuracy but would fail to detect any actual fraud.\n\nIn this scenario:\n*   **True Positive Rate (Recall)**: 0% (misses all fraud).\n*   **False Positive Rate**: 1% (flags no legitimate transactions).\n\nTherefore, high accuracy often masks a critically low **recall** (sensitivity), meaning the model is effectively useless for its intended purpose of catching fraud."
+    },
+    {
+      "id": "sec-idor",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "access control",
+        "server"
+      ],
+      "missing": [],
+      "tok_s": 8.1,
+      "finish": "stop",
+      "words": 138,
+      "filler": 0,
+      "answer": "This is a classic **Open Redirect** or, more specifically in this context, **IDOR (Insecure Direct Object Reference)** vulnerability.\n\n*   **What it is:** The application fails to validate the `order_id` parameter passed in the URL. It trusts the user's input to access data without checking if the user actually has permission to view that specific order. This allows any user to view other users' private data (like order details) simply by changing the ID in the browser address bar.\n*   **The Fix:** Implement **Authorization Checks** (Access Control). Before retrieving an order, the server must verify that the current user's ID matches the `order_id` in the URL (or that the user has explicit permission to view that order). Additionally, ensure the application uses **Secure Cookies** with the `HttpOnly` and `Secure` flags to prevent session hijacking, which often accompanies these issues."
+    },
+    {
+      "id": "sec-pw",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "salt",
+        "argon",
+        "bcrypt"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 115,
+      "filler": 0,
+      "answer": "Passwords should be stored using **one-way hashing** algorithms that are computationally expensive and salted. The standard approach involves:\n\n1.  **Salting**: Generate a unique, random string (salt) for each password and store it alongside the hash. This prevents rainbow table attacks.\n2.  **Hashing**: Apply a strong, slow hashing algorithm (e.g., **Argon2**, **bcrypt**, **scrypt**, or **PBKDF2**) to the password combined with the salt. These algorithms are designed to be slow to compute, making brute-force attacks difficult.\n3.  **Storage**: Store only the resulting hash and the salt in the database, not the original password or the raw hash.\n\nAvoid using fast hashing algorithms like MD5 or SHA-1 for password storage, as they are vulnerable to rapid brute-force attacks."
+    },
+    {
+      "id": "sec-cia",
+      "kb": "cybersecurity",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "confidentiality",
+        "integrity",
+        "availability"
+      ],
+      "tok_s": 8.3,
+      "finish": "stop",
+      "words": 13,
+      "filler": 0,
+      "answer": "In security, the CIA triad stands for:\n\n*   **C**onfidentiality\n*   **I**ntegrity\n*   **A**vailability"
+    },
+    {
+      "id": "sw-ci",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "merge",
+        "test"
+      ],
+      "missing": [],
+      "tok_s": 7.9,
+      "finish": "stop",
+      "words": 78,
+      "filler": 0,
+      "answer": "Continuous Integration (CI) is a software development practice where developers frequently merge their code changes into a central repository, often several times a day.\n\nThe core principle is that every integration is followed by an automated build and a series of automated tests to detect errors as quickly as possible. This helps to identify integration issues early, reduces the \"integration hell\" associated with infrequent merges, and ensures that the codebase remains in a deployable state at all times."
+    },
+    {
+      "id": "sw-dora",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "deployment",
+        "lead time",
+        "failure"
+      ],
+      "missing": [],
+      "tok_s": 8.6,
+      "finish": "stop",
+      "words": 28,
+      "filler": 0,
+      "answer": "Two of the four DORA metrics are:\n\n1.  **Deployment Frequency**\n2.  **Lead Time for Changes**\n\n*(The other two metrics are Change Failure Rate and Time to Restore Service.)*"
+    },
+    {
+      "id": "sw-solid",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "single responsib"
+      ],
+      "missing": [],
+      "tok_s": 8.7,
+      "finish": "stop",
+      "words": 9,
+      "filler": 0,
+      "answer": "The 'S' in SOLID stands for **Single Responsibility Principle**."
+    },
+    {
+      "id": "prod-pmf",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "retention"
+      ],
+      "missing": [],
+      "tok_s": 8.8,
+      "finish": "stop",
+      "words": 53,
+      "filler": 0,
+      "answer": "The clearest signal of product-market fit is when **sales increase organically without additional marketing spend**, often accompanied by **high customer retention and organic word-of-mouth referrals**.\n\nThis indicates that the product is solving a critical problem for a specific market segment so effectively that customers actively seek it out and recommend it to others."
+    },
+    {
+      "id": "prod-rice",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "reach",
+        "impact",
+        "confidence",
+        "effort"
+      ],
+      "missing": [],
+      "tok_s": 7.9,
+      "finish": "stop",
+      "words": 91,
+      "filler": 0,
+      "answer": "The **RICE** prioritisation framework stands for:\n\n*   **R** – **Reach**: The number of users or events that will be impacted by the feature.\n*   **I** – **Impact**: The magnitude of change to the metric for each user affected.\n*   **C** – **Confidence**: The certainty of your estimates for Reach and Impact (usually expressed as a percentage).\n*   **E** – **Effort**: The amount of work required to complete the feature (often measured in person-days).\n\nThe score is calculated by multiplying these four factors: **Score = (Reach × Impact × Confidence) / Effort**."
+    },
+    {
+      "id": "biz-npv",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "npv",
+        "0"
+      ],
+      "missing": [],
+      "tok_s": 8.4,
+      "finish": "stop",
+      "words": 51,
+      "filler": 0,
+      "answer": "The decision rule for Net Present Value (NPV) is:\n\n*   **Accept** the project if **NPV > 0**.\n*   **Reject** the project if **NPV < 0**.\n*   **Indifferent** if **NPV = 0**.\n\nA positive NPV indicates that the project's expected return exceeds the cost of capital, thereby adding value to the firm."
+    },
+    {
+      "id": "biz-porter",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "porter"
+      ],
+      "missing": [],
+      "tok_s": 7.7,
+      "finish": "stop",
+      "words": 18,
+      "filler": 0,
+      "answer": "Michael Porter created the Five Forces framework. He was an American professor of strategy at Harvard Business School."
+    },
+    {
+      "id": "legal-ip",
+      "kb": "legal",
+      "coverage": 0.5,
+      "hit": [
+        "creator"
+      ],
+      "missing": [
+        "assign"
+      ],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 59,
+      "filler": 0,
+      "answer": "By default, the copyright in a work made by a freelancer belongs to the **freelancer** (the individual creator), not the client or employer.\n\nThis is because freelancers are generally considered **independent contractors**, not employees. In most jurisdictions, copyright is automatically transferred to the creator upon the creation of the work, unless there is a specific written contract stating otherwise."
+    },
+    {
+      "id": "legal-gdpr",
+      "kb": "legal",
+      "coverage": 0.5,
+      "hit": [
+        "access"
+      ],
+      "missing": [
+        "eras"
+      ],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 55,
+      "filler": 0,
+      "answer": "Two data-subject rights under the GDPR are:\n\n1.  **The Right to Access**: Individuals can request confirmation from the controller whether their personal data is being processed and, if so, receive a copy of that data.\n2.  **The Right to Rectification**: Individuals have the right to have inaccurate personal data concerning them corrected without undue delay."
+    },
+    {
+      "id": "health-ppv",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "false positive",
+        "prevalence"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 203,
+      "filler": 0,
+      "answer": "No, you are **not** probably sick. In fact, you are likely **not** sick.\n\nThis is a classic application of **Bayes' Theorem**. The probability of having the disease depends not just on the test's accuracy, but also on the **base rate** (prevalence) of the disease in the population.\n\n**Explanation:**\n1.  **Base Rate Fallacy:** If the disease is rare (e.g., affects 1 in 10,000 people), the vast majority of people do not have it.\n2.  **False Positives:** Even with a 99% accurate test, it will still produce false positives for the 99% of people who are healthy.\n3.  **The Calculation:**\n    *   Assume a population of 10,000 people.\n    *   **True Cases:** 1 person has the disease. The test correctly identifies them (1 true positive).\n    *   **Healthy People:** 9,999 people do not have the disease. The test incorrectly flags 1% of them as positive (99.99 false positives).\n    *   **Total Positive Results:** 1 (true) + 99.99 (false) ≈ 100 people.\n    *   **Probability of Being Sick:** 1 true positive / 100 total positives = **1%**.\n\n**Conclusion:**\nUnless the disease is relatively common, a positive result on a highly accurate test for a rare disease usually indicates a **false positive**. You are far more likely to be healthy than sick."
+    },
+    {
+      "id": "fin-debt",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "debt",
+        "guarantee"
+      ],
+      "missing": [],
+      "tok_s": 7.9,
+      "finish": "stop",
+      "words": 109,
+      "filler": 0,
+      "answer": "**Pay off the credit card debt.**\n\n**Why:**\n1.  **Interest Rate Differential:** A 20% credit card interest rate is exceptionally high. Even a conservative market return of 7–10% cannot offset the cost of carrying that debt. You would lose money every time you invest while paying off the card.\n2.  **Guaranteed Return:** Paying off debt provides an immediate, risk-free return of 20%.\n3.  **Cash Flow Preservation:** Eliminating high-interest debt frees up monthly cash flow that can then be safely invested.\n\n**Exception:** Only invest if you have a separate, low-interest emergency fund (e.g., <5%) and the credit card debt is minimal, allowing you to invest the difference without risking financial stability."
+    },
+    {
+      "id": "phil-trolley",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "utilitarian",
+        "deontolog"
+      ],
+      "missing": [],
+      "tok_s": 7.8,
+      "finish": "stop",
+      "words": 94,
+      "filler": 0,
+      "answer": "1. **Utilitarianism**: This framework analyzes the trolley problem by calculating the total utility (happiness or well-being) of the outcome. It typically favors pulling the lever to sacrifice one person to save five, as this maximizes overall good and minimizes total suffering.\n\n2. **Deontology**: This framework analyzes the problem based on moral duties, rules, or rights rather than consequences. It often argues against pulling the lever because it involves actively killing an innocent person to achieve a greater good, viewing the action as a violation of the individual's right to life regardless of the outcome."
+    }
+  ],
+  "closed_summary": {
+    "avg_coverage_pct": 85.8,
+    "avg_tok_s": 8.3,
+    "total_filler": 0
+  },
+  "kit_gain_points": 12.5
+}
