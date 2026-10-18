@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "python3",
+      "args": ["-B", "/opt/assistant/mcp/memory_server.py"],
+      "env": { "MEMORY_FILE": "/memory/memory.jsonl" },
+      "timeout_ms": 15000
+    },
+    "web": {
+      "command": "python3",
+      "args": ["-B", "/opt/assistant/mcp/web_server.py"],
+      "timeout_ms": 45000
+    },
+    "youtube": {
+      "command": "python3",
+      "args": ["-B", "/opt/assistant/mcp/youtube_server.py"],
+      "env": { "YTDLP": "/opt/assistant/bin/yt-dlp" },
+      "timeout_ms": 170000
+    },
+    "gmail": {
+      "command": "python3",
+      "args": ["-B", "/opt/assistant/mcp/gmail_server.py"],
+      "env": { "GMAIL_ENV_FILE": "/opt/assistant/secrets/gmail.env" },
+      "timeout_ms": 60000
+    },
+    "kb": {
+      "command": "python3",
+      "args": ["-B", "/opt/assistant/mcp/kb_server.py"],
+      "env": { "KB_ROOT": "/kb" },
+      "timeout_ms": 30000
+    }
+  }
+}

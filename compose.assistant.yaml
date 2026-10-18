@@ -1,0 +1,88 @@
+# Generic "expert profile" runner. The launcher (assistant.ps1) sets the env vars from profiles.json,
+# so every profile reuses this one file instead of a near-duplicate compose per model.
+#   do not run directly - use:  D:\dockerData\assistant\assistant.ps1 <profile>
+# Endpoint: http://127.0.0.1:8082 (localhost only). Alias stays "assistant" so apps never need re-pointing.
+name: assistant
+
+services:
+  assistant:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda-b11669@sha256:e4cfff28678327b0ae7eda129e700e56a0fa55aa23db2f016256ea155c15c2b5
+    container_name: assistant
+    command:
+      - --model
+      - /models/${ASSISTANT_MODEL:?set via assistant.ps1}
+      - --alias
+      - ${ASSISTANT_ALIAS:-assistant}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --ctx-size
+      - "${ASSISTANT_CTX:-16384}"
+      - --flash-attn
+      - "on"
+      - --cache-type-k
+      - q8_0
+      - --cache-type-v
+      - q8_0
+      - --threads
+      - "6"
+      - --threads-batch
+      - "6"
+      - --batch-size
+      - "512"
+      - --ubatch-size
+      - "256"
+      - --n-gpu-layers
+      - "${ASSISTANT_NGL:-24}"
+      - --parallel
+      - "1"
+      - --load-mode
+      - none
+      - --mcp-servers-config
+      - /opt/assistant/mcp/mcp.json
+      - --tools
+      - read_file,file_glob_search,grep_search,write_file,edit_file,get_info
+      - --ui-config-file
+      - /opt/assistant/ui-config.json
+      - --log-file
+      - /logs/llama-server-assistant.log
+    environment:
+      CUDA_CACHE_PATH: /cache/cuda
+      CUDA_CACHE_MAXSIZE: "4294967296"
+    ports:
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - D:\dockerData\models:/models:ro
+      - D:\dockerData\assistant\mcp:/opt/assistant/mcp:ro
+      - D:\dockerData\assistant\bin:/opt/assistant/bin:ro
+      - D:\dockerData\assistant\secrets:/opt/assistant/secrets:ro
+      - D:\dockerData\assistant\ui-config.json:/opt/assistant/ui-config.json:ro
+      - D:\dockerData\assistant\memory:/memory
+      - D:\dockerData\assistant\workspace:/workspace
+      - D:\dockerData\assistant\kb:/kb
+      - D:\dockerData\logs:/logs
+      - D:\dockerData\cache\cuda:/cache/cuda
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    mem_limit: 7g
+    cpus: 6
+    restart: "no"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 900s
+      retries: 3

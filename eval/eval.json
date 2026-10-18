@@ -1,0 +1,41 @@
+{
+  "description": "Domain-accuracy benchmark. Each item's answer is contained in that niche's KB docs, which the harness injects as context (open-book / RAG style). must_include = lowercased key points an accurate answer should contain (rough auto-score; a human/mentor also reviews).",
+  "items": [
+    {
+      "id": "web-cwv",
+      "kb": "webdesign",
+      "question": "What are the three Core Web Vitals and their 'good' target values?",
+      "must_include": ["lcp", "2.5", "cls", "0.1", "inp", "200"]
+    },
+    {
+      "id": "web-contrast",
+      "kb": "webdesign",
+      "question": "What is the minimum WCAG 2.1 AA colour-contrast ratio for normal-size text?",
+      "must_include": ["4.5"]
+    },
+    {
+      "id": "mkt-stp",
+      "kb": "marketing",
+      "question": "What does STP stand for in marketing strategy, and what is each step?",
+      "must_include": ["segment", "target", "position"]
+    },
+    {
+      "id": "code-bigo",
+      "kb": "coding",
+      "question": "Order these by growth rate from slowest-growing to fastest-growing: O(n^2), O(log n), O(n), O(1). Explain briefly.",
+      "must_include": ["o(1)", "o(log n)", "o(n)", "o(n^2)"]
+    },
+    {
+      "id": "ds-bag-boost",
+      "kb": "datascience",
+      "question": "What is the difference between bagging and boosting in machine learning?",
+      "must_include": ["bagging", "boosting", "variance", "bias"]
+    },
+    {
+      "id": "sec-owasp",
+      "kb": "cybersecurity",
+      "question": "Name three risks from the OWASP Top 10 and one defence for each.",
+      "must_include": ["access control", "injection", "misconfig"]
+    }
+  ]
+}

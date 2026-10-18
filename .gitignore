@@ -1,0 +1,23 @@
+# Private / machine-specific runtime data — never publish
+secrets/*.env
+memory/
+workspace/
+logs/
+cache/
+models/
+bin/
+kb/.active
+.active-profile
+ui-config.json
+
+# Model weights and large binaries
+*.gguf
+*.bin
+*.safetensors
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# NOTE: eval/results-*.json are benchmark outputs and ARE committed on purpose (every number is saved).
