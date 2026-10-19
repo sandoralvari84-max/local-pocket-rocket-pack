@@ -26,7 +26,8 @@ Zero filler phrases in all answers, ~9 tokens/sec. The gain concentrates where a
 specific thresholds, enumerations, attributions and domain specifics (e.g. WCAG touch-target size, the CIA triad,
 GDPR rights went from partial/zero closed-book to 100% with the KB). Every run is logged, raw outputs kept,
 reproducible with `eval/run_eval.py`. Numbers, not vibes — and sub-100% items are checked by hand (auto-scoring
-under-counts valid answers). This is a 30-item set; a larger, harder set is in progress.
+under-counts valid answers). These are results on *this specific 30-item set*, not a general accuracy guarantee;
+a larger, harder set with a private held-out split is reported in [BENCHMARKS.md](BENCHMARKS.md).
 
 ## The mini-expert framework (v1)
 Beyond the knowledge bases, each niche now ships a **reasoning layer** (`kb/<niche>/expert-reasoning.md`) that teaches

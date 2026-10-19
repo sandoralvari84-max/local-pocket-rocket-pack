@@ -1,9 +1,11 @@
 # Benchmarks — running log
 
-**Principle: every test and every number is saved.** This file is append-only — never edit or delete past runs,
-only add new ones. Each run also keeps its full raw output as `eval/results-<timestamp>.json` (per-item answers,
-key-point coverage, tokens/sec), committed alongside this log. Reproducibility is the whole point: anyone should be
-able to re-run `eval/run_eval.py` and get comparable numbers.
+**Principle: every test and every number is saved** (locally — the log is append-only, never edit or delete past runs).
+For the **public demo sets** (the mainstream-30 and the coding tasks), the full per-item result JSONs are committed
+alongside this log so you can re-run `eval/run_eval.py` / `eval/run_tasks.py` and get comparable numbers. For the
+**held-out set**, only aggregate numbers are published and the per-item questions, answer keys and outputs are kept
+**private**, so the set stays genuinely blind — scores on it are reproducible only in a controlled/local run, not from
+public data. All scores below are results on their specific test sets, not a general accuracy guarantee.
 
 ## Method
 - Harness: `eval/run_eval.py` (standard-library Python). Benchmark set: `eval/eval.json`.
@@ -100,9 +102,13 @@ Caveat: these are mainstream-fact scores; on specialist/obscure/proprietary know
 specialist layer and the HARD run below).
 
 ### Run 005 — HARD 47-item set, 5-model bake-off (with a held-out honesty line)
-- Date: 2026-10-19. Raw: `eval/results-hard47-<model>-*.json`. 47 items (37 derived from the kit's own KB, 10
-  blind-authored **held-out** items with primary sources). Same settings across models (20 GPU layers for 4B / 12 for
-  the 7B, 8192 ctx, thinking off, temp 0.2). `open` = KB injected (kit); `closed` = model's own weights.
+- Date: 2026-10-19. 47 items (37 derived from the kit's own KB, 10 blind-authored **held-out** items with primary
+  sources). Same settings across models (20 GPU layers for 4B / 12 for the 7B, 8192 ctx, thinking off, temp 0.2).
+  `open` = KB injected (kit); `closed` = model's own weights.
+- **Per-item outputs for this set are kept private** (not committed) so the held-out items stay blind; only the
+  aggregates below are published. NOTE: an earlier v1.0.0 push briefly included these result files, which exposed the
+  held-out answer keys — so **those 10 held-out items are now retired**, and v2 will use a fresh blind set. These
+  aggregates are reproducible only in a controlled/local run, not from public data.
 
 | Model | Closed (base) | Open (kit) | Kit gain | Held-out base | Held-out +kit | **Held-out gain** |
 |---|---|---|---|---|---|---|
