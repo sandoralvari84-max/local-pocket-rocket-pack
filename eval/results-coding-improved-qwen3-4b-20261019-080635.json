@@ -1,0 +1,263 @@
+{
+  "tasks_file": "tasks-coding.json",
+  "tag": "coding-improved-qwen3-4b",
+  "arms": [
+    "kit_fast"
+  ],
+  "retr_budget": 6000,
+  "judging": "For each task, score the answer 0-1 on each rubric point (demonstrated / partial / absent) and give a 1-5 holistic quality score. Report base vs base+kit side by side. The question is whether the kit raises the QUALITY of applied reasoning, not whether a fact appears.",
+  "items": [
+    {
+      "id": "t-debug-500s",
+      "kb": "coding",
+      "task": "A web API returns intermittent HTTP 500s only in production, only at peak load, on roughly 1% of requests, with no stack trace in the application logs. Walk me through how you would diagnose this, step by step.",
+      "rubric": [
+        "reproduce / gather evidence before guessing",
+        "orders hypotheses cheapest-first (timeouts, connection-pool exhaustion) before the hard one (a race)",
+        "uses metrics (pool saturation, downstream p99) rather than reading all the code",
+        "changes one thing at a time",
+        "verifies the fix by metrics, not by 'feels better'"
+      ],
+      "ctx_chars": 6207,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Reproduce reliably first: identify conditions to trigger the 500s in production, replicate in a controlled environment.\n- Read error logs top to bottom: the first line indicates the symptom (500), the cause is lower (e.g., timeout, pool exhaustion, race).\n- Check metrics: monitor DB connection-pool saturation and downstream p99 latency at peak load. High pool utilization suggests connection-pool exhaustion.\n- Test hypotheses: prioritize cheaper explanations first. If pool is saturated, fix by increasing pool size and finding leaks. Verify by monitoring pool utilization post-change.\n- If pool is healthy, chase harder hypotheses: check for race conditions on shared state, especially if requests are queuing and 500s are intermittent.\n- Use bisect: isolate code changes or configurations that could cause the issue by halving the search space each step.\n- Change one thing at a time: isolate the cause by modifying and testing individual components, track hypotheses in a log to avoid loops.\n- Consider performance: profile the API to find bottlenecks. High latency in critical paths could cause timeouts under load.\n- Ensure the bug is in your code: assume the issue is in your implementation unless proven otherwise. Check for non-atomic operations or shared state races.\n- Validate fixes: after addressing potential causes, retest to confirm the issue is resolved. Monitor metrics to ensure the fix is effective and sustainable.",
+          "words": 222,
+          "tok_s": 8.0,
+          "wall_s": 43.8
+        }
+      }
+    },
+    {
+      "id": "t-perf-report",
+      "kb": "coding",
+      "task": "A reporting endpoint was fast at launch and is now slow as the table grew to millions of rows. How do you find and fix the cause?",
+      "rubric": [
+        "measures/profiles before optimizing",
+        "identifies N+1 queries or a missing index as the likely cause",
+        "uses EXPLAIN / looks at the query plan",
+        "fixes with a single JOIN/batch query and/or an index, not premature caching",
+        "verifies it scales (re-check at higher data volume)"
+      ],
+      "ctx_chars": 6339,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Evidence: endpoint slow at scale, fast initially; no stack trace, no obvious config change.\n- Hypotheses, cheapest first: (1) N+1 queries (one per row); (2) full table scan (no index); (3) inefficient data structure.\n- Test (1)/(2) first — check query plan (EXPLAIN), measure p95 latency, verify if query is sane.\n- If N+1: replace loop with JOIN/batched query, add index on filter/column. Verify with EXPLAIN and retest at 10x data.\n- If full table scan: add index on filter/column. Verify with EXPLAIN and retest at 10x data.\n- If data structure: optimize algorithm/structure (e.g., sort+scan for duplicates).\n- Verify: measure before/after, retest at 10x data. Don't assume; confirm with metrics.",
+          "words": 112,
+          "tok_s": 7.4,
+          "wall_s": 32.8
+        }
+      }
+    },
+    {
+      "id": "t-design-cache",
+      "kb": "coding",
+      "task": "We have a value that is read about 1000x more often than it is written, and slightly stale data is acceptable, but the source query is expensive. Should we add a cache? Reason it through.",
+      "rubric": [
+        "states the forces (read:write ratio, staleness tolerance, query cost)",
+        "concludes it is a good cache candidate given those forces",
+        "flags invalidation as the hard part and picks a strategy (TTL vs write-through)",
+        "checks the source query is already optimized (indexes) before caching",
+        "ends with a measurable check (hit rate / staleness complaints)"
+      ],
+      "ctx_chars": 6318,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Forces: high read:write + staleness-tolerant + expensive source.  \n- Reasoning: cache reduces query load; stale data is acceptable.  \n- Decision: implement a TTL cache with short expiry; measure hit rate.  \n- Trade: cache vs query cost; name the cost (stale reads, invalidation).  \n- Verify: ensure query is optimized; cache is a fix for a known bottleneck.  \n- Optimize: use simple cache strategy; avoid complex invalidation.  \n- Check: ensure cache doesn’t hide query performance issues.  \n- Conclusion: yes, add a cache if query is not already optimized.",
+          "words": 87,
+          "tok_s": 6.7,
+          "wall_s": 26.9
+        }
+      }
+    },
+    {
+      "id": "t-review-sqli",
+      "kb": "coding",
+      "task": "Review this code and tell me what is wrong and how to fix it:  query = \"SELECT * FROM users WHERE email = '\" + userInput + \"'\"",
+      "rubric": [
+        "identifies SQL injection",
+        "fixes with a parameterised / prepared query (not escaping/blacklisting)",
+        "mentions least-privilege DB account and/or input validation",
+        "notes adding a regression test with an injection payload",
+        "does not add irrelevant nitpicks as if they were the main issue"
+      ],
+      "ctx_chars": 6325,
+      "arms": {
+        "kit_fast": {
+          "answer": "The code is vulnerable to SQL injection. The input is directly concatenated into the SQL query without validation or sanitization. This allows malicious users to inject arbitrary SQL code, potentially leading to data breaches or unauthorized access.\n\nFix: Use parameterized queries or prepared statements to separate the SQL logic from the data. For example, in Python with `sqlite3`, use:\n```python\nquery = \"SELECT * FROM users WHERE email = ?\"\ncursor.execute(query, (userInput,))\n```",
+          "words": 73,
+          "tok_s": 7.5,
+          "wall_s": 20.2
+        }
+      }
+    },
+    {
+      "id": "t-concurrency",
+      "kb": "coding",
+      "task": "Two threads increment a shared counter and the total sometimes comes out too low. Diagnose the cause, give a fix, and name a pitfall your fix could introduce.",
+      "rubric": [
+        "identifies a race condition on a non-atomic read-modify-write",
+        "fixes with an atomic operation or a lock/mutex",
+        "names a real pitfall (e.g. deadlock if multiple locks; take them in a consistent order)",
+        "explains why the symptom (lost updates) matches the cause",
+        "is calibrated, not hand-wavy"
+      ],
+      "ctx_chars": 6198,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Cause: race condition on non-atomic read-modify-write of shared counter.\n- Fix: use atomic increment or mutex to serialize access.\n- Pitfall: deadlock if multiple locks are used; ensure consistent lock order.",
+          "words": 32,
+          "tok_s": 7.5,
+          "wall_s": 13.7
+        }
+      }
+    },
+    {
+      "id": "t-judgment-micro",
+      "kb": "coding",
+      "task": "A junior engineer says: 'We should rewrite our monolith as microservices so it can scale.' How do you respond?",
+      "rubric": [
+        "asks for the actual bottleneck / evidence rather than agreeing",
+        "offers a modular monolith as the sensible default",
+        "names the real cost of microservices (distributed-systems complexity, data consistency, ops)",
+        "identifies independent deployability (not 'scale') as the true driver when it applies",
+        "notes you can extract services later (reversibility) — calibrated, not dogmatic either way"
+      ],
+      "ctx_chars": 1542,
+      "arms": {
+        "kit_fast": {
+          "answer": "The junior engineer’s claim ignores key forces. Scale is not the only factor. Microservices introduce complexity: distributed systems, network latency, data consistency. Name the trade: microservices for independent deploys, paid for in distributed-systems complexity. Optimize for readability and change. Avoid premature architecture. Use Git for version control: small, logical commits; no secret commits. Bounded contexts and ubiquitous language may apply. Consider team size and deadline. Reversibility? Rewrite is irreversible. Prioritize simplicity.",
+          "words": 71,
+          "tok_s": 9.1,
+          "wall_s": 13.8
+        }
+      }
+    },
+    {
+      "id": "t-debug-heisenbug",
+      "kb": "coding",
+      "task": "A unit test passes when run on its own but fails when the whole suite runs. How do you diagnose and fix it?",
+      "rubric": [
+        "suspects shared/global state or test-ordering dependence, not the test's own logic",
+        "reproduces deterministically (fix the seed / run the exact failing order)",
+        "bisects to the polluting test rather than reading everything",
+        "fixes by isolating state (setup/teardown, no shared mutable globals) not by reordering to hide it",
+        "verifies by running in randomised order"
+      ],
+      "ctx_chars": 5991,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Test behavior, not implementation. Arrange–Act–Assert structure.\n- Reproduce reliably first. A bug you can't trigger on demand, you can't fix with confidence.\n- Check edge cases and error paths, not just the happy path; a bug fix gets a regression test.\n- Isolate the test: run it in isolation, check for environment differences (versions, config, data, timezone, locale, permissions).\n- If the test fails in the suite but not alone: race condition, resource leak, or side effect.\n- Fix: ensure test is self-contained, avoid external state, use mocks/isolation for dependencies.\n- Verify by rerunning in isolation, confirm the issue is not environment-specific.",
+          "words": 103,
+          "tok_s": 7.0,
+          "wall_s": 27.2
+        }
+      }
+    },
+    {
+      "id": "t-api-idempotency",
+      "kb": "coding",
+      "task": "Design a 'charge payment' API endpoint so that a client that retries after a timeout does not double-charge.",
+      "rubric": [
+        "recognises at-least-once delivery / retries are unavoidable, so the operation must be idempotent",
+        "uses a client-supplied idempotency key",
+        "dedupes via a stored key -> result record (return the original result on replay)",
+        "handles the race on concurrent duplicates (unique constraint / atomic insert)",
+        "verifies by firing the same request twice and asserting one charge"
+      ],
+      "ctx_chars": 4605,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Ensure idempotency: accept a unique charge ID and verify it's not already charged.  \n- Use at-least-once delivery with retries, but validate the charge ID on each attempt to prevent duplicates.  \n- Implement a rate-limiting mechanism to cap retry attempts per client.  \n- Store charge IDs in a short-lived cache to avoid long-term memory usage.  \n- Validate input server-side to prevent malicious retry patterns.  \n- Use a database transaction to atomically check and charge, ensuring no race conditions.  \n- Log retry attempts and charge IDs for auditability.  \n- Design for scalability: use a distributed cache for charge IDs if the system is large.  \n- Prioritize correctness: fail fast on duplicate charge IDs rather than allowing partial charges.  \n- Separate concerns: keep payment logic and retry logic in distinct modules.  \n- Test edge cases: retry after timeout, invalid charge ID, and network failures.  \n- Document the idempotency key and retry policy for client developers.",
+          "words": 153,
+          "tok_s": 7.7,
+          "wall_s": 31.4
+        }
+      }
+    },
+    {
+      "id": "t-memory-leak",
+      "kb": "coding",
+      "task": "A long-running service's memory grows steadily until it is OOM-killed every few days. How do you find and fix it?",
+      "rubric": [
+        "measures first: watch RSS/heap growth, take heap snapshots over time",
+        "looks for unbounded retention (growing cache, un-removed listeners/subscriptions, accumulating buffers)",
+        "reproduces the growth under load rather than guessing",
+        "fixes by bounding/evicting (cap the cache, remove listeners, stream instead of buffer) — not by just raising the memory limit",
+        "verifies memory now plateaus over a sustained run"
+      ],
+      "ctx_chars": 6399,
+      "arms": {
+        "kit_fast": {
+          "answer": "Measure memory usage over time to identify the rate of growth. Profile to find the source of the leak. Check for unmanaged resources, unclosed connections, or memory allocations not released. Look for patterns in allocation and deallocation. Test by simulating load to reproduce the issue. Fix the root cause, such as closing connections or fixing memory leaks. Verify by monitoring memory usage after the fix.",
+          "words": 65,
+          "tok_s": 6.4,
+          "wall_s": 20.2
+        }
+      }
+    },
+    {
+      "id": "t-resilience",
+      "kb": "coding",
+      "task": "Your service calls an external API that is sometimes slow and occasionally down. How do you make your service resilient to that?",
+      "rubric": [
+        "sets a timeout (never an unbounded wait)",
+        "retries with backoff + jitter, and ONLY for idempotent/safe calls",
+        "adds a circuit breaker so a dead dependency does not take you down",
+        "degrades gracefully (fallback, cached value, or clear partial failure) rather than cascading",
+        "verifies with fault injection (kill/slow the dependency) not just the happy path"
+      ],
+      "ctx_chars": 4597,
+      "arms": {
+        "kit_fast": {
+          "answer": "- Restate: make service robust to API outages and latency.\n- Facts (advanced.md › Concurrency): external services can fail, retry on error, timeout, circuit breaker patterns.\n- Steps:\n  - Implement retries with exponential backoff on API errors.\n  - Set timeout limits to prevent long hangs.\n  - Use a circuit breaker to detect and isolate failures (e.g., failfast, failclosed, half-open).\n  - Monitor API health and fallback to cached data or local defaults when down.\n  - If multiple APIs, use load balancing and failover to healthy ones.\n- Check: retries handle transient issues; timeout prevents infinite waits; circuit breaker avoids cascading failures; fallback ensures continuity.\n- Answer: Use retries with exponential backoff, timeouts, and a circuit breaker to handle API failures. Fallback to cached data or local defaults when down. Balance multiple APIs to ensure continuity.",
+          "words": 134,
+          "tok_s": 7.3,
+          "wall_s": 30.6
+        }
+      }
+    },
+    {
+      "id": "t-estimate-uncertainty",
+      "kb": "coding",
+      "task": "A stakeholder asks 'how long to build feature X?' and you genuinely don't know yet. How do you answer?",
+      "rubric": [
+        "refuses a false-precision single number",
+        "decomposes the work and estimates the parts",
+        "gives a range / confidence, not a point",
+        "names the biggest unknowns and proposes a timeboxed spike to de-risk them",
+        "commits to re-estimating after the spike — calibrated honesty over a confident guess"
+      ],
+      "ctx_chars": 6244,
+      "arms": {
+        "kit_fast": {
+          "answer": "Answer: Acknowledge uncertainty, explain the factors affecting duration, and outline next steps to resolve it. For example: \"I don't know yet. The build time depends on scope, team availability, and dependencies. I'll break down the task into smaller, estimable parts, consult with stakeholders for clarity, and reassess once details are clearer.\"",
+          "words": 51,
+          "tok_s": 6.3,
+          "wall_s": 18.0
+        }
+      }
+    },
+    {
+      "id": "t-datastore-choice",
+      "kb": "coding",
+      "task": "You're starting a new app with an evolving schema but also need multi-table relational queries and transactions. SQL or NoSQL?",
+      "rubric": [
+        "starts from the access patterns and consistency needs, not from hype",
+        "picks a relational DB as the default given transactions + relational queries",
+        "notes schema evolution is handled by migrations, not by abandoning SQL",
+        "names what NoSQL would actually cost here (denormalisation, eventual consistency, app-side joins)",
+        "flags the decision's reversibility / migration cost — calibrated, not dogmatic"
+      ],
+      "ctx_chars": 5909,
+      "arms": {
+        "kit_fast": {
+          "answer": "SQL.  \n- Relational queries and transactions are core to SQL.  \n- NoSQL lacks ACID compliance for transactions.  \n- Evolving schema is manageable with SQL's ALTER TABLE.  \n- Multi-table queries require JOINs, which SQL supports.  \n- NoSQL is better for unstructured data or horizontal scaling.  \n- Trade-off: SQL's complexity vs. NoSQL's flexibility.  \n- Name the cost: SQL's schema management vs. NoSQL's eventual consistency.  \n- Prefer SQL for transactional integrity and relational queries.",
+          "words": 71,
+          "tok_s": 6.2,
+          "wall_s": 24.8
+        }
+      }
+    }
+  ]
+}

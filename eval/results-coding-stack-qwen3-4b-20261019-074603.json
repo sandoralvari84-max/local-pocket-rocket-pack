@@ -1,0 +1,224 @@
+{
+  "tasks_file": "tasks-coding.json",
+  "tag": "coding-stack-qwen3-4b",
+  "arms": [
+    "base",
+    "kit_fast",
+    "kit_deep"
+  ],
+  "retr_budget": 6000,
+  "judging": "For each task, score the answer 0-1 on each rubric point (demonstrated / partial / absent) and give a 1-5 holistic quality score. Report base vs base+kit side by side. The question is whether the kit raises the QUALITY of applied reasoning, not whether a fact appears.",
+  "items": [
+    {
+      "id": "t-debug-500s",
+      "kb": "coding",
+      "task": "A web API returns intermittent HTTP 500s only in production, only at peak load, on roughly 1% of requests, with no stack trace in the application logs. Walk me through how you would diagnose this, step by step.",
+      "rubric": [
+        "reproduce / gather evidence before guessing",
+        "orders hypotheses cheapest-first (timeouts, connection-pool exhaustion) before the hard one (a race)",
+        "uses metrics (pool saturation, downstream p99) rather than reading all the code",
+        "changes one thing at a time",
+        "verifies the fix by metrics, not by 'feels better'"
+      ],
+      "ctx_chars": 6097,
+      "arms": {
+        "base": {
+          "answer": "Check logs for any correlation between 500s and specific requests. Look for patterns in error timing and request volume. Monitor resource usage (CPU, memory, disk) during peak load. Use distributed tracing to identify where errors occur in the request flow. Check for database or external service timeouts. Perform load testing to reproduce the issue. Analyze request latency and identify bottlenecks. Check for memory leaks or object retention issues. Review code for potential race conditions or resource leaks. Use profiling tools to analyze performance. Look for configuration mismatches or misaligned load balancing. Ensure all services are properly scaled during peak load. Verify that error logging is enabled and not being suppressed. Confirm that error metrics are being collected and monitored. Investigate any third-party service dependencies for issues.",
+          "words": 126,
+          "tok_s": 10.8,
+          "wall_s": 15.6
+        },
+        "kit_fast": {
+          "answer": "Reproduce reliably: confirm 500s occur in prod, peak, 1% of requests, no app logs.  \nTest cheapest hypothesis: downstream timeout under load. Check DB connection-pool saturation and downstream p99 latency at peak.  \nIf pool at 100% with requests queuing → exhaustion. Fix: raise pool size and find leak (unclosed connections / slow queries). Verify by watching pool utilization.  \nIf pool healthy, chase race hypothesis.  \nAssume bug in code unless proven otherwise.  \nCheck environment differences: versions, config, data, timezone, locale, permissions. Diff them.  \nNo stack trace in app logs → not code error.  \nFollow methodology: bisect, change one thing at a time, hypothesis log.  \nVerify before concluding.  \nIf no pool issue, check for race on shared state.  \nMeasure before optimizing. Profile, read flame graph, find top cost.  \nOptimize proven hot path.  \nKnow order of magnitude: memory ns, SSD µs, network ms.  \nFix algorithm/data-structure before micro-optimizing.  \nCheck edge cases: empty, null, boundary, concurrent, failure.  \nAsk \"what happens when this fails?\" at every I/O boundary.  \nUntrusted input, missing error handling, resource leaks are high-value findings.  \nA good review leaves author knowing why, not just what to change.  \nExpert is calibrated: confident where evidence supports it, explicit about uncertainty.  \nHow to resolve uncertainty: test cheapest hypothesis first.",
+          "words": 202,
+          "tok_s": 8.9,
+          "wall_s": 41.8
+        },
+        "kit_deep": {
+          "answer": "Reproduce reliably: confirm 500s in prod, peak, 1% of requests, no app logs.  \nTest cheapest hypothesis: downstream timeout under load. Check DB connection-pool saturation and downstream p99 latency at peak.  \nIf pool at 100% with requests queuing → exhaustion. Fix: raise pool size and find leak (unclosed connections / slow queries). Verify by watching pool utilization.  \nIf pool healthy, chase race hypothesis.  \nCheck environment differences: versions, config, data, timezone, locale, permissions. Diff them.  \nNo stack trace in app logs → could be infrastructure issue, not code.  \nVerify fix by monitoring pool utilization, not by \"it feels better.\"  \nIf pool is healthy, investigate race conditions on shared state.  \nMeasure before optimizing: profile, read flame graph, find top cost.  \nOptimize proven hot path only.  \nKnow order of magnitude: memory ns, SSD µs, network ms.  \nFix algorithm/data-structure before micro-optimizing.  \nCheck for N+1 queries, index issues, or other performance bottlenecks.  \nVerify fix by rechecking at 10x data scale.  \nIf no clear cause, consider environment differences or configuration issues.  \nHypothesis: downstream timeout under load. Test by checking DB connection-pool saturation and downstream p99 latency at peak. If pool at 100% with requests queuing → exhaustion. Fix: raise pool size and find leak. Verify by watching pool utilization. If pool is healthy, investigate race conditions.",
+          "words": 209,
+          "tok_s": 6.6,
+          "wall_s": 150.8,
+          "critique": "- Unsupported claim: \"No stack trace in app logs → not code error\" (this is a wrong assumption; the absence of a stack trace doesn't prove it's not a code error)\n- Missing key reasoning: The draft doesn't explain how to verify the \"race on shared state\" hypothesis (e.g., how to detect or test for race conditions)\n- Needless verbosity: The draft repeats the same points multiple times without adding new insight\n- Missing key reasoning: The draft doesn't address how to handle the \"environment differences\" (versions, config, etc.) when the issue is not in the code\n- Unsupported claim: \"Assume bug in code unless proven otherwise\" (this is a wrong assumption; the issue could be in the environment or infrastructure)\n- Missing key reasoning: The draft doesn't explain how to verify the \"race on shared state\" hypothesis (e.g., how to detect or test for race conditions)\n- Missing key reasoning: The draft doesn't explain how to handle the \"environment differences\" (versions, config, etc.) when the issue is not in the code\n- Needless verbosity: The draft repeats the same points multiple times without adding new insight",
+          "revised": true,
+          "draft": "Reproduce reliably: confirm 500s occur in prod, peak, 1% of requests, no app logs.  \nTest cheapest hypothesis: downstream timeout under load. Check DB connection-pool saturation and downstream p99 latency at peak.  \nIf pool at 100% with requests queuing → exhaustion. Fix: raise pool size and find leak (unclosed connections / slow queries). Verify by watching pool utilization.  \nIf pool healthy, chase race hypothesis.  \nAssume bug in code unless proven otherwise.  \nCheck environment differences: versions, config, data, timezone, locale, permissions. Diff them.  \nNo stack trace in app logs → not code error.  \nVerify fix by monitoring pool utilization, not by \"it feels better.\"  \nIf pool is healthy, investigate race conditions on shared state.  \nMeasure before optimizing: profile, read flame graph, find top cost.  \nOptimize proven hot path only.  \nKnow order of magnitude: memory ns, SSD µs, network ms.  \nFix algorithm/data-structure before micro-optimizing.  \nCheck for N+1 queries, index issues, or other performance bottlenecks.  \nVerify fix by rechecking at 10x data scale.  \nIf no clear cause, consider environment differences or configuration issues.  \nNo confident guess without evidence.  \nHypothesis: downstream timeout under load. Test first.  \nIf not, check connection-pool exhaustion.  \nIf still unclear, investigate race conditions.  \nFinal answer: Hypothesis is downstream timeout under load. Test by checking DB connection-pool saturation and downstream p99 latency at peak. If pool at 100% with requests queuing → exhaustion. Fix: raise pool size and find leak. Verify by watching pool utilization. If pool is healthy, investigate race conditions."
+        }
+      }
+    },
+    {
+      "id": "t-perf-report",
+      "kb": "coding",
+      "task": "A reporting endpoint was fast at launch and is now slow as the table grew to millions of rows. How do you find and fix the cause?",
+      "rubric": [
+        "measures/profiles before optimizing",
+        "identifies N+1 queries or a missing index as the likely cause",
+        "uses EXPLAIN / looks at the query plan",
+        "fixes with a single JOIN/batch query and/or an index, not premature caching",
+        "verifies it scales (re-check at higher data volume)"
+      ],
+      "ctx_chars": 5965,
+      "arms": {
+        "base": {
+          "answer": "Check query execution plan for bottlenecks. Look for full table scans, missing indexes, or inefficient joins. Optimize schema for read performance: partition large tables, use columnar storage, or denormalize where appropriate. Add indexes on filtered columns. Monitor and tune query patterns. Use caching for frequent reports.",
+          "words": 46,
+          "tok_s": 9.5,
+          "wall_s": 7.3
+        },
+        "kit_fast": {
+          "answer": "Reproduce the slowdown reliably. Check if it's a new issue or regression.  \nTest the cheapest hypothesis first: is the query N+1? Check for repeated queries or subqueries.  \nIf the query is N+1, fix it with a JOIN or batch query. Add an index on the join column.  \nIf the query is fine, check for slow queries or missing indexes. Use EXPLAIN to find the bottleneck.  \nIf the bottleneck is a slow query, optimize it or add an index.  \nIf the bottleneck is a missing index, add it.  \nIf the bottleneck is a resource issue (CPU, memory), scale or optimize.  \nVerify the fix by measuring performance before and after.  \nIf the fix is unclear, bisect the code to find the cause.  \nIf the cause is a race condition, fix it by ensuring atomicity or using locks.  \nIf the cause is a configuration issue, adjust it.  \nIf the cause is a library or framework issue, update or replace it.  \nIf the cause is unknown, gather more evidence and test hypotheses.",
+          "words": 168,
+          "tok_s": 7.5,
+          "wall_s": 31.5
+        },
+        "kit_deep": {
+          "answer": "Hypothesis: N+1 queries due to unoptimized joins.  \nTest: Profile endpoint; check DB query plan and execution time.  \nVerify: Flame graph shows high DB cost; EXPLAIN confirms N+1.  \nFix: Add index on join column; replace loop with single JOIN.  \nCheck: Query plan shows index scan; p95 latency drops.  \nRevisit: Test at 10x data to ensure scalability.  \nIf no improvement, hypothesis: connection-pool exhaustion or race condition.  \nTest: Check DB connection-pool saturation and downstream latency.  \nVerify: Pool utilization after change; if healthy, proceed.  \nIf still slow, hypothesis: algorithmic inefficiency.  \nTest: Measure time complexity; optimize data structure.  \nCheck: O(n) solution beats O(n²); retest after change.",
+          "words": 101,
+          "tok_s": 7.4,
+          "wall_s": 30.9,
+          "critique": "OK",
+          "revised": false
+        }
+      }
+    },
+    {
+      "id": "t-design-cache",
+      "kb": "coding",
+      "task": "We have a value that is read about 1000x more often than it is written, and slightly stale data is acceptable, but the source query is expensive. Should we add a cache? Reason it through.",
+      "rubric": [
+        "states the forces (read:write ratio, staleness tolerance, query cost)",
+        "concludes it is a good cache candidate given those forces",
+        "flags invalidation as the hard part and picks a strategy (TTL vs write-through)",
+        "checks the source query is already optimized (indexes) before caching",
+        "ends with a measurable check (hit rate / staleness complaints)"
+      ],
+      "ctx_chars": 6149,
+      "arms": {
+        "base": {
+          "answer": "Yes. The value is read frequently and slightly stale is acceptable. The source query is expensive. Adding a cache reduces load on the source and improves performance for reads.",
+          "words": 29,
+          "tok_s": 9.8,
+          "wall_s": 3.9
+        },
+        "kit_fast": {
+          "answer": "Hypothesis: Cache to reduce query load.  \nTest: Measure query cost and cache hit rate.  \nEvidence: High read/write ratio, staleness tolerance, expensive source.  \nVerify: Cache invalidation strategy (TTL vs write-through) and validate with metrics.  \nConclusion: Cache likely beneficial; prioritize cache implementation over query optimization.  \nNext step: Implement TTL cache with short expiry, monitor hit rate and staleness.",
+          "words": 56,
+          "tok_s": 7.8,
+          "wall_s": 13.2
+        },
+        "kit_deep": {
+          "answer": "Hypothesis: Cache to reduce query load.  \nTest: Measure query cost and cache hit rate.  \nEvidence: High read/write ratio, staleness tolerated, source query expensive.  \nVerify: Cache invalidation strategy (TTL vs write-through) and validate with metrics.  \nDecision: Implement TTL cache with short expiry; monitor hit rate and staleness.  \nRationale: Trade-off between cache benefits and invalidation complexity.  \nNext step: Validate cache reduces query load and improves response time.",
+          "words": 65,
+          "tok_s": 7.6,
+          "wall_s": 20.9,
+          "critique": "OK",
+          "revised": false
+        }
+      }
+    },
+    {
+      "id": "t-review-sqli",
+      "kb": "coding",
+      "task": "Review this code and tell me what is wrong and how to fix it:  query = \"SELECT * FROM users WHERE email = '\" + userInput + \"'\"",
+      "rubric": [
+        "identifies SQL injection",
+        "fixes with a parameterised / prepared query (not escaping/blacklisting)",
+        "mentions least-privilege DB account and/or input validation",
+        "notes adding a regression test with an injection payload",
+        "does not add irrelevant nitpicks as if they were the main issue"
+      ],
+      "ctx_chars": 6097,
+      "arms": {
+        "base": {
+          "answer": "SQL injection vulnerability. Fix by using parameterized queries: `query = \"SELECT * FROM users WHERE email = ?\"`.",
+          "words": 18,
+          "tok_s": 9.8,
+          "wall_s": 3.1
+        },
+        "kit_fast": {
+          "answer": "The code is vulnerable to SQL injection. The input is directly concatenated into the SQL query without validation or sanitization.  \nFix: Use parameterized queries or an ORM to safely handle user input. Example: `query = \"SELECT * FROM users WHERE email = ?\"`, then bind `userInput` to the query.  \nVerify: Ensure the fix prevents unauthorized data access and injection attacks.",
+          "words": 60,
+          "tok_s": 7.8,
+          "wall_s": 12.2
+        },
+        "kit_deep": {
+          "answer": "The code is vulnerable to SQL injection. The input is directly concatenated into the query without sanitization or parameterization. Fix: use a parameterized query or an ORM to safely handle user input. Example: `query = \"SELECT * FROM users WHERE email = ?\"`, then bind `userInput` to the parameter.",
+          "words": 49,
+          "tok_s": 7.7,
+          "wall_s": 15.9,
+          "critique": "OK",
+          "revised": false
+        }
+      }
+    },
+    {
+      "id": "t-concurrency",
+      "kb": "coding",
+      "task": "Two threads increment a shared counter and the total sometimes comes out too low. Diagnose the cause, give a fix, and name a pitfall your fix could introduce.",
+      "rubric": [
+        "identifies a race condition on a non-atomic read-modify-write",
+        "fixes with an atomic operation or a lock/mutex",
+        "names a real pitfall (e.g. deadlock if multiple locks; take them in a consistent order)",
+        "explains why the symptom (lost updates) matches the cause",
+        "is calibrated, not hand-wavy"
+      ],
+      "ctx_chars": 5996,
+      "arms": {
+        "base": {
+          "answer": "Race condition. Shared counter not properly synchronized. Fix: Use mutex or atomic operations. Pitfall: Deadlock if not carefully managed.",
+          "words": 19,
+          "tok_s": 10.1,
+          "wall_s": 3.2
+        },
+        "kit_fast": {
+          "answer": "Cause: Race condition on non-atomic increment. Two threads read the same value, both increment it, and write it, losing one increment.\n\nFix: Use atomic increment or mutex around the update.\n\nPitfall: Deadlock if multiple locks are added; always take locks in a consistent order.",
+          "words": 44,
+          "tok_s": 7.8,
+          "wall_s": 9.7
+        },
+        "kit_deep": {
+          "answer": "Cause: Race condition on non-atomic increment. Two threads read the same value, both increment it, and write it back, losing one increment.\n\nFix: Use atomic increment or mutex around the update.\n\nPitfall: Deadlock if multiple locks are added; always take locks in a consistent order.",
+          "words": 45,
+          "tok_s": 7.6,
+          "wall_s": 15.5,
+          "critique": "OK",
+          "revised": false
+        }
+      }
+    },
+    {
+      "id": "t-judgment-micro",
+      "kb": "coding",
+      "task": "A junior engineer says: 'We should rewrite our monolith as microservices so it can scale.' How do you respond?",
+      "rubric": [
+        "asks for the actual bottleneck / evidence rather than agreeing",
+        "offers a modular monolith as the sensible default",
+        "names the real cost of microservices (distributed-systems complexity, data consistency, ops)",
+        "identifies independent deployability (not 'scale') as the true driver when it applies",
+        "notes you can extract services later (reversibility) — calibrated, not dogmatic either way"
+      ],
+      "ctx_chars": 5200,
+      "arms": {
+        "base": {
+          "answer": "The monolith is a single codebase. Microservices require a team to split it. Scaling a monolith isn't a problem. The monolith is not scalable. Microservices are not a solution. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem. The monolith is not a problem",
+          "words": 767,
+          "tok_s": 8.6,
+          "wall_s": 119.0
+        },
+        "kit_fast": {
+          "answer": "Respond with the expert-reasoning method.  \n- Hypothesis: Microservices may help scale but introduce complexity.  \n- Test cheapest first: Evaluate current monolith's architecture, team size, and failure modes.  \n- Verify: Check if scaling is truly needed, or if the problem is elsewhere (e.g., database, network).  \n- Don't assume; ask: What are the forces? Read/write ratio? Team capacity? Reversibility?  \n- Name the trade: Microservices for independent deploys, paid for in distributed-systems complexity.  \n- Confirm: Is the monolith's bottleneck in code, data, or infrastructure?  \n- Final step: If scaling is proven, proceed with design-decision reasoning.",
+          "words": 92,
+          "tok_s": 7.8,
+          "wall_s": 20.5
+        },
+        "kit_deep": {
+          "answer": "Respond with the expert-reasoning method.  \n- Hypothesis: Microservices may scale but introduce complexity.  \n- Test cheapest first: Evaluate current monolith's architecture, team size, and scale needs.  \n- Verify: Check if the monolith's bottlenecks are code, infrastructure, or team limits.  \n- Don't assume; ask: What's the read/write ratio? What's the team's capacity? What's the cost of failure?  \n- If monolith is simple and stable, no need to rewrite. If complex, consider trade-offs: distributed systems, consistency, and team learning.  \n- Final answer: \"I don't know yet. Here's how I'd find out: assess the monolith's architecture, team capacity, and scale needs. If it's complex, consider the trade-offs of microservices.\"",
+          "words": 106,
+          "tok_s": 7.8,
+          "wall_s": 29.0,
+          "critique": "OK",
+          "revised": false
+        }
+      }
+    }
+  ]
+}

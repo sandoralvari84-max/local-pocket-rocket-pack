@@ -77,3 +77,69 @@ Caveats: one item (`web-elements`) scored lower open than closed — a scorer ar
 not a regression; it shows per-item noise and why sub-100% items are hand-checked. Next: add harder/more obscure
 items where closed-book fails more, to widen and better characterise the gap (the current set is deliberately
 mainstream, which understates the kit on niche facts).
+
+### Run 004 — 5-model bake-off (which small model to ship)
+- Date: 2026-10-18. Raw: `eval/results-<model>-*.json` per model. Same 30-item set as Run 003, identical settings for
+  all (20 GPU layers, 8192 ctx, single-message prompt, thinking off, temp 0.2) — directly comparable to each other.
+
+| Model | Open-book (kit) | Closed-book | Kit gain | Speed | Filler |
+|---|---|---|---|---|---|
+| Qwen3-4B | **92.8%** | 74.4% | +18.4 | 5.8 t/s | 0 |
+| Gemma-3-4B | 89.4% | 75.3% | +14.1 | 8.5 t/s | 0 |
+| Qwen3.5-4B uncensored | 88.9% | 85.8% | +3.1 | 7.8 t/s | 0 |
+| Qwen3.5-4B normal | 88.3% | 88.3% | +0.0 | 6.9 t/s | 0 |
+| Llama-3.2-3B | 80.3% | 67.8% | +12.5 | 10.9 t/s | 0 |
+
+Read: **Qwen3-4B** is the most accurate with the kit (and gains most — it knows less natively). **Gemma-3-4B** is the
+balanced pick (nearly as accurate, faster, on-device friendly). **Llama-3.2-3B** is the ultra-light option (fastest,
+smallest, lower accuracy). The normal Qwen3.5's +0.0 is a coincidence (per-item gains and losses cancelled; 29/30
+answers differ) — it is simply a strong native knower, so a mainstream-fact KB adds little to it.
+
+**Blessed bases:** Qwen3-4B (desktop/accuracy), Gemma-3-4B (mobile/balanced default), Llama-3.2-3B (ultra-light).
+Caveat: these are mainstream-fact scores; on specialist/obscure/proprietary knowledge the gains run larger (see the
+specialist layer and the HARD run below).
+
+### Run 005 — HARD 47-item set, 5-model bake-off (with a held-out honesty line)
+- Date: 2026-10-19. Raw: `eval/results-hard47-<model>-*.json`. 47 items (37 derived from the kit's own KB, 10
+  blind-authored **held-out** items with primary sources). Same settings across models (20 GPU layers for 4B / 12 for
+  the 7B, 8192 ctx, thinking off, temp 0.2). `open` = KB injected (kit); `closed` = model's own weights.
+
+| Model | Closed (base) | Open (kit) | Kit gain | Held-out base | Held-out +kit | **Held-out gain** |
+|---|---|---|---|---|---|---|
+| Llama-3.2-3B | 56.9 | 87.2 | +30.3 | 70.0 | 70.0 | 0.0 |
+| Qwen2.5-7B | 71.3 | 96.8 | +25.5 | 85.0 | 95.0 | **+10.0** |
+| Qwen3-4B | 72.3 | 95.7 | +23.4 | 85.0 | 90.0 | +5.0 |
+| Gemma-3-4B | 73.4 | 94.7 | +21.3 | 85.0 | 85.0 | 0.0 |
+| Qwen3.5-4B | 84.6 | 95.7 | +11.1 | 92.5 | 90.0 | -2.5 |
+
+**Read this honestly.** The big full-set "kit gain" is partly circular: 37/47 items derive from the kit's own KB, so
+the kit covering them is partly built in. The **held-out column is the honest measure**, and there the gain is modest
+and uneven: it needs *both* room to improve *and* enough model to apply the injected material. The 7B gains most
+(+10) because it can actually use the reasoning; the already-strong Qwen3.5-4B has no room (-2.5); the weak 3B cannot
+exploit it (0). Takeaway: the kit's knowledge layer helps most where the model *lacks* the knowledge
+(private/proprietary data, weaker models, grounding) — not on mainstream facts a capable model already knows.
+
+### Run 006 — task-based mini-expert eval (two axes: reasoning quality AND token efficiency)
+- Date: 2026-10-19. Raw: `eval/results-coding-*.json`. Harness: `eval/run_tasks.py`, set: `eval/tasks-coding.json`.
+- Unlike the fact-coverage runs above, these are applied-reasoning TASKS scored on a rubric (quality), with words and
+  wall-time recorded (efficiency). Model: Qwen3-4B (Q4_K_M), 24 GPU layers. Arms:
+  `base` (no KB) → `kit_fast` (sharp retrieval + reasoning layer + brevity + abstention) →
+  `kit_deep` (+ critique/revise) → `kit_max` (+ self-consistency + verify). 6 original tasks:
+
+| Arm | Quality (rubric /30) | Avg words | Avg sec/task |
+|---|---|---|---|
+| base | 37% (11.0) | 167 | 25.3 |
+| kit_fast | 78% (23.5) | 103 | 21.5 |
+| kit_deep | 82% (24.5) | 95 | 43.8 |
+| kit_max | 75% (22.5) | 103 | 117.7 |
+
+**Both axes move with the cheap default (`kit_fast`): quality roughly doubles (37->78%) while using fewer tokens and
+less time than `base`.** The expensive arms (`kit_deep`, `kit_max`) add little or (on this model, with v1 prompts)
+regress, at 2-5x the time — so they stay as an opt-in "deep mode", kept in the stack and judged *layered* across
+models in a later bake-off rather than pruned on one model's result.
+
+After fixing two v1 defects the eval exposed (prompt leakage; whole-file retrieval dumping irrelevant sections ->
+section-level retrieval), the default arm improved on the **same 6 tasks from 78% to 85%** at similar length, and
+scores **79%** on the full 12-task set. The eval also surfaced concrete v2 work (retrieval bleed on a couple of
+tasks; specific rubric gaps) — which is the point: additions are kept only when they move measured quality, not
+because the prompts got longer.

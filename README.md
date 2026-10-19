@@ -28,6 +28,24 @@ GDPR rights went from partial/zero closed-book to 100% with the KB). Every run i
 reproducible with `eval/run_eval.py`. Numbers, not vibes — and sub-100% items are checked by hand (auto-scoring
 under-counts valid answers). This is a 30-item set; a larger, harder set is in progress.
 
+## The mini-expert framework (v1)
+Beyond the knowledge bases, each niche now ships a **reasoning layer** (`kb/<niche>/expert-reasoning.md`) that teaches
+the *method* an expert uses — form a hypothesis from evidence, test the cheapest one first, name the trade-off, verify
+before concluding — not more facts. On top sits a measured, layered **quality stack** you can dial per query:
+
+- **Sharp retrieval** — rank and inject only the relevant KB sections (not whole documents), with a token budget.
+- **Brevity / Simplified-Technical-English** — the fewest tokens that keep the meaning (faster, cheaper).
+- **Abstention** — grounded, or it says it does not know, rather than bluffing.
+- **Deep mode (opt-in)** — self-consistency + critique/verify for hard questions, when you choose to wait.
+- **Router** (`eval/router.py`), **tools** (`eval/tools.py`, safe calculator), **guardrails** (`eval/guardrails.py`,
+  PII redaction + non-advice enforcement + injection flag), and an **eval-CI gate** (`eval/eval_gate.py`).
+
+Every layer is measured on two axes — reasoning quality (rubric) **and** token/time cost — so a change is kept only
+when it improves measured results, never just because the prompt got longer. See Runs 005–006 in
+[BENCHMARKS.md](BENCHMARKS.md): the default stack roughly **doubled** applied-reasoning quality (37%→78%, lifted to
+85% after v1 fixes) while using *fewer* tokens than the bare model. Task harness: `eval/run_tasks.py` +
+`eval/tasks-coding.json`.
+
 ## The 13 experts
 `webdesign` · `design` · `marketing` · `coding` · `cybersecurity` · `software` · `datascience` · `product` ·
 `business` · `legal` · `health` · `finance` · `philosophy` — each with a foundations layer, an academic layer, and
@@ -40,7 +58,8 @@ worked examples (step-by-step reasoning the model imitates). Plus a `general` pr
 - `profiles.json` + `assistant.ps1` — expert profiles and the launcher that swaps them.
 - `persona.md` — shared persona: a reasoning scaffold, anti-fluff concision, ~70/30 Simplified Technical English.
 - `compose.assistant.yaml` — hardened llama.cpp CUDA runtime (read-only FS, localhost-only, caps dropped).
-- `eval/` — the accuracy benchmark and harness.
+- `eval/` — the benchmark harnesses and their saved results: `run_eval.py` (fact-coverage, open vs closed book),
+  `run_tasks.py` (applied-reasoning tasks, two-axis), plus `router.py`, `tools.py`, `guardrails.py`, `eval_gate.py`.
 
 ## Requirements
 - Docker Desktop (WSL 2 backend on Windows) with GPU passthrough, or any host that runs the llama.cpp CUDA image.
@@ -72,9 +91,20 @@ Content from the web, email, transcripts and files is treated as data, never ins
 per-call approval in the UI. Code execution is **off** by default. Legal/health/finance knowledge carries non-advice
 framing. Only test systems you own or are authorised to test.
 
-## Status
-v0.1, early. Runs today on Windows 11 + Docker Desktop + an NVIDIA 4 GB GPU. Paths assume a `dockerData`-style layout;
-making it path-portable, adding chunked-retrieval tuning and a non-MCP fallback are on the roadmap.
+## Status & roadmap
+**v1** — the measured mini-expert framework: 13 knowledge bases + 13 reasoning layers + the layered quality stack
+(retrieval, brevity, abstention, deep mode), router, tools, guardrails, and two benchmark harnesses with saved
+results. Runs today on Windows 11 + Docker Desktop + an NVIDIA 4 GB GPU.
+
+Evolution is transparent and reproducible — each version is tagged, and every result JSON is kept so you can re-run
+and see what each change bought:
+- **v2 (next):** retrieval-quality eval (retrieval scored separately from the answer), evidence-first answer format
+  (facts vs deductions vs unknowns, no invented citations), an abstention *policy*, an adversarial/prompt-injection
+  regression pack, and router uncertainty + fallback.
+- **after v2:** optional LoRA fine-tuning (bake niche expertise into the weights), using the v2 evals to decide what
+  to teach.
+
+Paths still assume a `dockerData`-style layout; path-portability and a non-MCP fallback remain on the list.
 
 ## Licence
 MIT.

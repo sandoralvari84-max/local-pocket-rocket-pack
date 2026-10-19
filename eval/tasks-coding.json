@@ -1,0 +1,78 @@
+{
+  "description": "TASK-based eval for the coding mini-expert. Unlike the fact quizzes, these require APPLIED reasoning on a specific situation. Scored on QUALITY against a rubric (how many reasoning points the answer demonstrates + a holistic judgment), NOT keyword coverage. Run base vs base+kit (with kb/coding/*, esp. expert-reasoning.md injected); a human or LLM judge scores each answer against its rubric. A 'mini-knows' recites facts; a 'mini-expert' reasons through THIS problem.",
+  "judging": "For each task, score the answer 0-1 on each rubric point (demonstrated / partial / absent) and give a 1-5 holistic quality score. Report base vs base+kit side by side. The question is whether the kit raises the QUALITY of applied reasoning, not whether a fact appears.",
+  "tasks": [
+    {
+      "id": "t-debug-500s",
+      "kb": "coding",
+      "task": "A web API returns intermittent HTTP 500s only in production, only at peak load, on roughly 1% of requests, with no stack trace in the application logs. Walk me through how you would diagnose this, step by step.",
+      "rubric": ["reproduce / gather evidence before guessing", "orders hypotheses cheapest-first (timeouts, connection-pool exhaustion) before the hard one (a race)", "uses metrics (pool saturation, downstream p99) rather than reading all the code", "changes one thing at a time", "verifies the fix by metrics, not by 'feels better'"]
+    },
+    {
+      "id": "t-perf-report",
+      "kb": "coding",
+      "task": "A reporting endpoint was fast at launch and is now slow as the table grew to millions of rows. How do you find and fix the cause?",
+      "rubric": ["measures/profiles before optimizing", "identifies N+1 queries or a missing index as the likely cause", "uses EXPLAIN / looks at the query plan", "fixes with a single JOIN/batch query and/or an index, not premature caching", "verifies it scales (re-check at higher data volume)"]
+    },
+    {
+      "id": "t-design-cache",
+      "kb": "coding",
+      "task": "We have a value that is read about 1000x more often than it is written, and slightly stale data is acceptable, but the source query is expensive. Should we add a cache? Reason it through.",
+      "rubric": ["states the forces (read:write ratio, staleness tolerance, query cost)", "concludes it is a good cache candidate given those forces", "flags invalidation as the hard part and picks a strategy (TTL vs write-through)", "checks the source query is already optimized (indexes) before caching", "ends with a measurable check (hit rate / staleness complaints)"]
+    },
+    {
+      "id": "t-review-sqli",
+      "kb": "coding",
+      "task": "Review this code and tell me what is wrong and how to fix it:  query = \"SELECT * FROM users WHERE email = '\" + userInput + \"'\"",
+      "rubric": ["identifies SQL injection", "fixes with a parameterised / prepared query (not escaping/blacklisting)", "mentions least-privilege DB account and/or input validation", "notes adding a regression test with an injection payload", "does not add irrelevant nitpicks as if they were the main issue"]
+    },
+    {
+      "id": "t-concurrency",
+      "kb": "coding",
+      "task": "Two threads increment a shared counter and the total sometimes comes out too low. Diagnose the cause, give a fix, and name a pitfall your fix could introduce.",
+      "rubric": ["identifies a race condition on a non-atomic read-modify-write", "fixes with an atomic operation or a lock/mutex", "names a real pitfall (e.g. deadlock if multiple locks; take them in a consistent order)", "explains why the symptom (lost updates) matches the cause", "is calibrated, not hand-wavy"]
+    },
+    {
+      "id": "t-judgment-micro",
+      "kb": "coding",
+      "task": "A junior engineer says: 'We should rewrite our monolith as microservices so it can scale.' How do you respond?",
+      "rubric": ["asks for the actual bottleneck / evidence rather than agreeing", "offers a modular monolith as the sensible default", "names the real cost of microservices (distributed-systems complexity, data consistency, ops)", "identifies independent deployability (not 'scale') as the true driver when it applies", "notes you can extract services later (reversibility) — calibrated, not dogmatic either way"]
+    },
+    {
+      "id": "t-debug-heisenbug",
+      "kb": "coding",
+      "task": "A unit test passes when run on its own but fails when the whole suite runs. How do you diagnose and fix it?",
+      "rubric": ["suspects shared/global state or test-ordering dependence, not the test's own logic", "reproduces deterministically (fix the seed / run the exact failing order)", "bisects to the polluting test rather than reading everything", "fixes by isolating state (setup/teardown, no shared mutable globals) not by reordering to hide it", "verifies by running in randomised order"]
+    },
+    {
+      "id": "t-api-idempotency",
+      "kb": "coding",
+      "task": "Design a 'charge payment' API endpoint so that a client that retries after a timeout does not double-charge.",
+      "rubric": ["recognises at-least-once delivery / retries are unavoidable, so the operation must be idempotent", "uses a client-supplied idempotency key", "dedupes via a stored key -> result record (return the original result on replay)", "handles the race on concurrent duplicates (unique constraint / atomic insert)", "verifies by firing the same request twice and asserting one charge"]
+    },
+    {
+      "id": "t-memory-leak",
+      "kb": "coding",
+      "task": "A long-running service's memory grows steadily until it is OOM-killed every few days. How do you find and fix it?",
+      "rubric": ["measures first: watch RSS/heap growth, take heap snapshots over time", "looks for unbounded retention (growing cache, un-removed listeners/subscriptions, accumulating buffers)", "reproduces the growth under load rather than guessing", "fixes by bounding/evicting (cap the cache, remove listeners, stream instead of buffer) — not by just raising the memory limit", "verifies memory now plateaus over a sustained run"]
+    },
+    {
+      "id": "t-resilience",
+      "kb": "coding",
+      "task": "Your service calls an external API that is sometimes slow and occasionally down. How do you make your service resilient to that?",
+      "rubric": ["sets a timeout (never an unbounded wait)", "retries with backoff + jitter, and ONLY for idempotent/safe calls", "adds a circuit breaker so a dead dependency does not take you down", "degrades gracefully (fallback, cached value, or clear partial failure) rather than cascading", "verifies with fault injection (kill/slow the dependency) not just the happy path"]
+    },
+    {
+      "id": "t-estimate-uncertainty",
+      "kb": "coding",
+      "task": "A stakeholder asks 'how long to build feature X?' and you genuinely don't know yet. How do you answer?",
+      "rubric": ["refuses a false-precision single number", "decomposes the work and estimates the parts", "gives a range / confidence, not a point", "names the biggest unknowns and proposes a timeboxed spike to de-risk them", "commits to re-estimating after the spike — calibrated honesty over a confident guess"]
+    },
+    {
+      "id": "t-datastore-choice",
+      "kb": "coding",
+      "task": "You're starting a new app with an evolving schema but also need multi-table relational queries and transactions. SQL or NoSQL?",
+      "rubric": ["starts from the access patterns and consistency needs, not from hype", "picks a relational DB as the default given transactions + relational queries", "notes schema evolution is handled by migrations, not by abandoning SQL", "names what NoSQL would actually cost here (denormalisation, eventual consistency, app-side joins)", "flags the decision's reversibility / migration cost — calibrated, not dogmatic"]
+    }
+  ]
+}

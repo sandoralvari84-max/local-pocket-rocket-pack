@@ -1,0 +1,149 @@
+{
+  "tasks_file": "tasks-coding.json",
+  "tag": "coding-max-qwen3-4b",
+  "arms": [
+    "kit_max"
+  ],
+  "retr_budget": 6000,
+  "judging": "For each task, score the answer 0-1 on each rubric point (demonstrated / partial / absent) and give a 1-5 holistic quality score. Report base vs base+kit side by side. The question is whether the kit raises the QUALITY of applied reasoning, not whether a fact appears.",
+  "items": [
+    {
+      "id": "t-debug-500s",
+      "kb": "coding",
+      "task": "A web API returns intermittent HTTP 500s only in production, only at peak load, on roughly 1% of requests, with no stack trace in the application logs. Walk me through how you would diagnose this, step by step.",
+      "rubric": [
+        "reproduce / gather evidence before guessing",
+        "orders hypotheses cheapest-first (timeouts, connection-pool exhaustion) before the hard one (a race)",
+        "uses metrics (pool saturation, downstream p99) rather than reading all the code",
+        "changes one thing at a time",
+        "verifies the fix by metrics, not by 'feels better'"
+      ],
+      "ctx_chars": 6097,
+      "arms": {
+        "kit_max": {
+          "answer": "The answer should focus on the expert reasoning methodology as outlined in the reference. The current answer is overly verbose and includes elements not supported by the reference method. The correct approach is to:  \n- Reproduce the issue reliably in production during peak load.  \n- Test the cheapest hypothesis first: check for downstream timeout or connection-pool exhaustion by examining DB connection-pool saturation and downstream p99 latency.  \n- If pool is saturated, fix by increasing pool size and finding leaks (unclosed connections, slow queries). Verify by monitoring pool utilization.  \n- If pool is healthy, investigate race conditions on shared state.  \n- Assume the bug is in the code unless proven otherwise.  \n- Check environment diffs (versions, config, data, timezone, locale, permissions).  \n- No stack trace in app logs → not a code error.  \n- Verify fix by monitoring, not by \"it feels better.\"  \n- If pool is healthy, investigate race conditions.  \n- Measure before optimizing. Profile, read flame graph, find top cost.  \n- Optimize proven hot path.  \n- Know order of magnitude: memory ns, SSD µs, network ms.  \n- Fix algorithm/data-structure before micro-optimizing.  \n- If N+1 queries, replace with single JOIN/batched query. Add index on filter/join column.  \n- Cache premature.  \n- Check invalidation strategy (TTL vs write-through).  \n- Name trade-offs: microservices for independent deploys, paid for in distributed-systems complexity.  \n- Review code: correctness and edge cases first. Ask \"what happens when this fails?\" at every I/O boundary.  \n- A good review leaves author knowing *why*, not just *what* to change.  \n- Meta-rule: expert is calibrated. Confident where evidence supports it, explicit about uncertainty.  \n- Diagnose: intermittent 500s → likely code error (connection-pool exhaustion or race).  \n- Test: check pool saturation and downstream latency.  \n- Fix: raise pool size, find leak. Verify by monitoring.  \n- If pool is healthy, investigate race conditions.  \n- No stack trace in app logs → not code error.  \n- Assume bug in code unless proven otherwise.  \n- Check environment diffs.  \n- Verify fix by monitoring, not by \"it feels better.\"",
+          "words": 333,
+          "tok_s": 6.4,
+          "wall_s": 251.7,
+          "gate": "REVISE",
+          "n_samples": 3
+        }
+      }
+    },
+    {
+      "id": "t-perf-report",
+      "kb": "coding",
+      "task": "A reporting endpoint was fast at launch and is now slow as the table grew to millions of rows. How do you find and fix the cause?",
+      "rubric": [
+        "measures/profiles before optimizing",
+        "identifies N+1 queries or a missing index as the likely cause",
+        "uses EXPLAIN / looks at the query plan",
+        "fixes with a single JOIN/batch query and/or an index, not premature caching",
+        "verifies it scales (re-check at higher data volume)"
+      ],
+      "ctx_chars": 5965,
+      "arms": {
+        "kit_max": {
+          "answer": "The answer is repetitive and redundant, with the same hypothesis and testing steps repeated multiple times. The correct approach is to identify the N+1 query issue, profile the endpoint to confirm high DB cost, add an index on the join column, replace the loop with a single JOIN, and verify with EXPLAIN and performance metrics. The revised answer should be concise and avoid duplication.",
+          "words": 64,
+          "tok_s": 6.5,
+          "wall_s": 111.0,
+          "gate": "REVISE",
+          "n_samples": 3
+        }
+      }
+    },
+    {
+      "id": "t-design-cache",
+      "kb": "coding",
+      "task": "We have a value that is read about 1000x more often than it is written, and slightly stale data is acceptable, but the source query is expensive. Should we add a cache? Reason it through.",
+      "rubric": [
+        "states the forces (read:write ratio, staleness tolerance, query cost)",
+        "concludes it is a good cache candidate given those forces",
+        "flags invalidation as the hard part and picks a strategy (TTL vs write-through)",
+        "checks the source query is already optimized (indexes) before caching",
+        "ends with a measurable check (hit rate / staleness complaints)"
+      ],
+      "ctx_chars": 6149,
+      "arms": {
+        "kit_max": {
+          "answer": "Should add a cache.  \nHigh read:write + staleness + expensive source = strong cache candidate.  \nTest: Measure query cost and cache hit rate.  \nVerify: Cache invalidation strategy (TTL vs write-through).  \nImplement TTL cache with short expiry; monitor hit rate and staleness.  \nNo cache first; confirm source query is as fast as reasonably possible.",
+          "words": 53,
+          "tok_s": 6.8,
+          "wall_s": 70.7,
+          "gate": "PASS",
+          "n_samples": 3
+        }
+      }
+    },
+    {
+      "id": "t-review-sqli",
+      "kb": "coding",
+      "task": "Review this code and tell me what is wrong and how to fix it:  query = \"SELECT * FROM users WHERE email = '\" + userInput + \"'\"",
+      "rubric": [
+        "identifies SQL injection",
+        "fixes with a parameterised / prepared query (not escaping/blacklisting)",
+        "mentions least-privilege DB account and/or input validation",
+        "notes adding a regression test with an injection payload",
+        "does not add irrelevant nitpicks as if they were the main issue"
+      ],
+      "ctx_chars": 6097,
+      "arms": {
+        "kit_max": {
+          "answer": "The code is vulnerable to SQL injection. userInput is directly concatenated into the query without parameterization. Fix: use a parameterized query. Example: `query = \"SELECT * FROM users WHERE email = ?\"`, then bind userInput to the placeholder.",
+          "words": 38,
+          "tok_s": 7.2,
+          "wall_s": 62.6,
+          "gate": "REVISE",
+          "n_samples": 3
+        }
+      }
+    },
+    {
+      "id": "t-concurrency",
+      "kb": "coding",
+      "task": "Two threads increment a shared counter and the total sometimes comes out too low. Diagnose the cause, give a fix, and name a pitfall your fix could introduce.",
+      "rubric": [
+        "identifies a race condition on a non-atomic read-modify-write",
+        "fixes with an atomic operation or a lock/mutex",
+        "names a real pitfall (e.g. deadlock if multiple locks; take them in a consistent order)",
+        "explains why the symptom (lost updates) matches the cause",
+        "is calibrated, not hand-wavy"
+      ],
+      "ctx_chars": 5996,
+      "arms": {
+        "kit_max": {
+          "answer": "[CANDIDATE 1]  \nCause: Race condition on non-atomic read-modify-write. Two threads read same value, increment, and write, losing updates.  \nFix: Use atomic increment or mutex around update.  \nPitfall: Deadlock if multiple locks added; always take locks in consistent order.",
+          "words": 38,
+          "tok_s": 7.3,
+          "wall_s": 54.8,
+          "gate": "PASS",
+          "n_samples": 3
+        }
+      }
+    },
+    {
+      "id": "t-judgment-micro",
+      "kb": "coding",
+      "task": "A junior engineer says: 'We should rewrite our monolith as microservices so it can scale.' How do you respond?",
+      "rubric": [
+        "asks for the actual bottleneck / evidence rather than agreeing",
+        "offers a modular monolith as the sensible default",
+        "names the real cost of microservices (distributed-systems complexity, data consistency, ops)",
+        "identifies independent deployability (not 'scale') as the true driver when it applies",
+        "notes you can extract services later (reversibility) — calibrated, not dogmatic either way"
+      ],
+      "ctx_chars": 5200,
+      "arms": {
+        "kit_max": {
+          "answer": "The answer should focus on the expert-reasoning method as outlined in the reference. The revised answer should:  \n- State the forces (scale, team size, consistency needs, deadline).  \n- Propose a trade-off: microservices for independent deploys, but paid for in distributed-systems complexity.  \n- Test the hypothesis: can current team handle distributed systems? can we isolate components?  \n- Prioritize: start with a single bounded context, validate it works independently.  \n- Avoid premature optimization: don't split until the monolith is a bottleneck.  \n- Name the cost: microservices add complexity; decide if the benefit (scale) outweighs the cost (distributed systems).",
+          "words": 96,
+          "tok_s": 6.4,
+          "wall_s": 155.2,
+          "gate": "REVISE",
+          "n_samples": 3
+        }
+      }
+    }
+  ]
+}

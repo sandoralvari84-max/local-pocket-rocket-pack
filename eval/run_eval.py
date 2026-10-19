@@ -8,6 +8,7 @@ filler count, and generation speed. Writes a results JSON and prints a summary. 
 """
 import json
 import os
+import re
 import time
 import urllib.request
 
@@ -48,10 +49,14 @@ def kb_context(kb):
 
 
 def ask(question, context, params):
-    system = (SYSTEM_OPEN + "\n\nREFERENCE MATERIAL:\n" + context) if context is not None else SYSTEM_CLOSED
+    # single user message (no system role) so every model template works — Gemma/Llama don't all take a system role
+    if context is not None:
+        user = SYSTEM_OPEN + "\n\nREFERENCE MATERIAL:\n" + context + "\n\nQUESTION: " + question
+    else:
+        user = SYSTEM_CLOSED + "\n\nQUESTION: " + question
     payload = {
         "model": MODEL,
-        "messages": [{"role": "system", "content": system}, {"role": "user", "content": question}],
+        "messages": [{"role": "user", "content": user}],
         "chat_template_kwargs": {"enable_thinking": False},
         "max_tokens": 1024, "seed": 1, "stream": False,
     }
@@ -70,18 +75,20 @@ def ask(question, context, params):
 
 def coverage(answer, keys):
     low = normalise(answer)
-    hit = [k for k in keys if k in low]
+    # leading word-boundary: "no" won't match "know"/"another", but stems still match (idempoten -> idempotency)
+    hit = [k for k in keys if re.search(r"(?<!\w)" + re.escape(k), low)]
     return len(hit) / len(keys), hit
 
 
 def main():
-    eval_set = json.load(open(os.path.join(HERE, "eval.json"), encoding="utf-8"))["items"]
+    eval_file = os.environ.get("EVAL_FILE", "eval.json")
+    eval_set = json.load(open(os.path.join(HERE, eval_file), encoding="utf-8"))["items"]
     contexts = {it["kb"]: kb_context(it["kb"]) for it in eval_set}
     results = {}
     print(f"{len(eval_set)} items x 2 modes = {len(eval_set) * 2} generations\n")
     for mode in ("open", "closed"):
         results[mode] = []
-        covs, tpss = [], []
+        covs, tpss, ho_covs = [], [], []
         for it in eval_set:
             ctx = contexts[it["kb"]] if mode == "open" else None
             try:
@@ -91,6 +98,8 @@ def main():
                 text, tps, finish, cov, hit = f"ERROR: {e}", None, "error", 0.0, []
             nwords, nfiller = fluff(text)
             covs.append(cov)
+            if str(it.get("origin", "")).lower() in ("claude-blind", "heldout") or it.get("heldout"):
+                ho_covs.append(cov)
             if tps:
                 tpss.append(tps)
             results[mode].append({"id": it["id"], "kb": it["kb"], "coverage": round(cov, 2), "hit": hit,
@@ -99,14 +108,24 @@ def main():
                                   "words": nwords, "filler": nfiller, "answer": text})
             print(f"[{mode:6}] {it['id']:<14} {cov*100:3.0f}%  {nwords:4d}w  {round(tps,1) if tps else '?'} t/s")
         avg = sum(covs) / len(covs) * 100
+        ho_avg = (sum(ho_covs) / len(ho_covs) * 100) if ho_covs else None
         results[mode + "_summary"] = {"avg_coverage_pct": round(avg, 1),
+                                      "heldout_coverage_pct": round(ho_avg, 1) if ho_avg is not None else None,
+                                      "n_items": len(covs), "n_heldout": len(ho_covs),
                                       "avg_tok_s": round(sum(tpss) / len(tpss), 1) if tpss else 0,
                                       "total_filler": sum(r["filler"] for r in results[mode])}
-        print(f"  -> {mode}: avg coverage {avg:.1f}%\n")
+        print(f"  -> {mode}: avg coverage {avg:.1f}%" + (f"  | held-out {ho_avg:.1f}%" if ho_avg is not None else "") + "\n")
     gap = results["open_summary"]["avg_coverage_pct"] - results["closed_summary"]["avg_coverage_pct"]
     results["kit_gain_points"] = round(gap, 1)
+    ho_o = results["open_summary"].get("heldout_coverage_pct")
+    ho_c = results["closed_summary"].get("heldout_coverage_pct")
+    if ho_o is not None and ho_c is not None:
+        results["kit_gain_heldout_points"] = round(ho_o - ho_c, 1)
+        print(f"HELD-OUT gain (open - closed): {ho_o - ho_c:+.1f} points ({ho_o}% vs {ho_c}%)")
+    tag = os.environ.get("EVAL_TAG", "")
+    results["model_tag"] = tag
     print(f"KIT GAIN (open - closed): {gap:+.1f} points")
-    out = os.path.join(HERE, f"results-{time.strftime('%Y%m%d-%H%M%S')}.json")
+    out = os.path.join(HERE, f"results-{(tag + '-') if tag else ''}{time.strftime('%Y%m%d-%H%M%S')}.json")
     json.dump(results, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Saved:", out)
 

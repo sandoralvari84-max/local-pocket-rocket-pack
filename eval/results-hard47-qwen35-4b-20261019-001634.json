@@ -1,0 +1,1367 @@
+{
+  "open": [
+    {
+      "id": "h-web-inp",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "inp",
+        "2024"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 34,
+      "filler": 0,
+      "answer": "Based on the reference material, **INP (Interaction to Next Paint)** replaced FID (First Input Delay) as a Core Web Vital in **March 2024**.\n\n*Source: specialist.md under \"Core Web Vitals — the details that matter\"*"
+    },
+    {
+      "id": "h-web-lazy",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "preload"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 69,
+      "filler": 0,
+      "answer": "No, you should **not** lazy-load the LCP (Largest Contentful Paint) image.\n\nAccording to the reference material:\n*   **Lazy-loading the LCP image hurts LCP performance.**\n*   **Do not use `loading=\"lazy\"` on images above the fold.**\n*   **Instead**, you should **preload** the image.\n\nThis ensures the main content is visible within the target time (LCP < 2.5 s) and prevents layout shifts (CLS < 0.1) by reserving space for the image."
+    },
+    {
+      "id": "h-web-where",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "zero"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 54,
+      "filler": 0,
+      "answer": "The CSS `:where()` pseudo-class contributes **zero** specificity.\n\nAccording to the reference material:\n*   It is explicitly designed to have zero specificity for low-weight resets.\n*   It does not add to the specificity of the selector it is attached to.\n*   It is distinct from `:is()`, which takes the specificity of its most specific argument."
+    },
+    {
+      "id": "h-web-layers",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "order"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 106,
+      "filler": 0,
+      "answer": "Based on the reference material, CSS cascade layers (`@layer`) affect rule precedence by **overriding specificity entirely** based on layer order.\n\n*   **Mechanism:** Layers provide explicit ordering independent of specificity.\n*   **Precedence:** A rule in a higher-priority layer wins over a rule in a lower-priority layer, regardless of the specific selector weights (e.g., an ID selector in a lower layer loses to a class selector in a higher layer).\n*   **Contrast with Specificity:** While the cascade normally resolves conflicts by comparing origin/importance, then specificity (inline > id > class/attr/pseudo-class > element), then source order, `@layer` acts as a primary sort key that supersedes the standard specificity calculation."
+    },
+    {
+      "id": "h-design-wm",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "cowan"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 42,
+      "filler": 0,
+      "answer": "Based on the reference material, the modern estimate of working-memory capacity is **~4 chunks**. This figure is attributed to **Cowan (2001)**.\n\nThe material notes that Miller's \"7±2\" is considered outdated for working memory, though it remains a common citation in some models."
+    },
+    {
+      "id": "h-design-5users",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "qualitative"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 38,
+      "filler": 0,
+      "answer": "No. Nielsen's \"5 users\" guideline applies to **qualitative usability discovery** (finding ~85% of issues per round), not to quantitative benchmarks or A/B tests, which require larger samples (often 20+ per cell for metrics or thousands for web A/B)."
+    },
+    {
+      "id": "h-design-aesth",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "usable"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 56,
+      "filler": 0,
+      "answer": "Based on the reference material, the **Aesthetic-usability effect** describes the phenomenon where attractive interfaces are **perceived** as more usable, and users tend to **forgive minor issues** on them.\n\n*   **Source**: `ux-foundations.md` (Key laws of UX) and `specialist.md` (Effects that are real).\n*   **Clarification**: This effect relates to *perception* and *forgiveness*, not necessarily actual performance or functionality."
+    },
+    {
+      "id": "h-mkt-growth",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "penetration"
+      ],
+      "missing": [],
+      "tok_s": 6.8,
+      "finish": "stop",
+      "words": 78,
+      "filler": 0,
+      "answer": "Based on the provided reference material, brand growth comes mainly from **increasing penetration** (reaching more light/occasional buyers), not from deepening the loyalty of heavy buyers.\n\n**Evidence from *specialist.md*:**\n*   \"Growth comes mostly from **increasing penetration (reaching more light/occasional buyers)**, not from deepening loyalty of heavy buyers.\"\n*   \"Most of your sales come from many light buyers (the Pareto split is nearer 80/50 than 80/20).\"\n*   \"Loyalty programs drive growth\" is largely a myth; they mostly reward existing behaviour."
+    },
+    {
+      "id": "h-mkt-email",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "apple"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 44,
+      "filler": 0,
+      "answer": "Email open rates became unreliable in 2021 due to **Apple Mail Privacy Protection**, which causes emails to be auto-opened, making it impossible to distinguish between genuine user engagement and automated opening. Consequently, open rates should be judged by clicks and conversions rather than opens."
+    },
+    {
+      "id": "h-mkt-955",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "95"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 40,
+      "filler": 0,
+      "answer": "According to the specialist layer material, the **95:5 rule** claims that at any given time, approximately **95% of business buyers are not in-market**. Consequently, most advertising should focus on building memory for the future 5% rather than chasing immediate conversion."
+    },
+    {
+      "id": "h-mkt-eeat",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "experience",
+        "expertise",
+        "authoritativeness",
+        "trust"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 8,
+      "filler": 0,
+      "answer": "E-E-A-T stands for **experience, expertise, authoritativeness, and trust**."
+    },
+    {
+      "id": "h-code-complexity",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "o(n)"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 56,
+      "filler": 0,
+      "answer": "According to the provided reference material, checking `x in a list` (array membership) has a time complexity of **O(n)**.\n\nThis is explicitly stated in `specialist.md` under \"Complexity the model misstates\":\n> \"`x in list` / array `includes` is **O(n)**; set/dict/hash membership is avg **O(1**).\"\n\nThis contrasts with hash-based collections (sets/dictionaries), which offer average **O(1)** lookup time."
+    },
+    {
+      "id": "h-code-sortlb",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "n log n"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 56,
+      "filler": 0,
+      "answer": "The lower-bound time complexity for comparison-based sorting is **Ω(n log n)**.\n\nThis is explicitly stated in the reference material under \"Algorithms & complexity\" in `advanced.md`, which notes: \"comparison-sort lower bound Ω(n log n)\". This bound applies to sorting algorithms that rely solely on comparisons (such as mergesort, heapsort, and quicksort), regardless of the specific algorithm used."
+    },
+    {
+      "id": "h-code-float",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "precision"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 60,
+      "filler": 0,
+      "answer": "According to the provided reference material, money should not be stored in floating-point numbers because:\n\n1.  **Floating-point precision errors:** Due to the IEEE-754 standard, operations like `0.1 + 0.2` do not equal `0.3` in almost every language.\n2.  **Comparison risks:** You should never compare floating-point numbers with `==`.\n3.  **Best practice:** Use integers (e.g., cents) or a decimal type instead."
+    },
+    {
+      "id": "h-sec-metadata",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "169.254.169.254"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 32,
+      "filler": 0,
+      "answer": "The cloud instance-metadata IP address that SSRF attacks commonly target is **169.254.169.254**.\n\nThis is confirmed in the **specialist.md** reference material under \"Web app specifics,\" which states: \"SSRF targets cloud metadata at `http://169.254.169.254/`\"."
+    },
+    {
+      "id": "h-sec-pwhash",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "argon"
+      ],
+      "missing": [],
+      "tok_s": 6.8,
+      "finish": "stop",
+      "words": 44,
+      "filler": 0,
+      "answer": "The algorithms that should be used for password storage are **argon2id**, **bcrypt**, and **scrypt**.\n\nThese are slow, salted Key Derivation Functions (KDFs). The material explicitly states that passwords must never be stored using plain or fast hashes (such as MD5, SHA-1, or bare SHA-256)."
+    },
+    {
+      "id": "h-sec-tls",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "1.3"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 23,
+      "filler": 0,
+      "answer": "Based on the reference material:\n\n*   **Current Best Practice:** Prefer **TLS 1.3**.\n*   **Versions to Disable:** Disable **TLS 1.0**, **TLS 1.1**, and **SSLv3**."
+    },
+    {
+      "id": "h-soft-exactly",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "idempoten"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 30,
+      "filler": 0,
+      "answer": "No, exactly-once delivery is impossible over an unreliable network.\n\nInstead, you should:\n1.  Build **at-least-once** delivery.\n2.  Ensure consumers are **idempotent**.\n3.  Alternatively, use **deduplication keys** to achieve **effectively-once** semantics."
+    },
+    {
+      "id": "h-soft-cap2",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "partition"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 101,
+      "filler": 0,
+      "answer": "No, the CAP theorem does not mean you can freely pick any two of three in normal operation. According to the reference material, under a network partition, you must choose **consistency OR availability**, not both.\n\nYou must make this choice specifically **when a network partition occurs**.\n\nThe material further clarifies that:\n*   **CAP**: Under a network partition, you choose consistency or availability.\n*   **PACELC**: In the \"Else\" case (i.e., when there is **no** network partition), you trade off **Latency vs. Consistency**.\n\nMost systems are designed to be either AP (Availability and Partition tolerance) or CP (Consistency and Partition tolerance) by design."
+    },
+    {
+      "id": "h-soft-cd",
+      "kb": "software",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "manual"
+      ],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 86,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the specific difference between **continuous delivery** and **continuous deployment** is not explicitly defined.\n\nThe document mentions both terms in the **CI/CD** section of `software-engineering.md`:\n*   **Continuous Delivery**: Automated pipeline to staging/production behind gates.\n*   **Continuous Deployment**: Automated pipeline to staging/production behind gates.\n\nThe text groups them together and describes their shared characteristics (automated pipelines, keeping builds green, fast feedback, reproducible deploys) but does not distinguish between the two or specify the conditions under which one is used versus the other."
+    },
+    {
+      "id": "h-ds-kfold",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "leak"
+      ],
+      "missing": [],
+      "tok_s": 6.8,
+      "finish": "stop",
+      "words": 68,
+      "filler": 0,
+      "answer": "No, random k-fold cross-validation is **not valid** for time-series data.\n\n*   **Reason:** Random k-fold shuffling causes **data leakage** from the future into the past. In time-series contexts, information from future data points can inadvertently influence the training of models on past data, violating the temporal order.\n*   **Correct Approach:** Use a **time-series split** (where folds are ordered chronologically) to ensure no future data leaks into the training set."
+    },
+    {
+      "id": "h-ds-pvalue",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "null"
+      ],
+      "missing": [],
+      "tok_s": 6.4,
+      "finish": "stop",
+      "words": 52,
+      "filler": 0,
+      "answer": "A p-value measures **P(data at least this extreme | null hypothesis true)**.\n\nKey clarifications from the material:\n*   It is **not** the probability that the null hypothesis is true.\n*   It is **not** the probability that the result is due to chance.\n*   It is **not** the probability of the hypothesis itself."
+    },
+    {
+      "id": "h-ds-overfit",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "overfit",
+        "regular"
+      ],
+      "missing": [],
+      "tok_s": 6.1,
+      "finish": "stop",
+      "words": 61,
+      "filler": 0,
+      "answer": "Based on the reference material, the problem is **overfitting** (specifically high variance), where the model memorizes noise rather than learning general patterns.\n\nOne fix is to apply **regularisation** (such as L1 or L2) or **simplify the model** (reduce complexity). Other valid fixes mentioned include obtaining more/representative data or using **early stopping**.\n\n*Source: `advanced.md` (Machine learning theory: Bias–variance decomposition); `worked-examples.md` (Example 2)*"
+    },
+    {
+      "id": "h-prod-pmf",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "retention"
+      ],
+      "missing": [],
+      "tok_s": 6.3,
+      "finish": "stop",
+      "words": 93,
+      "filler": 0,
+      "answer": "The clearest signal of product-market fit is a **retention curve that flattens**, indicating a stable cohort of users who continue to use the product over time.\n\nSupporting evidence from the reference material:\n*   **Retention cohorts** are the preferred metric over sign-ups or downloads (which are described as \"vanity\").\n*   A decaying retention curve (users leaving at a steady rate) indicates no product-market fit, regardless of acquisition spend.\n*   The **Sean Ellis test** (≥40% of users stating they would be \"very disappointed\" without the product) is also cited as a common benchmark for PMF."
+    },
+    {
+      "id": "h-prod-mvp",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "learn"
+      ],
+      "missing": [],
+      "tok_s": 6.3,
+      "finish": "stop",
+      "words": 120,
+      "filler": 0,
+      "answer": "An MVP is the **smallest experiment that tests the riskiest assumption and delivers real learning**. Its primary purpose is to achieve **validated learning**, not to ship a cheap or broken version of the final product.\n\nKey points from the material:\n*   **Core Definition:** It is defined by the test of the riskiest assumption and the delivery of real value/learning.\n*   **Fidelity:** Prototype fidelity must match the specific question being asked (e.g., paper/clickable for usability, concierge/\"Wizard of Oz\" for demand, fake-door for interest).\n*   **Preparation:** A success metric and a kill criterion must be defined before building.\n*   **Myth to Avoid:** It is not a \"minimum product\" or a cheap v1; shipping junk and calling it an MVP is a misconception."
+    },
+    {
+      "id": "h-biz-sunk",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "irrelevant"
+      ],
+      "missing": [],
+      "tok_s": 6.2,
+      "finish": "stop",
+      "words": 62,
+      "filler": 0,
+      "answer": "In a forward-looking decision, money already spent should be treated as **irrelevant** because it is a **sunk cost**.\n\nAccording to the reference material:\n*   **Sunk costs are irrelevant** to forward decisions (advanced.md).\n*   Only **future costs and benefits** count in the decision (specialist.md).\n*   The **sunk cost fallacy** occurs when money already spent is incorrectly considered relevant to the forward decision (specialist.md)."
+    },
+    {
+      "id": "h-biz-npv",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "reinvest"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 56,
+      "filler": 0,
+      "answer": "NPV is preferred over IRR when they disagree because IRR is flawed in two specific ways:\n1.  It can produce **multiple IRRs** when cash flows are unconventional.\n2.  It implicitly assumes that interim cash flows are reinvested at the **IRR rate**, which may be unrealistic.\n\nIn contrast, NPV is considered the \"gold standard\" for investment decisions."
+    },
+    {
+      "id": "h-biz-cash",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "cash"
+      ],
+      "missing": [],
+      "tok_s": 6.2,
+      "finish": "stop",
+      "words": 94,
+      "filler": 0,
+      "answer": "A company can be profitable on paper and still fail because **profit does not equal cash**.\n\nAccording to the reference material:\n*   **Accrual accounting** records profit based on revenue earned and expenses incurred, regardless of when cash actually changes hands.\n*   **Profitability can exist while cash runs out** due to growth tying up working capital or a negative cash-conversion cycle.\n*   Many profitable businesses die specifically from **running out of cash**.\n\nTherefore, a company must watch its **runway** and **burn rate**, as a positive net income (profit) does not guarantee sufficient liquidity to survive."
+    },
+    {
+      "id": "h-legal-copyright",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "automatic"
+      ],
+      "missing": [],
+      "tok_s": 6.1,
+      "finish": "stop",
+      "words": 68,
+      "filler": 0,
+      "answer": "No, registration is not required for copyright to exist.\n\nAccording to the provided materials:\n*   **Automatic Subsistence:** Copyright subsists automatically upon the creation of an original work (advanced.md; specialist.md).\n*   **Registration Exceptions:**\n    *   **US:** While copyright exists automatically, you must register before you can **sue** for infringement, and timely registration unlocks statutory damages (specialist.md).\n    *   **General:** Registration is not a condition for the copyright to exist (advanced.md; specialist.md)."
+    },
+    {
+      "id": "h-legal-30pct",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "no"
+      ],
+      "missing": [],
+      "tok_s": 6.2,
+      "finish": "stop",
+      "words": 61,
+      "filler": 0,
+      "answer": "No, changing roughly 30% of a copyrighted work does not avoid infringement.\n\nAccording to the reference material:\n*   The **\"30% change\" rule is a myth**; there is no percentage that makes copying legal.\n*   Infringement turns on the **substantial similarity** of protected expression, not the percentage of changes made.\n*   Copyright protects the **expression** of an idea, not the idea itself."
+    },
+    {
+      "id": "h-legal-patent",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "first-to-file"
+      ],
+      "missing": [],
+      "tok_s": 6.2,
+      "finish": "stop",
+      "words": 37,
+      "filler": 0,
+      "answer": "Since 2013, the US is **first-to-file** for patents.\n\n**Reference:**\n*   **specialist.md**: \"The US is **first-to-file** since the 2013 AIA.\"\n*   **advanced.md**: Mentions patents require \"novelty, inventive step... claims define scope\" but does not specify the filing system."
+    },
+    {
+      "id": "h-health-detox",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "liver"
+      ],
+      "missing": [],
+      "tok_s": 6.1,
+      "finish": "stop",
+      "words": 60,
+      "filler": 0,
+      "answer": "No, 'detox' cleanses do not remove toxins the body cannot handle itself.\n\nAccording to the reference material:\n*   **Function:** The liver and kidneys are responsible for detoxification.\n*   **Effectiveness of Cleanses:** No juice or supplement used in cleanses is needed or proven to assist this process.\n*   **Myth Status:** The claim that cleanses are necessary is identified as a myth."
+    },
+    {
+      "id": "h-health-abx",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "no"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 25,
+      "filler": 0,
+      "answer": "No. According to the provided reference material, antibiotics do not treat viral infections such as the common cold or flu. Their misuse drives antibiotic resistance."
+    },
+    {
+      "id": "h-fin-active",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "underperform"
+      ],
+      "missing": [],
+      "tok_s": 6.1,
+      "finish": "stop",
+      "words": 58,
+      "filler": 0,
+      "answer": "No. According to the provided reference material, most active managers underperform low-cost index funds net of fees over time.\n\n**Evidence:**\n*   **advanced.md**: States that \"most active managers underperform low-cost index funds net of fees over time.\"\n*   **specialist.md**: Notes that \"Most active funds underperform their index after fees over the long run (S&P SPIVA data, year after year).\""
+    },
+    {
+      "id": "h-fin-diversif",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "unsystematic"
+      ],
+      "missing": [],
+      "tok_s": 6.4,
+      "finish": "stop",
+      "words": 12,
+      "filler": 0,
+      "answer": "Diversification reduces **unsystematic (idiosyncratic)** risk. It does not reduce **systematic (market)** risk."
+    },
+    {
+      "id": "h-phil-freewill",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "compatibilism"
+      ],
+      "missing": [],
+      "tok_s": 6.0,
+      "finish": "stop",
+      "words": 54,
+      "filler": 0,
+      "answer": "Based on the reference material, **compatibilism** is the most common view among professional philosophers regarding free will.\n\n*   **Source:** `specialist.md` under \"Metaphysics (common survey positions)\".\n*   **Detail:** The text states that \"compatibilism (free will is compatible with determinism) — compatibilism is the most common view among professional philosophers (PhilPapers survey), contrary to popular assumption.\""
+    },
+    {
+      "id": "h-phil-gettier",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "gettier"
+      ],
+      "missing": [],
+      "tok_s": 5.6,
+      "finish": "stop",
+      "words": 54,
+      "filler": 0,
+      "answer": "No. According to the reference material, the **Gettier problem** demonstrates that justified true belief (JTB) is **not sufficient** for knowledge. One can have a JTB that is true by luck. This finding broke the classical definition of knowledge, leading to responses that add further conditions, such as \"no false lemmas\" or a reliability condition."
+    },
+    {
+      "id": "ho-web-wcag",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 5.6,
+      "finish": "stop",
+      "words": 52,
+      "filler": 0,
+      "answer": "According to the reference material, WCAG 2.1 level AA requires a minimum contrast ratio of **4.5:1** for normal text.\n\n*   **Source:** `web-fundamentals.md` under \"Accessibility (a11y) basics — WCAG 2.1 AA\" and `specialist.md` under \"Accessibility specifics\".\n*   **Note:** The material also specifies a 3:1 ratio for large text (≥24px) or bold text (≥18.66px)."
+    },
+    {
+      "id": "ho-design-target",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "24"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 29,
+      "filler": 0,
+      "answer": "According to the reference material, the minimum size for a pointer target under **WCAG 2.2 AA** is **24×24 CSS pixels**.\n\n*Source: `specialist.md` under \"Accessibility & ethics (the serious bits)\"*"
+    },
+    {
+      "id": "ho-code-mutdefault",
+      "kb": "coding",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "same"
+      ],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 89,
+      "filler": 0,
+      "answer": "Based on the provided reference material, a mutable default argument like `def f(x=[])` is a common source of bugs because the default value is evaluated **once** when the function is defined, not each time it is called.\n\nWhile **advanced.md** and **coding-foundations.md** discuss general principles of mutable objects (e.g., dynamic arrays, shared state) and **specialist.md** warns against mutating shared state, none of the provided texts explicitly define the specific behavior of mutable default arguments in Python.\n\nTherefore, the specific reason for this bug pattern is **not in the reference material**."
+    },
+    {
+      "id": "ho-soft-cap",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "consistency",
+        "availability",
+        "partition"
+      ],
+      "missing": [],
+      "tok_s": 6.8,
+      "finish": "stop",
+      "words": 39,
+      "filler": 0,
+      "answer": "Based on the provided reference material, the three properties named in the CAP theorem are:\n\n1.  **Consistency**\n2.  **Availability**\n3.  **Partition tolerance** (referred to as \"partition\" in the text)\n\n*Source: advanced.md (Architecture section) and specialist.md (Distributed systems truths section).*"
+    },
+    {
+      "id": "ho-data-imbalance",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "majority"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 90,
+      "filler": 0,
+      "answer": "On heavily imbalanced datasets, overall accuracy is misleading because a model can achieve a high accuracy score by simply predicting the majority class for all instances, thereby ignoring the minority class entirely.\n\nFor example, in a dataset where 99% of records are negative and only 1% are positive, a model that predicts \"negative\" for every instance would be 99% accurate but would fail to identify any positive cases. In such scenarios, accuracy misleads the evaluation; instead, metrics like precision, recall, F1, and PR-AUC should be used, along with probability calibration."
+    },
+    {
+      "id": "ho-product-rice",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "reach",
+        "impact",
+        "confidence",
+        "effort"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 30,
+      "filler": 0,
+      "answer": "In the RICE prioritisation framework, the four letters stand for:\n*   **R**each\n*   **I**mpact\n*   **C**onfidence\n*   **E**ffort\n\nThe formula is defined as: (Reach × Impact × Confidence) ÷ Effort."
+    },
+    {
+      "id": "ho-legal-gdprfine",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "20 million",
+        "4%"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 37,
+      "filler": 0,
+      "answer": "According to the reference material, the maximum administrative fine for the most serious infringements under the EU GDPR is **€20 million or 4% of global annual turnover**, whichever is higher.\n\n*Source: specialist.md, section \"Data protection (EU GDPR)\"*"
+    },
+    {
+      "id": "ho-health-who",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "150"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 25,
+      "filler": 0,
+      "answer": "The WHO recommends **150 minutes** of moderate-intensity aerobic physical activity per week as the minimum for healthy adults.\n\n*Source: health-fundamentals.md under \"Physical activity & sleep\"*"
+    },
+    {
+      "id": "ho-fin-rule72",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "double",
+        "72"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 71,
+      "filler": 0,
+      "answer": "The Rule of 72 estimates the **number of years required to double an investment** (or the time to double a balance).\n\nIt is used by dividing **72 by the annual rate of return** (expressed as a percentage).\n\n*   **Formula:** Years to double ≈ 72 ÷ %return.\n*   **Context:** It applies to both savings (growth) and debt (compounding costs).\n*   **Adjustment:** Returns should be judged in **real (inflation-adjusted)** terms, not nominal terms."
+    },
+    {
+      "id": "ho-phil-kant",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "universal"
+      ],
+      "missing": [],
+      "tok_s": 6.8,
+      "finish": "stop",
+      "words": 42,
+      "filler": 0,
+      "answer": "According to the provided material, Kant's categorical imperative requires that one act only on rules that they could universalize, meaning the action must be valid for everyone. This deontological approach holds that certain duties and rights are binding regardless of the outcome."
+    }
+  ],
+  "open_summary": {
+    "avg_coverage_pct": 95.7,
+    "heldout_coverage_pct": 90.0,
+    "n_items": 47,
+    "n_heldout": 10,
+    "avg_tok_s": 6.5,
+    "total_filler": 0
+  },
+  "closed": [
+    {
+      "id": "h-web-inp",
+      "kb": "webdesign",
+      "coverage": 0.5,
+      "hit": [
+        "inp"
+      ],
+      "missing": [
+        "2024"
+      ],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 44,
+      "filler": 0,
+      "answer": "No metric replaced FID (First Input Delay) as a Core Web Vital.\n\nFID remains one of the three original Core Web Vitals, alongside Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS). Google has not removed it or substituted it with a different metric."
+    },
+    {
+      "id": "h-web-lazy",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "preload"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 93,
+      "filler": 0,
+      "answer": "No, you should **not** lazy-load the LCP (Largest Contentful Paint) image.\n\nLazy-loading delays the rendering of the image until the user scrolls to it, which directly increases the time to first paint and degrades Core Web Vitals.\n\n**What to do instead:**\n1.  **Preload:** Use the `<link rel=\"preload\">` tag to tell the browser to prioritize downloading the image immediately.\n2.  **Optimize:** Ensure the image is highly optimized (e.g., WebP format, appropriate dimensions) and served via a fast CDN.\n3.  **Place Above the Fold:** Position the image so it renders quickly without requiring excessive scrolling."
+    },
+    {
+      "id": "h-web-where",
+      "kb": "webdesign",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "zero"
+      ],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 80,
+      "filler": 0,
+      "answer": "The CSS `:where()` pseudo-class contributes **0 specificity**.\n\nIt is syntactic sugar for the `:is()` pseudo-class with an empty selector list (`:is()`), which is equivalent to `:where()`. Because it matches elements based solely on their attributes or classes without adding any additional specificity points, it is often used to create a \"fallback\" selector that does not interfere with the specificity of other selectors in the cascade.\n\nMathematically, if a selector has specificity $(a, b, c)$, then `:where()` adds $(0, 0, 0)$."
+    },
+    {
+      "id": "h-web-layers",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "order"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 178,
+      "filler": 0,
+      "answer": "CSS Cascade Layers (`@layer`) affect the cascade order **before** specificity is calculated. They act as a sorting mechanism for rules with equal specificity.\n\nHere is the precise behavior:\n\n1.  **Layer Order Precedence**: Rules defined in a layer with a **lower name** (e.g., `@layer base`) are processed and applied before rules in a layer with a **higher name** (e.g., `@layer utilities`).\n2.  **Specificity Within Layers**: Within the same layer, the standard specificity rules apply. A rule with higher specificity wins over a rule with lower specificity, regardless of the layer.\n3.  **Cross-Layer Specificity**: A rule in a higher-named layer (e.g., `@layer utilities`) can override a rule in a lower-named layer (e.g., `@layer base`) **only if** the rule in the higher layer has equal or greater specificity.\n    *   If specificities are equal, the rule in the higher-named layer wins.\n    *   If the rule in the lower-named layer has higher specificity, it wins.\n\n**Summary**: Layers sort rules by their layer name first. Specificity breaks ties only within the same layer or when comparing rules across layers where specificities are otherwise equal."
+    },
+    {
+      "id": "h-design-wm",
+      "kb": "design",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "cowan"
+      ],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 94,
+      "filler": 0,
+      "answer": "The modern estimate of working-memory capacity is **4 ± 1 chunks** (items), a finding primarily attributed to the research of **George A. Miller** in his 1956 paper \"The Magical Number Seven, Plus or Minus Two.\"\n\nWhile Miller originally proposed the limit as \"seven,\" subsequent research by **Alan Baddeley** and **Hazel W. Parkin** (1975) demonstrated that the limit is more accurately **four** when the items are distinct chunks. This distinction is crucial because the capacity refers to the number of discrete units (chunks) the working memory can hold, not necessarily the number of individual items."
+    },
+    {
+      "id": "h-design-5users",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "qualitative"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 77,
+      "filler": 0,
+      "answer": "Nielsen's \"5 users\" guideline applies to **qualitative** research (such as usability testing) to identify common usability issues, not to **quantitative** benchmarks or A/B tests.\n\nIn usability testing, Nielsen found that observing 5 users typically reveals 85% of usability problems. This is a heuristic for sample size in exploratory, human-factor studies. It does not apply to statistical significance testing for A/B experiments, where sample size is determined by power analysis based on expected effect sizes and confidence levels."
+    },
+    {
+      "id": "h-design-aesth",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "usable"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 112,
+      "filler": 0,
+      "answer": "The **aesthetic-usability effect** describes the phenomenon where users perceive an interface as more usable when it is also aesthetically pleasing, even if the interface's actual functionality and performance remain unchanged.\n\nKey aspects include:\n*   **Perception:** Users tend to rate the usability of a system higher when it looks good, often due to positive emotional associations or the belief that a well-designed system is better engineered.\n*   **Performance:** The actual efficiency of the system (e.g., task completion time, error rates) does not necessarily improve; the effect is primarily psychological.\n*   **Origin:** The concept was formally introduced by researchers at the University of Michigan in 2005 (specifically by Oliver Feinberg, Michael Buxton, and others)."
+    },
+    {
+      "id": "h-mkt-growth",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "penetration"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 97,
+      "filler": 0,
+      "answer": "According to Per Eriksson Ehrenberg-Bass, brand growth comes mainly from **penetration** (reaching new customers), not from the loyalty of heavy buyers.\n\nIn his research, particularly within the \"E-B Model,\" Ehrenberg-Bass argues that traditional marketing focuses too heavily on loyalists, who actually contribute very little to overall growth. Instead, the majority of growth is driven by \"switchers\" (new customers) and \"light buyers\" (those who buy occasionally but not frequently). He famously stated that \"loyalty is a myth\" in the context of growth, as loyal customers tend to buy the same brand repeatedly without expanding the total addressable market."
+    },
+    {
+      "id": "h-mkt-email",
+      "kb": "marketing",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "apple"
+      ],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 262,
+      "filler": 1,
+      "answer": "Email open rates are not inherently unreliable; rather, the metric itself is often misinterpreted or manipulated due to several factors that became more prominent around 2021:\n\n1.  **Mobile Dominance**: By 2021, the majority of email was opened on mobile devices. Many older email clients and webmail interfaces did not accurately track whether a user had actually opened the email or simply clicked the link within it, leading to inflated or inaccurate counts.\n2.  **Third-Party Tracking Pixels**: The primary method for measuring opens relies on a tiny, invisible image (tracking pixel) loaded when the email is opened. This can be blocked by ad blockers, privacy settings (like iOS 14+ App Tracking Transparency), or corporate firewalls, causing legitimate opens to go unrecorded.\n3.  **Data Privacy Regulations**: Stricter regulations like GDPR and CCPA have increased user privacy controls, making it harder for senders to track user behavior without explicit consent, reducing the accuracy of historical data.\n4.  **Spam Folder Filtering**: Many users now have robust spam filters that block emails before they reach their inbox, meaning they never see the tracking pixel, yet the email was technically \"delivered\" to the user's account.\n5.  **Preheader Visibility**: The ability to see the preheader text (the snippet below the subject line) varies by client. If the preheader is hidden, users might not open the email, but the tracking mechanism may still fire if they click the subject line, creating discrepancies.\n\nIn summary, the \"unreliability\" stems from technical limitations in tracking accuracy, increased privacy protections, and the shift to mobile-first consumption, rather than a flaw in the metric itself."
+    },
+    {
+      "id": "h-mkt-955",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "95"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 33,
+      "filler": 0,
+      "answer": "The B2B '95:5 rule' claims that at any given time, **95%** of buyers are looking for a solution to a specific problem, while only **5%** are looking for a new product or service."
+    },
+    {
+      "id": "h-mkt-eeat",
+      "kb": "marketing",
+      "coverage": 1.0,
+      "hit": [
+        "experience",
+        "expertise",
+        "authoritativeness",
+        "trust"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 39,
+      "filler": 0,
+      "answer": "E-E-A-T stands for **Experience, Expertise, Authoritativeness, and Trustworthiness**.\n\nGoogle introduced the second \"E\" (Experience) in 2022 to emphasize the importance of first-hand experience in content creation, particularly for topics where personal experience significantly impacts the quality of the information."
+    },
+    {
+      "id": "h-code-complexity",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "o(n)"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 53,
+      "filler": 0,
+      "answer": "The time complexity of checking `x in a list` is **O(n)**, where **n** is the number of elements in the list.\n\nThis is because Python lists are implemented as dynamic arrays, and the `in` operator performs a linear search, checking each element sequentially until a match is found or the list is exhausted."
+    },
+    {
+      "id": "h-code-sortlb",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "n log n"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 74,
+      "filler": 0,
+      "answer": "The lower-bound time complexity for comparison-based sorting is **O(n log n)**.\n\nThis bound applies to any sorting algorithm that relies solely on comparisons between elements (such as merge sort, heap sort, or quicksort) and cannot be improved upon in the worst case. It is derived from the information-theoretic lower bound required to distinguish between $n!$ possible permutations of $n$ elements, which requires at least $\\log_2(n!)$ comparisons. Using Stirling's approximation, $\\log_2(n!) \\approx n \\log_2 n$."
+    },
+    {
+      "id": "h-code-float",
+      "kb": "coding",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "precision"
+      ],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 74,
+      "filler": 0,
+      "answer": "Money should not be stored in floating-point numbers because floating-point arithmetic is based on binary approximations that cannot precisely represent many decimal fractions (e.g., 0.1 or 0.01). This leads to rounding errors and small discrepancies in calculations, which can accumulate over time and result in financial inconsistencies or incorrect balances. For these reasons, money is typically stored as integers (e.g., cents or smallest currency units) or using specialized decimal types that guarantee exact representation."
+    },
+    {
+      "id": "h-sec-metadata",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "169.254.169.254"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 67,
+      "filler": 0,
+      "answer": "The cloud instance metadata IP address commonly targeted in SSRF (Server-Side Request Forgery) attacks is **169.254.169.254**.\n\nThis address is the link-local IP used by AWS EC2 instances to access the Instance Metadata Service (IMDS). Attackers exploit this by forcing a vulnerable server to make an HTTP request to this IP, allowing them to retrieve sensitive credentials, instance IDs, or other internal configuration data without needing to authenticate."
+    },
+    {
+      "id": "h-sec-pwhash",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "argon"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 144,
+      "filler": 0,
+      "answer": "There is no single algorithm; the choice depends on the specific security requirements and the threat model, but the following are the industry-standard recommendations:\n\n*   **Argon2**: Currently the winner of the Password Hashing Competition (PHC). It is designed specifically for password storage, offering strong resistance against both GPU and ASIC attacks.\n*   **bcrypt**: A widely adopted standard that includes a built-in salt and is resistant to brute-force attacks.\n*   **scrypt**: Designed to be memory-hard, making it difficult to attack using specialized hardware.\n*   **PBKDF2**: A standard key derivation function often used with a strong hash (like SHA-256) and a high iteration count, though it is less resistant to hardware acceleration than Argon2 or scrypt.\n\n**Recommendation**: Use **Argon2** (specifically Argon2id) for new implementations. If maintaining legacy systems, **bcrypt** is the most common choice. Avoid using generic hashes like SHA-256, MD5, or SHA-1 for password storage."
+    },
+    {
+      "id": "h-sec-tls",
+      "kb": "cybersecurity",
+      "coverage": 1.0,
+      "hit": [
+        "1.3"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 88,
+      "filler": 0,
+      "answer": "**Current Best Practice:**\n*   **TLS 1.3**: This is the recommended standard for all new implementations due to its improved security, performance, and simplified handshake.\n*   **TLS 1.2**: Acceptable for legacy systems that cannot be upgraded immediately, but should be phased out as TLS 1.3 support matures.\n\n**Versions to Disable:**\n*   **TLS 1.0**\n*   **TLS 1.1**\n*   **SSL 2.0** and **SSL 3.0** (often grouped as \"SSL/TLS 2.x and 3.x\")\n\nThese older versions contain critical vulnerabilities (such as POODLE, BEAST, and CRIME) and are considered insecure by modern security standards."
+    },
+    {
+      "id": "h-soft-exactly",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "idempoten"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 174,
+      "filler": 0,
+      "answer": "Yes, **exactly-once delivery** is achievable over an unreliable network, but it requires the application to implement **idempotency** and rely on the network's ability to deliver messages multiple times (at-least-once).\n\nInstead of relying on the network to guarantee delivery semantics (which most standard protocols like TCP do not do for application-level messages), you must:\n\n1.  **Implement Idempotency**: Ensure that processing the same message multiple times yields the same result as processing it once. This is typically done by including a unique **idempotency key** (e.g., a transaction ID or message hash) in the payload. The system checks this key before processing; if it exists, the message is skipped.\n2.  **Use Reliable Transport Protocols**: Utilize protocols that support reliable delivery (e.g., TCP, HTTP with retries, or specialized messaging systems like Kafka with exactly-once semantics enabled via transactional offsets).\n3.  **Handle Acknowledgments**: Implement a mechanism where the receiver acknowledges successful processing, allowing the sender to retry only failed or unacknowledged messages.\n\nIn summary, the network provides **at-least-once** delivery by default; the application ensures **exactly-once** behavior through idempotent logic."
+    },
+    {
+      "id": "h-soft-cap2",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "partition"
+      ],
+      "missing": [],
+      "tok_s": 7.3,
+      "finish": "stop",
+      "words": 82,
+      "filler": 0,
+      "answer": "Yes, in **normal operation** (where the system is functioning correctly and there are no network partitions), you can freely choose any two of the three properties: **Consistency (C)**, **Availability (A)**, and **Partition Tolerance (P)**.\n\nYou must choose (sacrifice) the third property only when a **network partition** occurs. A CAP theorem violation is defined as a system that maintains Consistency and Availability simultaneously while a partition exists. In such a scenario, the system must drop either Consistency or Availability to remain Partition Tolerant."
+    },
+    {
+      "id": "h-soft-cd",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "manual"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 68,
+      "filler": 0,
+      "answer": "The primary difference lies in the **human intervention** required to release code to production:\n\n*   **Continuous Delivery** builds and tests code automatically, keeping it in a \"release-ready\" state. However, the actual deployment to production requires **manual approval** and execution by a human.\n*   **Continuous Deployment** extends continuous delivery by automating the release process entirely. Once code passes automated testing, it is **automatically deployed** to production without human intervention."
+    },
+    {
+      "id": "h-ds-kfold",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "leak"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 151,
+      "filler": 0,
+      "answer": "No, standard random k-fold cross-validation is generally **invalid** for time-series data.\n\n**Why:**\nTime-series data possesses a temporal dependency (autocorrelation), meaning observations are not independent and identically distributed (i.i.d.). The value at time $t$ often depends on values at time $t-1, t-2$, etc.\n\nRandom k-fold cross-validation shuffles the data randomly before splitting it into folds. This process destroys the chronological order, resulting in training sets that contain data from the future relative to the testing sets (data leakage). Consequently, the model is evaluated on data it has already \"seen\" in the training phase, leading to an overly optimistic estimate of performance that does not reflect real-world forecasting capabilities where future data is unavailable at prediction time.\n\n**Correct Approach:**\nFor time-series data, **TimeSeriesSplit** (or rolling window cross-validation) must be used. This method preserves the temporal order by splitting the data chronologically, ensuring that the training set always precedes the testing set in time."
+    },
+    {
+      "id": "h-ds-pvalue",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "null"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 54,
+      "filler": 0,
+      "answer": "A p-value measures the probability of obtaining test results at least as extreme as the observed results, assuming that the null hypothesis is true. It does **not** measure the probability that the null hypothesis is true, nor does it measure the probability that the observed data occurred by chance alone in an absolute sense."
+    },
+    {
+      "id": "h-ds-overfit",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "overfit",
+        "regular"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 19,
+      "filler": 0,
+      "answer": "**Problem:** Overfitting (or high variance).\n\n**Fix:** Increase the regularization strength (e.g., L1 or L2) or increase the dropout rate."
+    },
+    {
+      "id": "h-prod-pmf",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "retention"
+      ],
+      "missing": [],
+      "tok_s": 6.5,
+      "finish": "stop",
+      "words": 141,
+      "filler": 0,
+      "answer": "There is no single, universally agreed-upon \"clearest\" signal, as product-market fit is a state rather than a discrete event. However, the most widely cited indicator is **organic, viral growth** where the product sells itself without significant marketing spend or sales intervention.\n\nKey factual signals include:\n*   **High Retention:** Customers stay and return frequently (high Day 30 retention).\n*   **Word-of-Mouth:** The product is recommended by users without active marketing campaigns.\n*   **Sales Velocity:** Revenue grows exponentially as the product is added to the sales pipeline, often outpacing the ability to scale the sales team.\n*   **Customer Feedback:** Users actively ask for more features or variations of the product rather than complaining about the core value proposition.\n\nUltimately, the clearest signal is when the product becomes the primary driver of growth, and the market demand exceeds the company's current capacity to serve it."
+    },
+    {
+      "id": "h-prod-mvp",
+      "kb": "product",
+      "coverage": 1.0,
+      "hit": [
+        "learn"
+      ],
+      "missing": [],
+      "tok_s": 6.6,
+      "finish": "stop",
+      "words": 98,
+      "filler": 0,
+      "answer": "A Minimum Viable Product (MVP) is primarily for **testing core product hypotheses with the smallest amount of effort** to gather maximum validated learning about customer needs and market fit.\n\nIts key purposes include:\n*   **Validation:** Confirming that there is a real problem to solve and that customers will pay for the solution.\n*   **Feedback Collection:** Gathering early user feedback to guide future development.\n*   **Risk Reduction:** Minimizing the risk of building a product that no one wants by avoiding unnecessary features.\n*   **Speed:** Launching quickly to enter the market and iterate based on real-world data rather than assumptions."
+    },
+    {
+      "id": "h-biz-sunk",
+      "kb": "business",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "irrelevant"
+      ],
+      "tok_s": 5.2,
+      "finish": "stop",
+      "words": 36,
+      "filler": 0,
+      "answer": "In a forward-looking decision, money already spent should be treated as a **sunk cost** and **ignored**.\n\nSince the expenditure cannot be recovered, rational decision-making focuses only on future costs and benefits associated with the available options."
+    },
+    {
+      "id": "h-biz-npv",
+      "kb": "business",
+      "coverage": 0.0,
+      "hit": [],
+      "missing": [
+        "reinvest"
+      ],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 125,
+      "filler": 0,
+      "answer": "NPV is generally preferred over IRR when they disagree because NPV is based on the **absolute dollar value** of wealth creation, whereas IRR is based on a **rate of return**.\n\nWhen the two metrics conflict, it is almost always due to **scale differences** (project sizes) or **non-conventional cash flows** (multiple sign changes). In these scenarios:\n1.  **NPV** directly measures the net increase in shareholder wealth in monetary terms, which is the ultimate goal of investment.\n2.  **IRR** can be misleading when comparing projects of vastly different sizes (a small project with a high IRR might add less value than a large project with a lower IRR) or when cash flows are not conventional.\n\nTherefore, NPV provides a more reliable decision criterion for maximizing firm value."
+    },
+    {
+      "id": "h-biz-cash",
+      "kb": "business",
+      "coverage": 1.0,
+      "hit": [
+        "cash"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 193,
+      "filler": 0,
+      "answer": "A company can be profitable on paper and still fail due to several critical factors:\n\n*   **Cash Flow Mismatch:** Profit is an accounting concept based on revenue minus expenses, while solvency depends on actual cash on hand. A company can show a profit while its customers delay payments (accounts receivable) or it holds excessive inventory, leaving no liquid cash to pay immediate bills like payroll, rent, or suppliers.\n*   **Hidden Liabilities:** A company may have unrecognized debts, pending lawsuits, or environmental cleanup costs that are not yet reflected in its financial statements but will require massive payouts later.\n*   **Overvaluation:** If a company's stock price is inflated by market hype rather than fundamentals, it may face a \"liquidity crisis\" where it cannot sell shares to raise capital because investors refuse to buy at the high price.\n*   **Regulatory or Legal Action:** A sudden government investigation, fine, or ban on operations can shut down revenue streams instantly, regardless of current profitability.\n*   **Key Person Risk:** If the company relies heavily on a single founder or executive whose departure causes a loss of confidence, customers, or critical knowledge, the business can collapse despite positive financials."
+    },
+    {
+      "id": "h-legal-copyright",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "automatic"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 73,
+      "filler": 0,
+      "answer": "No, you do not need to register a work for copyright to exist. In the United States and many other jurisdictions, copyright protection is **automatic** the moment an original work of authorship is fixed in a tangible medium of expression. Registration provides legal benefits such as the ability to sue for infringement and the possibility of statutory damages and attorney's fees, but it is not a prerequisite for the copyright itself to exist."
+    },
+    {
+      "id": "h-legal-30pct",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "no"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 85,
+      "filler": 0,
+      "answer": "No, changing roughly 30% of a copyrighted work does not automatically avoid infringement. Copyright law protects the original expression of an idea, not the specific percentage of changes made. Even a small amount of copying can constitute infringement if the material taken is \"substantial\" in quality or quantity, regardless of the total percentage altered. Courts evaluate whether the copied portion captures the \"heart\" of the original work or if the new work is merely a derivative that relies heavily on the original's structure and expression."
+    },
+    {
+      "id": "h-legal-patent",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "first-to-file"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 57,
+      "filler": 0,
+      "answer": "Yes, since the American Inventors Protection Act of 2011 (effective March 16, 2013), the United States has adopted a **first-to-file** system for utility patents.\n\nUnder this system, the patent is granted to the inventor who files the application first, regardless of who was the first to actually invent the subject matter. This replaced the previous \"first-to-invent\" standard."
+    },
+    {
+      "id": "h-health-detox",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "liver"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 118,
+      "filler": 0,
+      "answer": "No, 'detox' cleanses do not remove toxins that the body cannot handle. The human body has highly efficient internal systems—primarily the liver, kidneys, lungs, and skin—that continuously filter and eliminate waste products and toxins.\n\nWhat these cleanses actually do is induce a temporary state of mild dehydration and malnutrition. By restricting food intake (often to juices or supplements) and increasing fluid consumption, they force the body to rely on stored energy (glycogen and fat) for fuel. This process can lead to a temporary drop in blood pressure, increased urination, and the loss of water weight, which is often mistaken for \"detoxification.\" There is no scientific evidence that they remove toxins beyond what the body's natural systems already do."
+    },
+    {
+      "id": "h-health-abx",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "no"
+      ],
+      "missing": [],
+      "tok_s": 6.2,
+      "finish": "stop",
+      "words": 40,
+      "filler": 0,
+      "answer": "No, antibiotics do not treat viral infections like the common cold. Antibiotics are designed to kill or inhibit bacteria, whereas the common cold is caused by viruses. Using antibiotics for viral infections is ineffective and can contribute to antibiotic resistance."
+    },
+    {
+      "id": "h-fin-active",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "underperform"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 76,
+      "filler": 0,
+      "answer": "No, over the long run and after fees, most active funds do not beat their benchmarks.\n\nExtensive academic research and data from sources like the Center for Research in Security Prices (CRSP) and Morningstar indicate that the majority of actively managed funds fail to outperform their corresponding indexes over extended periods (typically 15+ years). This underperformance is largely attributed to the drag of management fees and the difficulty of consistently identifying alpha in an efficient market."
+    },
+    {
+      "id": "h-fin-diversif",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "unsystematic"
+      ],
+      "missing": [],
+      "tok_s": 6.3,
+      "finish": "stop",
+      "words": 32,
+      "filler": 0,
+      "answer": "Diversification reduces **unsystematic risk** (also known as specific or idiosyncratic risk).\n\nIt does not reduce **systematic risk** (market risk), which affects all assets in the market and cannot be eliminated through diversification."
+    },
+    {
+      "id": "h-phil-freewill",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "compatibilism"
+      ],
+      "missing": [],
+      "tok_s": 5.8,
+      "finish": "stop",
+      "words": 120,
+      "filler": 0,
+      "answer": "Among professional philosophers, the most common position regarding free will is **compatibilism**.\n\nThis view holds that human free will is compatible with determinism. Compatibilists argue that even if every event (including human actions) is causally determined by prior states and natural laws, individuals can still possess the kind of freedom that is necessary for moral responsibility. They typically define free will not as the ability to do otherwise in an absolute sense, but as the capacity to act according to one's own desires and reasons without external coercion.\n\nHistorically, incompatibilism (the view that free will and determinism are mutually exclusive) was dominant in the 19th century, but since the mid-20th century, compatibilism has become the majority view in academic philosophy."
+    },
+    {
+      "id": "h-phil-gettier",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "gettier"
+      ],
+      "missing": [],
+      "tok_s": 6.7,
+      "finish": "stop",
+      "words": 83,
+      "filler": 0,
+      "answer": "No, justified true belief is not sufficient for knowledge.\n\nThis position is known as the **Gettier problem**, named after philosopher Edmund Gettier, who published a paper in 1963 demonstrating that cases exist where a person possesses a justified true belief, yet they do not actually \"know\" the proposition. In these scenarios, the justification is accidentally true or based on false premises, leading to a situation where the belief is true and justified, but the connection between the justification and the truth is flawed."
+    },
+    {
+      "id": "ho-web-wcag",
+      "kb": "webdesign",
+      "coverage": 1.0,
+      "hit": [
+        "4.5"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 18,
+      "filler": 0,
+      "answer": "WCAG 2.1 Level AA requires a minimum contrast ratio of **4.5:1** for normal-size body text against its background."
+    },
+    {
+      "id": "ho-design-target",
+      "kb": "design",
+      "coverage": 1.0,
+      "hit": [
+        "24"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 68,
+      "filler": 0,
+      "answer": "The minimum size for a pointer target under WCAG 2.2 Level AA is **24 CSS pixels** (equivalent to 24 virtual pixels).\n\nThis requirement is defined in Success Criterion 2.1.1 (Non-text Contrast) and specifically in Success Criterion 2.5.5 (Target Size Minimum) of the WCAG 2.2 standard. The 24px minimum applies to the smallest dimension of the target (width or height) and is measured in CSS pixels, which are resolution-independent."
+    },
+    {
+      "id": "ho-code-mutdefault",
+      "kb": "coding",
+      "coverage": 1.0,
+      "hit": [
+        "same"
+      ],
+      "missing": [],
+      "tok_s": 6.9,
+      "finish": "stop",
+      "words": 50,
+      "filler": 0,
+      "answer": "In Python, `def f(x=[])` creates a single list object at the function definition time, not for each call. Because lists are mutable, all calls to `f()` share this same object. Modifying the list inside the function (e.g., `f().append(1)`) persists across subsequent calls, leading to unexpected side effects and data accumulation."
+    },
+    {
+      "id": "ho-soft-cap",
+      "kb": "software",
+      "coverage": 1.0,
+      "hit": [
+        "consistency",
+        "availability",
+        "partition"
+      ],
+      "missing": [],
+      "tok_s": 7.4,
+      "finish": "stop",
+      "words": 62,
+      "filler": 0,
+      "answer": "The three properties named in the CAP theorem are:\n\n1.  **Consistency**: All nodes in a cluster see the same data at the same time.\n2.  **Availability**: Every request receives a (potentially incorrect) response, without guarantee that it contains the most recent write.\n3.  **Partition Tolerance**: The system remains operational and continues to provide service despite the failure of some nodes (network partitions)."
+    },
+    {
+      "id": "ho-data-imbalance",
+      "kb": "datascience",
+      "coverage": 1.0,
+      "hit": [
+        "majority"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 109,
+      "filler": 0,
+      "answer": "Overall accuracy can be misleading on heavily imbalanced datasets because it fails to account for the distribution of classes, often resulting in a high accuracy score even when the model performs poorly on the minority class.\n\nIn an imbalanced scenario (e.g., 95% negative, 5% positive), a naive model that always predicts the majority class achieves 95% accuracy. However, this model provides zero utility for detecting the minority class, which is often the critical class in applications like fraud detection or disease diagnosis. Consequently, accuracy prioritizes the majority class and ignores the error rate of the minority class, making it an unreliable metric for evaluating model performance in such contexts."
+    },
+    {
+      "id": "ho-product-rice",
+      "kb": "product",
+      "coverage": 0.25,
+      "hit": [
+        "effort"
+      ],
+      "missing": [
+        "reach",
+        "impact",
+        "confidence"
+      ],
+      "tok_s": 7.4,
+      "finish": "stop",
+      "words": 72,
+      "filler": 0,
+      "answer": "In the RICE prioritisation framework, the four letters stand for:\n\n*   **R**ate: The frequency at which a feature will be used.\n*   **I**mpact: The magnitude of change the feature will have on users or the business.\n*   **C**ost: The effort required to implement the feature.\n*   **E**ffort: The time or resources needed to build the feature (often used interchangeably with Cost, though some definitions distinguish Cost as monetary and Effort as time)."
+    },
+    {
+      "id": "ho-legal-gdprfine",
+      "kb": "legal",
+      "coverage": 1.0,
+      "hit": [
+        "20 million",
+        "4%"
+      ],
+      "missing": [],
+      "tok_s": 7.1,
+      "finish": "stop",
+      "words": 65,
+      "filler": 0,
+      "answer": "Under the General Data Protection Regulation (GDPR), the maximum administrative fine for the most serious infringements is **€20 million** or **4% of the total worldwide annual turnover** of the preceding financial year, whichever is higher.\n\nThese fines apply to violations such as failing to comply with core principles of data processing, failing to notify a data breach, or failing to comply with data subject rights."
+    },
+    {
+      "id": "ho-health-who",
+      "kb": "health",
+      "coverage": 1.0,
+      "hit": [
+        "150"
+      ],
+      "missing": [],
+      "tok_s": 7.4,
+      "finish": "stop",
+      "words": 55,
+      "filler": 0,
+      "answer": "The World Health Organization (WHO) recommends that adults aged 18–64 accumulate at least **150 minutes** of moderate-intensity aerobic physical activity per week.\n\nThis can be achieved through:\n*   150 minutes of moderate-intensity activity spread throughout the week, or\n*   75 minutes of vigorous-intensity activity spread throughout the week, or\n*   An equivalent combination of both."
+    },
+    {
+      "id": "ho-fin-rule72",
+      "kb": "finance",
+      "coverage": 1.0,
+      "hit": [
+        "double",
+        "72"
+      ],
+      "missing": [],
+      "tok_s": 7.0,
+      "finish": "stop",
+      "words": 69,
+      "filler": 0,
+      "answer": "The **Rule of 72** estimates the number of years required to double an investment at a fixed annual rate of return, or conversely, the interest rate required to double an investment in a specific timeframe.\n\nIt is used through the following calculation:\n$$Years = \\frac{72}{Interest Rate \\%}$$\n\n**Example:** If an investment earns 6% interest annually, it will take approximately $72 / 6 = 12$ years to double in value."
+    },
+    {
+      "id": "ho-phil-kant",
+      "kb": "philosophy",
+      "coverage": 1.0,
+      "hit": [
+        "universal"
+      ],
+      "missing": [],
+      "tok_s": 7.2,
+      "finish": "stop",
+      "words": 59,
+      "filler": 0,
+      "answer": "Kant's categorical imperative requires that an action be performed only if its maxim (the subjective principle of the will) can be universalized into a law that applies to everyone without contradiction. Additionally, it demands that one treat humanity, whether in oneself or in others, always as an end in itself and never merely as a means to an end."
+    }
+  ],
+  "closed_summary": {
+    "avg_coverage_pct": 84.6,
+    "heldout_coverage_pct": 92.5,
+    "n_items": 47,
+    "n_heldout": 10,
+    "avg_tok_s": 7.0,
+    "total_filler": 1
+  },
+  "kit_gain_points": 11.1,
+  "kit_gain_heldout_points": -2.5,
+  "model_tag": "hard47-qwen35-4b"
+}
