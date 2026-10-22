@@ -75,8 +75,13 @@ def ask(question, context, params):
 
 def coverage(answer, keys):
     low = normalise(answer)
-    # leading word-boundary: "no" won't match "know"/"another", but stems still match (idempoten -> idempotency)
-    hit = [k for k in keys if re.search(r"(?<!\w)" + re.escape(k), low)]
+    # Leading word-boundary keeps stem keys working ("overfit" -> "overfitting", "idempoten" -> "idempotency")
+    # and stops "no" matching "know"/"another". Numeric keys ALSO get a trailing boundary, so e.g. "3" does not
+    # match "30", "44" not "440", and "0" not "05"/"10" (standalone numbers still match).
+    def present(k):
+        pat = r"(?<!\w)" + re.escape(k) + (r"(?!\w)" if re.fullmatch(r"[0-9][0-9.,]*", k) else "")
+        return re.search(pat, low) is not None
+    hit = [k for k in keys if present(k)]
     return len(hit) / len(keys), hit
 
 
